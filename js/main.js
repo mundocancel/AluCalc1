@@ -1,36 +1,7 @@
 let PRECIOS = {};
 fetch('data/precios.json')
     .then(res => res.json())
-    .then(data => { PRECIOS = data; updateQuote(); });    </style>
-</head>
-<body>
-    <header class="header">
-        <div class="container">
-            <div class="header-inner">
-                <a href="#" class="logo">
-                    <div class="logo-mark">AC</div>
-                    <div class="logo-text">
-                        Aluminio&Vidrio
-                        <span>Catálogo técnico</span>
-                    </div>
-                </a>
-                <nav class="nav" id="navCategorias">
-                    <!-- Generado por JS -->
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="main">
-        <div class="container">
-            <div class="grid-2">
-                <!-- Panel izquierdo: Controles -->
-                <div class="card fade-in">
-                    <div class="card-title">
-                        📐 Cotizador
-                        <span class="badge">medidas en mm</span>
-                    </div>
-
+    .then(data => { PRECIOS = data; updateQuote(); });    
                     <div id="productSelector" class="product-grid">
                         <!-- Generado por JS -->
                     </div>
