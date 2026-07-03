@@ -1,7 +1,4 @@
-<style>
-        /* =========================================
-           DESIGN TOKENS (Sistema de diseño)
-           ========================================= */
+
         :root {
             /* Colores - Paleta optimizada para contraste WCAG AA */
             --color-primary: #0077B6;
@@ -1424,4 +1421,3 @@
             opacity: 1;
             transform: translateX(-50%) translateY(0);
         }
-    </style>
