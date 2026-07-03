@@ -1,355 +1,242 @@
-:raíz {
-            --primario: #0077B6;
-            --primary-dark: #005A8C;
-            --primary-light: #E3F2FD;
-            --secundario: #00B4D8;
-            --acento: #FFB703;
-            --accent-dark: #E09F00;
-            --éxito: #10B981;
-            --peligro: #EF4444;
-            --WhatsApp: #25D366;
-            --texto-primario: #0F172A;
-            --texto-secundario: #475569;
-            --texto silenciado: #64748B;
-            --texto-inverso: #FFFFFF;
-            --bg-primary: #FFFFFF;
-            --bg-secundario: #F8FAFC;
-            --bg-terciario: #F1F5F9;
-            --borde: #E2E8F0;
-            --border-strong: #CBD5E1;
-            --radio: 0,75rem;
-            --radius-sm: 0,5rem;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
-            --transición: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-        }
+:root { 
+  --primary: #0077B6; 
+  --primary-dark: #005A8C; 
+  --primary-light: #E3F2FD; 
+  --secondary: #00B4D8; 
+  --accent: #FFB703; 
+  --accent-dark: #E09F00; 
+  --success: #10B981; 
+  --danger: #EF4444; 
+  --whatsapp: #25D366; 
+  --text-primary: #0F172A; 
+  --text-secondary: #475569; 
+  --text-muted: #64748B;
+  --text-inverse: #FFFFFF; 
+  --bg-primary: #FFFFFF; 
+  --bg-secondary: #F8FAFC; 
+  --bg-tertiary: #F1F5F9; 
+  --border: #E2E8F0; 
+  --border-strong: #CBD5E1; 
+  --radius: 0.75rem; 
+  --radius-sm: 0.5rem; 
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08); 
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1); 
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.15); 
+  --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1); 
+} 
 
-        * {
-            margen: 0;
-            relleno: 0;
-            box-size: border-box;
-        }
-        cuerpo {
-            font-family: 'Inter', -apple-system, sans-serif;
-            fondo: var(--bg-secundario);
-            color: var(--text-primary);
-            interlineado: 1,6;
-            -webkit-font-smoothing: antialiased;
-        }
-        .contenedor {
-            ancho máximo: 1340px;
-            margen: 0 automático;
-            relleno: 0 1.5rem;
-        }
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+} 
 
-        /* Encabezado */
-        .encabezado {
-            fondo: var(--bg-primary);
-            borde inferior: var sólido de 1 px (--borde);
-            relleno: 0,75rem 0;
-            posición: pegajosa;
-            superior: 0;
-            Índice z: 100;
-            filtro de fondo: desenfoque (12px);
-            fondo: rgba(255, 255, 255, 0.94);
-        }
-        .header-inner {
-            pantalla: flexible;
-            alinear-elementos: centro;
-            justificar-contenido: espacio-entre;
-            brecha: 0,75rem;
-            flex-wrap: envoltura;
-        }
-        .logo {
-            pantalla: flexible;
-            alinear-elementos: centro;
-            brecha: 0,6 rem;
-            grosor de fuente: 700;
-            tamaño de fuente: 1,05rem;
-            decoración de texto: ninguna;
-            color: var(--text-primary);
-            espacio en blanco: ahora rap;
-        }
-        .logo-marca {
-            ancho: 38px;
-            altura: 38px;
-            fondo: gradiente lineal (135 grados, var (--primario), var (--secundario));
-            radio-borde: var(--radius-sm);
-            pantalla: flexible;
-            alinear-elementos: centro;
-            justificar-contenido: centro;
-            color: blanco;
-            grosor de fuente: 800;
-            tamaño de fuente: 0,9rem;
-        }
-        .logo-text span {
-            tamaño de fuente: 0,65rem;
-            color: var(--text-muted);
-            grosor de fuente: 500;
-            transformación de texto: mayúsculas;
-            espaciado entre letras: 0,06em;
-            mostrar: bloque;
-        }
-        .nav {
-            pantalla: flexible;
-            espacio: 0,4rem;
-            flex-wrap: envoltura;
-        }
-        .nav-btn {
-            relleno: 0,4rem 0,85rem;
-            radio-borde: var(--radius-sm);
-            borde: 2px sólido transparente;
-            fondo: var(--bg-terciario);
-            grosor de fuente: 600;
-            tamaño de fuente: 0,8rem;
-            color: var(--text-secondary);
-            cursor: puntero;
-            transición: todo var(--transición);
-            espacio en blanco: ahora rap;
-        }
-        .nav-btn:hover {
-            fondo: var(--primary-light);
-            color: var(--primary);
-        }
-        .nav-btn.active {
-            fondo: var(--primary);
-            color: blanco;
-            color del borde: var(--primary);
-            box-shadow: var(--shadow);
-        }
+body { 
+  font-family: 'Inter', -apple-system, sans-serif; 
+  background: var(--bg-secondary); 
+  color: var(--text-primary); 
+  line-height: 1.6; 
+  -webkit-font-smoothing: antialiased; 
+} 
 
-        /* Botones de acción en header */
-        .header-actions {
-            pantalla: flexible;
-            espacio: 0,5 rem;
-            alinear-elementos: centro;
-        }
-        .btn-header {
-            relleno: 0,4rem 0,85rem;
-            radio-borde: var(--radius-sm);
-            borde: 2px solid var(--border-strong);
-            fondo: var(--bg-primary);
-            grosor de fuente: 600;
-            tamaño de fuente: 0,8rem;
-            cursor: puntero;
-            transición: todo var(--transición);
-            pantalla: flexible;
-            alinear-elementos: centro;
-            brecha: 0,35 rem;
-            espacio en blanco: ahora rap;
-        }
-        .btn-header:hover {
-            fondo: var(--bg-terciario);
-            color del borde: var(--primary);
-            color: var(--primary);
-        }
-        .btn-header.accent {
-            fondo: var(--acento);
-            color del borde: var(--accent);
-            color: #1a1a1a;
-        }
-        .btn-header.accent:hover {
-            fondo: var(--accent-dark);
-            color del borde: var(--accent-dark);
-        }
+.contenedor { 
+  max-width: 1340px; 
+  margin: 0 auto; 
+  padding: 0 1.5rem; 
+} 
 
-        /* Principal */
-        .principal {
-            relleno: 1,5 rem 0 4 rem;
-        }
-        .grid-3 {
-            mostrar: cuadrícula;
-            columnas-de-plantilla-de-cuadrícula: 1fr;
-            brecha: 1,5 rem;
-        }
-        @media (min-width: 1200px) {
-            .grid-3 {
-                columnas-de-plantilla-de-cuadrícula: 1fr 1.2fr 1fr;
-            }
-        }
-        @media (min-width: 768px) y (max-width: 1199px) {
-            .grid-3 {
-                columnas-de-plantilla-de-cuadrícula: 1fr 1fr;
-            }
-            .grid-3 .card:last-child {
-                columna de cuadrícula: 1 / -1;
-            }
-        }
+/* Encabezado */ 
+.encabezado { 
+  background: var(--bg-primary); 
+  border-bottom: 1px solid var(--border); 
+  padding: 0.75rem 0; 
+  position: sticky; 
+  top: 0; 
+  z-index: 100; 
+  backdrop-filter: blur(12px); 
+  background: rgba(255, 255, 255, 0.94); 
+} 
 
-        /* Cartas */
-        .tarjeta {
-            fondo: var(--bg-primary);
-            radio-borde: var(--radio);
-            box-shadow: var(--shadow);
-            relleno: 1,25 rem;
-            borde: 1px var sólido (--borde);
-            transición: box-shadow var(--transición);
-        }
-        .card:hover {
-            box-shadow: var(--shadow-lg);
-        }
-        .título-de-la-tarjeta {
-            tamaño de fuente: 1,1rem;
-            grosor de fuente: 700;
-            margen inferior: 1rem;
-            pantalla: flexible;
-            alinear-elementos: centro;
-            espacio: 0,4rem;
-            flex-wrap: envoltura;
-        }
-        .insignia {
-            tamaño de fuente: 0,6rem;
-            fondo: var(--primary-light);
-            color: var(--primary);
-            relleno: 0,15rem 0,5rem;
-            radio de borde: 9999px;
-            grosor de fuente: 600;
-            espaciado entre letras: 0,03em;
-        }
-        .insignia.verde {
-            fondo: #D1FAE5;
-            color: #065F46;
-        }
-        .insignia.naranja {
-            fondo: #FEF3C7;
-            color: #92400E;
-        }
+.header-inner { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  gap: 0.75rem; 
+  flex-wrap: wrap; 
+} 
 
-        /* Panel de precios */
-        .panel-precio {
-            fondo: gradiente lineal(135 grados, #FFFDF7 0%, #FFFBEB 100%);
-            borde: 2px sólido var(--accent);
-            radio-borde: var(--radio);
-            relleno: 1rem 1,25rem;
-            margen inferior: 1rem;
-            transición: todo var(--transición);
-        }
-        .price-panel.collapsed .price-body {
-            mostrar: ninguno;
-        }
-        .encabezado-precio {
-            pantalla: flexible;
-            justificar-contenido: espacio-entre;
-            alinear-elementos: centro;
-            cursor: puntero;
-            selección del usuario: ninguna;
-            grosor de fuente: 700;
-            tamaño de fuente: 0,9rem;
-        }
-        .price-header .arrow {
-            transición: transformar var(--transición);
-            tamaño de fuente: 0,7rem;
-        }
-        .price-panel.collapsed .arrow {
-            transformar: rotar(-90 grados);
-        }
-        .price-body {
-            margen superior: 0,75rem;
-            mostrar: cuadrícula;
-            columnas-de-plantilla-de-cuadrícula: 1fr 1fr;
-            brecha: 0,6 rem;
-        }
-        @media (max-width: 480px) {
-            .price-body {
-                columnas-de-plantilla-de-cuadrícula: 1fr;
-            }
-        }
-        .campo-precio {
-            pantalla: flexible;
-            flex-direction: columna;
-            espacio: 0,2rem;
-        }
-        .etiqueta-campo-precio {
-            tamaño de fuente: 0,7rem;
-            grosor de fuente: 600;
-            color: var(--text-secondary);
-            transformación de texto: mayúsculas;
-            espaciado entre letras: 0,04em;
-        }
-        .campo-precio entrada {
-            relleno: 0,45rem 0,6rem;
-            borde: 2px solid var(--border-strong);
-            radio-borde: var(--radius-sm);
-            tamaño de fuente: 0,85rem;
-            grosor de fuente: 600;
-            font-family: 'Inter', sans-serif;
-            fondo: blanco;
-            transición: frontera var(--transición);
-            ancho: 100%;
-        }
-        .price-field input:focus {
-            esquema: ninguno;
-            color del borde: var(--primary);
-            box-shadow: 0 0 0 3px var(--primary-light);
-        }
-        .campo-precio .unidad {
-            tamaño de fuente: 0,65rem;
-            color: var(--text-muted);
-            grosor de fuente: 500;
-        }
-        .etiqueta de precio {
-            display: inline-flex;
-            alinear-elementos: centro;
-            brecha: 0,3rem;
-            fondo: blanco;
-            relleno: 0,35rem 0,65rem;
-            radio-borde: var(--radius-sm);
-            grosor de fuente: 700;
-            tamaño de fuente: 0,8rem;
-            borde: 1px var sólido (--borde);
-            color: var(--primary);
-        }
+.logo { 
+  display: flex; 
+  align-items: center; 
+  gap: 0.6rem; 
+  font-weight: 700; 
+  font-size: 1.05rem; 
+  text-decoration: none; 
+  color: var(--text-primary); 
+  white-space: nowrap; 
+} 
 
-        /* Controles */
-        .grupo-de-control {
-            margen inferior: 1,25rem;
-        }
-        .etiqueta-de-control {
-            pantalla: flexible;
-            justificar-contenido: espacio-entre;
-            alinear-elementos: centro;
-            grosor de fuente: 600;
-            tamaño de fuente: 0,8rem;
-            margen inferior: 0,4rem;
-        }
-        .control-value {
-            color: var(--primary);
-            grosor de fuente: 700;
-            tamaño de fuente: 0,95rem;
-            fuente-variante-numérica: números-tabulares;
-        }
-        .slider {
-            -webkit-appearance: ninguno;
-            apariencia: ninguna;
-            ancho: 100%;
-            altura: 6px;
-            fondo: var(--bg-terciario);
-            radio de borde: 9999px;
-            esquema: ninguno;
-            transición: fondo var(--transición);
-        }
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: ninguno;
-            ancho: 22px;
-            altura: 22px;
-            fondo: var(--primary);
-            borde: 3px sólido blanco;
-            radio de borde: 50%;
-            cursor: puntero;
-            box-shadow: var(--shadow);
-            transición: transformar var(--transición);
-        }
-        .slider::-webkit-slider-thumb:hover {
-            transformar: escala(1.15);
-        }
-        .slider-range {
-            pantalla: flexible;
-            justificar-contenido: espacio-entre;
-            margen superior: 0,2rem;
-            tamaño de fuente: 0,7rem;
-            color: var(--text-muted);
-        }
+.logo-marca { 
+  width: 38px; 
+  height: 38px; 
+  background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+  border-radius: var(--radius-sm); 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  color: white; 
+  font-weight: 800; 
+  font-size: 0.9rem; 
+} 
+
+.logo-text span { 
+  font-size: 0.65rem; 
+  color: var(--text-muted); 
+  font-weight: 500; 
+  text-transform: uppercase; 
+  letter-spacing: 0.06em; 
+  display: block; 
+} 
+
+.nav { 
+  display: flex; 
+  gap: 0.4rem; 
+  flex-wrap: wrap; 
+} 
+
+.nav-btn { 
+  padding: 0.4rem 0.85rem; 
+  border-radius: var(--radius-sm); 
+  border: 2px solid transparent; 
+  background: var(--bg-tertiary); 
+  font-weight: 600; 
+  font-size: 0.8rem; 
+  color: var(--text-secondary); 
+  cursor: pointer; 
+  transition: all var(--transition); 
+  white-space: nowrap; 
+} 
+
+.nav-btn:hover { 
+  background: var(--primary-light); 
+  color: var(--primary); 
+} 
+
+.nav-btn.active { 
+  background: var(--primary); 
+  color: white; 
+  border-color: var(--primary); 
+  box-shadow: var(--shadow); 
+} 
+
+/* Botones de acción en header */ 
+.header-actions { 
+  display: flex; 
+  gap: 0.5rem; 
+  align-items: center; 
+} 
+
+.btn-header { 
+  padding: 0.4rem 0.85rem; 
+  border-radius: var(--radius-sm); 
+  border: 2px solid var(--border-strong); 
+  background: var(--bg-primary); 
+  font-weight: 600; 
+  font-size: 0.8rem; 
+  cursor: pointer; 
+  transition: all var(--transition); 
+  display: flex; 
+  align-items: center; 
+  gap: 0.35rem; 
+  white-space: nowrap; 
+} 
+
+.btn-header:hover { 
+  background: var(--bg-tertiary); 
+  border-color: var(--primary); 
+  color: var(--primary); 
+} 
+
+.btn-header.accent { 
+  background: var(--accent); 
+  border-color: var(--accent); 
+  color: #1a1a1a; 
+} 
+
+.btn-header.accent:hover { 
+  background: var(--accent-dark); 
+  border-color: var(--accent-dark); 
+} 
+
+/* Principal */ 
+.principal { 
+  padding: 1.5rem 0 4rem; 
+} 
+
+.grid-3 { 
+  display: grid; 
+  grid-template-columns: 1fr; 
+  gap: 1.5rem; 
+} 
+
+@media (min-width: 1200px) { 
+  .grid-3 { 
+    grid-template-columns: 1fr 1.2fr 1fr; 
+  } 
+} 
+
+@media (min-width: 768px) and (max-width: 1199px) { 
+  .grid-3 { 
+    grid-template-columns: 1fr 1fr; 
+  } 
+  .grid-3 .card:last-child { 
+    grid-column: 1 / -1; 
+  } 
+} 
+
+/* Cartas */ 
+.tarjeta { 
+  background: var(--bg-primary); 
+  border-radius: var(--radius); 
+  box-shadow: var(--shadow); 
+  padding: 1.25rem; 
+  border: 1px solid var(--border); 
+  transition: box-shadow var(--transition); 
+} 
+
+.tarjeta:hover { 
+  box-shadow: var(--shadow-lg); 
+} 
+
+.título-de-la-tarjeta { 
+  font-size: 1.1rem; 
+  font-weight: 700; 
+  margin-bottom: 1rem; 
+  display: flex; 
+  align-items: center; 
+  gap: 0.4rem; 
+  flex-wrap: wrap; 
+} 
+
+.insignia { 
+  font-size: 0.6rem; 
+  background: var(--primary-light); 
+  color: var(--primary); 
+  padding: 0.15rem 0.5rem; 
+  border-radius: 9999px; 
+  font-weight: 600; 
+  letter-spacing: 0.03em; 
+} 
+
+.insignia.verde { 
+  background: #D1FAE5; 
+  color: #065F46; 
+} 
+
+.insignia.naranja { 
+  background: #FEF3C7; 
+  color: #92400E; 
+
 
         /* Cuadrícula de productos */
         .grid-producto {
