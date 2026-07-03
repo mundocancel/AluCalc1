@@ -1,0 +1,7 @@
+{
+  "cancel": { "base": 2500, "precio_m2": 1200 },
+  "barandal": { "base": 1800, "precio_m2": 900 },
+  "pasamano": { "base": 1500, "precio_m2": 750 },
+  "mampara": { "base": 2000, "precio_m2": 1100 },
+  "espejo": { "base": 800, "precio_m2": 500 }
+}
