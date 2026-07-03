@@ -78,6 +78,86 @@ a//tmp/AluCalc1/js/main.js → b//tmp/AluCalc1/js/main.js
 -                "categoría": "puertas",
 -                "icono": "ðŸšª",
 -                "tipoVidrio": "6mm",
+… omitted 1271 diff line(s) across 1 additional file(s)/section(s)a//tmp/AluCalc1/js/main.js → b//tmp/AluCalc1/js/main.js
+@@ -1,695 +1,655 @@
+-
+-        // ============================================================
+-        // CATÁ LOGO MAESTRO AMPLIADO
+-        // ============================================================
+-        const CATÁLOGO = {
+-            "ventana_corrediza_estandar": {
+-                "nombre": "Ventana corrediza estándar",
+-                "categoria": "ventanas",
+-                "icono": "ðŸªŸ",
+-                "tipoVidrio": "4mm",
+-                "perfiles": [
+-                    { "nombre": "Riel / Jamba cabezal", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+-                    { "nombre": "Jambas verticales", "cantidad": 2, "formula": "alto - 26", "corte": "90°" },
+-                    { "nombre": "Zoclo / Cabezal", "cantidad": 2, "formula": "(ancho - 185) / 2", "corte": "90°" }
+-                ],
+-                "vidrio": [
+-                    { "nombre": "Vidrio fijo 4mm", "cantidad": 1, "ancho": "(ancho - 151) / 2", "alto": "alto - 125",
+-                        "tipo": "4mm" },
+-                    { "nombre": "Vidrio corredizo 4mm", "cantidad": 1, "ancho": "(ancho - 151) / 2",
+-                    "alto": "alto - 135", "tipo": "4mm" }
+-                ],
+-                "notas": "ðŸ”§ Usar felpa en zoclo y cabezal para deslizamiento suave. Revisar escuadra antes de ensamblar.",
+-                "porcentajeHerrajesOverride": nulo
+-            },
+-            "ventana_3_hojas_telescópica": {
+-                "nombre": "Ventana 3 hojas telescópica",
+-                "categoria": "ventanas",
+-                "icono": "ðŸªŸ",
+-                "tipoVidrio": "6mm",
+-                "perfiles": [
+-                    { "nombre": "Riel de 3\"", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+-                    { "nombre": "Jamba de 3\" (cabezal)", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+-                    { "nombre": "Adaptador paloma", "cantidad": 1, "formula": "ancho - 65", "corte": "90°" },
+-                    { "nombre": "Jambas de 3\"", "cantidad": 2, "formula": "alto - 26", "corte": "90°" },
+-                    { "nombre": "Zoclo / Cabezal de 3\"", "cantidad": 3, "formula": "(ancho - 167) / 3",
+-                    "corte": "90°" },
+-                    { "nombre": "Cerco chapa fija", "cantidad": 1, "formula": "alto", "corte": "90°" },
+-                    { "nombre": "Cerco chapa corredizo", "cantidad": 1, "formula": "alto - 40", "corte": "90°" },
+-                    { "nombre": "Traslape fijo", "cantidad": 1, "formula": "alto", "corte": "90°" },
+-                    { "nombre": "Traslape corredizo", "cantidad": 3, "formula": "alto - 40", "corte": "90°" }
+-                ],
+-                "vidrio": [
+-                    { "nombre": "Vidrio fijo 6mm", "cantidad": 1, "ancho": "(ancho - 117) / 3", "alto": "alto - 95",
+-                        "tipo": "6mm" },
+-                    { "nombre": "Vidrio corredizo 6mm", "cantidad": 2, "ancho": "(ancho - 117) / 3",
+-                    "alto": "alto - 135", "tipo": "6mm" }
+-                ],
+-                "notas": "âš ï¸ Requiere riel de 3 servicios. El adaptador paloma debe quedar centrado. Usar rodajas de nylon.",
+-                "porcentajeHerrajesOverride": 20
+-            },
+-            "ventanal_oxxo": {
+-                "nombre": "Ventanal OXXO",
+-                "categoria": "ventanales",
+-                "icono": "ðŸ ª",
+-                "tipoVidrio": "6mm",
+-                "perfiles": [
+-                    { "nombre": "Riel / Jamba c/mosquitero", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+-                    { "nombre": "Jambas de 3\"", "cantidad": 2, "formula": "alto - 26", "corte": "90°" },
+-                    { "nombre": "Zoclo / Cabezal de 3\"", "cantidad": 8, "formula": "(ancho - 330) / 4",
+-                    "corte": "90°" },
+-                    { "nombre": "Cerco chapa / Traslape fijo", "cantidad": 4, "formula": "alto - 30", "corte": "90°" },
+-                    { "nombre": "Cerco chapa / Traslape corredizo", "cantidad": 4, "formula": "alto - 40",
+-                    "corte": "90°" }
+-                ],
+-                "vidrio": [
+-                    { "nombre": "Vidrio fijo 6mm", "cantidad": 2, "ancho": "(ancho - 265) / 4", "alto": "alto - 125",
+-                        "tipo": "6mm" },
+-                    { "nombre": "Vidrio corredizo 6mm", "cantidad": 2, "ancho": "(ancho - 265) / 4",
+-                    "alto": "alto - 135", "tipo": "6mm" }
+-                ],
+-                "notas": "ðŸ —ï¸ Para vanos grandes, reforzar el riel inferior. Considere dilatación térmica en climas extremos.",
+-                "porcentajeHerrajesOverride": 22
+-            },
+-            "puerta_batente_estandar": {
+-                "nombre": "Puerta batiente estÃ¡ndar",
+-                "categoría": "puertas",
+-                "icono": "ðŸšª",
+-                "tipoVidrio": "6mm",
 … omitted 1271 diff line(s) across 1 additional file(s)/section(s)
         // ============================================================
         // CATÁ LOGO MAESTRO AMPLIADO
