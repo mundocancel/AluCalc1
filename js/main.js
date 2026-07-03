@@ -1,4 +1,7 @@
-    </style>
+let PRECIOS = {};
+fetch('data/precios.json')
+    .then(res => res.json())
+    .then(data => { PRECIOS = data; updateQuote(); });    </style>
 </head>
 <body>
     <header class="header">
