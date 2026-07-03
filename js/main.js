@@ -1,7 +1,4 @@
-let PRECIOS = {};
-fetch('data/precios.json')
-    .then(res => res.json())
-    .then(data => { PRECIOS = data; updateQuote(); });    
+  
                     <div id="productSelector" class="product-grid">
                         <!-- Generado por JS -->
                     </div>
