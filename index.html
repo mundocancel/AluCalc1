@@ -3,1100 +3,378 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Sistema de Cotización - Carpintería Aluminio</title>
+    <meta name="theme-color" content="#0077B6">
+    <meta name="description" content="El Mundo de los Canceles - Especialistas en canceles de baño, barandales, pasamanos y mamparas en Tonalá, Jalisco. Calidad garantizada y atención personalizada.">
+    <meta name="keywords" content="canceles de baño, barandales, pasamanos, mamparas, vidrio templado, Tonalá, Jalisco">
+    <meta name="author" content="El Mundo de los Canceles">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="El Mundo de los Canceles | Especialistas en Vidrio y Aluminio">
+    <meta property="og:description" content="Canceles de baño, barandales, pasamanos y mamparas de la más alta calidad en Tonalá, Jalisco.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_MX">
+    
+    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #0077B6;
-            --primary-dark: #005A8C;
-            --primary-light: #E3F2FD;
-            --secondary: #00B4D8;
-            --accent: #FFB703;
-            --success: #10B981;
-            --whatsapp: #25D366;
-            --text-primary: #0F172A;
-            --text-secondary: #475569;
-            --text-muted: #64748B;
-            --text-inverse: #FFFFFF;
-            --bg-primary: #FFFFFF;
-            --bg-secondary: #F8FAFC;
-            --bg-tertiary: #F1F5F9;
-            --border: #E2E8F0;
-            --border-strong: #CBD5E1;
-            --radius: 0.75rem;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Header */
-        .header {
-            background: var(--bg-primary);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(12px);
-            background: rgba(255, 255, 255, 0.92);
-        }
-
-        .header-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-weight: 700;
-            font-size: 1.125rem;
-            text-decoration: none;
-            color: var(--text-primary);
-        }
-
-        .logo-mark {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: var(--radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 800;
-            font-size: 1rem;
-        }
-
-        .logo-text span {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            display: block;
-        }
-
-        .nav {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .nav-btn {
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius);
-            border: 2px solid transparent;
-            background: var(--bg-tertiary);
-            font-weight: 600;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all var(--transition);
-        }
-
-        .nav-btn:hover {
-            background: var(--primary-light);
-            color: var(--primary);
-        }
-
-        .nav-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            box-shadow: var(--shadow);
-        }
-
-        /* Main */
-        .main {
-            padding: 2rem 0 4rem;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        @media (min-width: 1024px) {
-            .grid-2 {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        /* Cards */
-        .card {
-            background: var(--bg-primary);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 1.5rem;
-            border: 1px solid var(--border);
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .card-title .badge {
-            font-size: 0.65rem;
-            background: var(--primary-light);
-            color: var(--primary);
-            padding: 0.15rem 0.5rem;
-            border-radius: 9999px;
-            font-weight: 600;
-        }
-
-        /* Controls */
-        .control-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .control-label {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            font-size: 0.875rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .control-value {
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 1rem;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .slider {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 100%;
-            height: 6px;
-            background: var(--bg-tertiary);
-            border-radius: 9999px;
-            outline: none;
-            transition: background var(--transition);
-        }
-
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 22px;
-            height: 22px;
-            background: var(--primary);
-            border: 3px solid white;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-            transition: transform var(--transition);
-        }
-
-        .slider::-webkit-slider-thumb:hover {
-            transform: scale(1.15);
-        }
-
-        .slider::-moz-range-thumb {
-            width: 22px;
-            height: 22px;
-            background: var(--primary);
-            border: 3px solid white;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        .slider-range {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 0.25rem;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        /* Product selector */
-        .product-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        @media (min-width: 640px) {
-            .product-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .product-btn {
-            padding: 0.75rem 0.5rem;
-            background: var(--bg-secondary);
-            border: 2px solid transparent;
-            border-radius: var(--radius);
-            font-weight: 600;
-            font-size: 0.75rem;
-            color: var(--text-primary);
-            text-align: center;
-            cursor: pointer;
-            transition: all var(--transition);
-            line-height: 1.2;
-        }
-
-        .product-btn:hover {
-            background: var(--bg-tertiary);
-            border-color: var(--border-strong);
-        }
-
-        .product-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            box-shadow: var(--shadow);
-        }
-
-        .product-btn .sub {
-            display: block;
-            font-weight: 400;
-            font-size: 0.6rem;
-            opacity: 0.7;
-            margin-top: 0.1rem;
-        }
-
-        /* Visual Preview */
-        .preview-box {
-            background: var(--bg-secondary);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 300px;
-            border: 2px dashed var(--border-strong);
-            position: relative;
-        }
-
-        .preview-box svg {
-            max-width: 100%;
-            max-height: 280px;
-        }
-
-        .preview-box .placeholder {
-            color: var(--text-muted);
-            text-align: center;
-        }
-
-        .preview-box .placeholder svg {
-            width: 64px;
-            height: 64px;
-            margin-bottom: 0.5rem;
-            opacity: 0.3;
-        }
-
-        /* Data display */
-        .data-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.75rem;
-            margin-top: 1.5rem;
-        }
-
-        .data-item {
-            text-align: center;
-            padding: 0.75rem;
-            background: var(--bg-secondary);
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-        }
-
-        .data-item strong {
-            display: block;
-            font-size: 1.125rem;
-            color: var(--primary);
-            font-weight: 700;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .data-item span {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-weight: 600;
-        }
-
-        /* Componentes list */
-        .componentes-list {
-            margin-top: 1.5rem;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .componente-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem 0.75rem;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.875rem;
-            gap: 0.5rem;
-        }
-
-        .componente-item:last-child {
-            border-bottom: none;
-        }
-
-        .componente-item .nombre {
-            font-weight: 500;
-            flex: 1;
-        }
-
-        .componente-item .medida {
-            font-weight: 700;
-            color: var(--primary);
-            font-variant-numeric: tabular-nums;
-            white-space: nowrap;
-        }
-
-        .componente-item .cantidad {
-            color: var(--text-muted);
-            font-size: 0.75rem;
-            font-weight: 600;
-            min-width: 2rem;
-            text-align: center;
-        }
-
-        .componente-item .tag {
-            font-size: 0.6rem;
-            background: var(--bg-tertiary);
-            padding: 0.1rem 0.4rem;
-            border-radius: 9999px;
-            color: var(--text-muted);
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        /* WhatsApp button */
-        .btn-whatsapp {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            width: 100%;
-            padding: 0.875rem 1.5rem;
-            background: var(--whatsapp);
-            color: white;
-            border-radius: var(--radius);
-            font-weight: 700;
-            font-size: 1rem;
-            border: none;
-            cursor: pointer;
-            transition: all var(--transition);
-            box-shadow: var(--shadow);
-            margin-top: 1.5rem;
-        }
-
-        .btn-whatsapp:hover {
-            background: #1DA851;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(37, 211, 102, 0.3);
-        }
-
-        .btn-whatsapp:active {
-            transform: translateY(0);
-        }
-
-        .btn-whatsapp svg {
-            width: 22px;
-            height: 22px;
-        }
-
-        /* Toast */
-        .toast {
-            position: fixed;
-            bottom: 1.5rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--text-primary);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-lg);
-            opacity: 0;
-            transition: all var(--transition);
-            z-index: 999;
-            font-weight: 500;
-            font-size: 0.875rem;
-            max-width: 90vw;
-        }
-
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* Scrollbar */
-        .componentes-list::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .componentes-list::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-            border-radius: 9999px;
-        }
-
-        .componentes-list::-webkit-scrollbar-thumb {
-            background: var(--border-strong);
-            border-radius: 9999px;
-        }
-
-        /* Responsive */
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 0.75rem;
-            }
-            .card {
-                padding: 1rem;
-            }
-            .product-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .data-grid {
-                grid-template-columns: 1fr 1fr 1fr;
-            }
-            .componente-item {
-                font-size: 0.75rem;
-                flex-wrap: wrap;
-            }
-        }
-
-        /* Animación de carga sutil */
-        .fade-in {
-            animation: fadeIn 0.4s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Especial card */
-        .special-card {
-            text-align: center;
-            padding: 2rem 1rem;
-        }
-
-        .special-card .icon {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .special-card h4 {
-            font-size: 1.125rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .special-card p {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        .text-muted {
-            color: var(--text-muted);
-        }
-    </style>
+    <link rel="dns-prefetch" href="https://wa.me">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS externo -->
+    <link rel="stylesheet" href="styles/main.css">
+    
+    <title>El Mundo de los Canceles | Especialistas en Vidrio y Aluminio en Tonalá</title>
 </head>
 <body>
-    <header class="header">
+    <!-- Skip link -->
+    <a href="#main" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- HEADER (igual que antes) -->
+    <header class="header" id="header" role="banner">
         <div class="container">
             <div class="header-inner">
-                <a href="#" class="logo">
-                    <div class="logo-mark">AC</div>
+                <a href="#" class="logo" aria-label="El Mundo de los Canceles - Inicio">
+                    <div class="logo-mark" aria-hidden="true">MC</div>
                     <div class="logo-text">
-                        Aluminio&Vidrio
-                        <span>Catálogo técnico</span>
+                        <strong>El Mundo de los Canceles</strong>
+                        <span>Vidrio y Aluminio</span>
                     </div>
                 </a>
-                <nav class="nav" id="navCategorias">
-                    <!-- Generado por JS -->
+                <nav class="nav" aria-label="Navegación principal">
+                    <a href="#productos" class="nav-link">Productos</a>
+                    <a href="#cotizador" class="nav-link">Cotizador</a>
+                    <a href="#proyectos" class="nav-link">Proyectos</a>
+                    <a href="#testimonios" class="nav-link">Testimonios</a>
+                    <a href="#contacto" class="nav-link">Contacto</a>
                 </nav>
+                <div class="header-actions">
+                    <a href="https://wa.me/523310611338?text=Hola%2C%20me%20interesa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20productos" 
+                       class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        <span class="hidden md:inline">WhatsApp</span>
+                    </a>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
-
-    <main class="main">
-        <div class="container">
-            <div class="grid-2">
-                <!-- Panel izquierdo: Controles -->
-                <div class="card fade-in">
-                    <div class="card-title">
-                        📐 Cotizador
-                        <span class="badge">medidas en mm</span>
-                    </div>
-
-                    <div id="productSelector" class="product-grid">
-                        <!-- Generado por JS -->
-                    </div>
-
-                    <div id="standardControls">
-                        <div class="control-group">
-                            <label class="control-label" for="sliderWidth">
-                                <span>Ancho</span>
-                                <span class="control-value" id="valWidth">1500 mm</span>
-                            </label>
-                            <input type="range" id="sliderWidth" class="slider" min="300" max="5000" step="10" value="1500">
-                            <div class="slider-range">
-                                <span>300 mm</span>
-                                <span>5000 mm</span>
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label" for="sliderHeight">
-                                <span>Alto</span>
-                                <span class="control-value" id="valHeight">2000 mm</span>
-                            </label>
-                            <input type="range" id="sliderHeight" class="slider" min="300" max="3500" step="10" value="2000">
-                            <div class="slider-range">
-                                <span>300 mm</span>
-                                <span>3500 mm</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="special-card hidden" id="specialCard">
-                        <div class="icon">🔧</div>
-                        <h4>Trabajo Personalizado</h4>
-                        <p>Para proyectos especiales, contáctanos directamente. Nuestro equipo te asesorará con la mejor solución.</p>
-                    </div>
-
-                    <button class="btn-whatsapp" id="btnCotizar">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-                        Enviar cotización por WhatsApp
-                    </button>
+    
+    <!-- Mobile Menu (igual) -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <aside class="mobile-menu" id="mobileMenu" aria-label="Menú móvil" aria-hidden="true">
+        <div class="mobile-menu-header">
+            <strong>Menú</strong>
+            <button class="btn-icon" id="mobileMenuClose" aria-label="Cerrar menú">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <nav class="mobile-menu-nav">
+            <a href="#productos" class="mobile-menu-link">Productos</a>
+            <a href="#cotizador" class="mobile-menu-link">Cotizador</a>
+            <a href="#proyectos" class="mobile-menu-link">Proyectos Especiales</a>
+            <a href="#testimonios" class="mobile-menu-link">Testimonios</a>
+            <a href="#contacto" class="mobile-menu-link">Contacto</a>
+        </nav>
+        <a href="https://wa.me/523310611338" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer" style="width: 100%; justify-content: center;">Contactar por WhatsApp</a>
+    </aside>
+    
+    <main id="main">
+        <!-- HERO (igual) -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-bg" aria-hidden="true"></div>
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot" aria-hidden="true"></span>
+                    <span>+10 años transformando espacios en Jalisco</span>
                 </div>
-
-                <!-- Panel derecho: Vista previa y despiece -->
-                <div class="card fade-in">
-                    <div class="card-title">
-                        🔍 Despiece técnico
-                        <span class="badge" id="productNameBadge">Ventana corrediza</span>
+                <h1 id="hero-title">
+                    Transformamos tus espacios con <span class="accent">vidrio y aluminio</span> de calidad
+                </h1>
+                <p class="hero-subtitle">
+                    Especialistas en canceles de baño, barandales, pasamanos y mamparas. Diseño, fabricación e instalación profesional en Tonalá y zona metropolitana de Guadalajara.
+                </p>
+                <div class="hero-actions">
+                    <a href="#cotizador" class="btn btn-primary btn-lg">Cotizar mi proyecto</a>
+                    <a href="#productos" class="btn btn-outline btn-lg" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.3); backdrop-filter: blur(10px);">Ver productos</a>
+                </div>
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <div class="hero-feature-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                        <div class="hero-feature-text">Garantía de calidad</div>
                     </div>
-
-                    <div class="preview-box" id="previewBox">
-                        <div id="previewContent">
-                            <!-- Generado por JS -->
-                        </div>
+                    <div class="hero-feature">
+                        <div class="hero-feature-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+                        <div class="hero-feature-text">Entrega puntual</div>
                     </div>
-
-                    <div class="data-grid" id="dataGrid">
-                        <div class="data-item">
-                            <strong id="dataWidth">1500</strong>
-                            <span>Ancho (mm)</span>
-                        </div>
-                        <div class="data-item">
-                            <strong id="dataHeight">2000</strong>
-                            <span>Alto (mm)</span>
-                        </div>
-                        <div class="data-item">
-                            <strong id="dataArea">3.00</strong>
-                            <span>Área (m²)</span>
-                        </div>
+                    <div class="hero-feature">
+                        <div class="hero-feature-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                        <div class="hero-feature-text">Atención personalizada</div>
                     </div>
-
-                    <div class="componentes-list" id="componentesList">
-                        <!-- Generado por JS -->
+                    <div class="hero-feature">
+                        <div class="hero-feature-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg></div>
+                        <div class="hero-feature-text">Diseño a medida</div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+        
+        <!-- CATEGORÍAS (igual) -->
+        <section class="section" id="productos" aria-labelledby="productos-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Nuestros Productos</span>
+                    <h2 class="section-title" id="productos-title">Soluciones en Vidrio y Aluminio</h2>
+                    <p class="section-description">Descubre nuestra amplia gama de productos diseñados para transformar y optimizar tus espacios con elegancia y funcionalidad.</p>
+                </div>
+                <div class="categories-grid" id="categories-grid"></div>
+            </div>
+        </section>
+        
+        <!-- COTIZADOR (modificado para mostrar costo) -->
+        <section class="section cotizador" id="cotizador" aria-labelledby="cotizador-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Cotizador Rápido</span>
+                    <h2 class="section-title" id="cotizador-title">Calcula tu proyecto en segundos</h2>
+                    <p class="section-description">Selecciona el tipo de trabajo, ajusta las medidas y recibe tu cotización personalizada directamente en WhatsApp.</p>
+                </div>
+                
+                <div class="cotizador-card">
+                    <div class="cotizador-grid">
+                        <div class="cotizador-controls">
+                            <h3>1. Selecciona el tipo de trabajo</h3>
+                            <div class="type-selector" id="type-selector" role="radiogroup" aria-label="Tipo de trabajo">
+                                <button class="type-btn active" data-type="cancel" role="radio" aria-checked="true">Cancel de Baño</button>
+                                <button class="type-btn" data-type="barandal" role="radio" aria-checked="false">Barandal</button>
+                                <button class="type-btn" data-type="pasamano" role="radio" aria-checked="false">Pasamano</button>
+                                <button class="type-btn" data-type="mampara" role="radio" aria-checked="false">Mampara</button>
+                                <button class="type-btn" data-type="espejo" role="radio" aria-checked="false">Espejo</button>
+                                <button class="type-btn" data-type="especial" role="radio" aria-checked="false">Trabajo Especial</button>
+                            </div>
+                            
+                            <div id="standard-controls">
+                                <div class="control-group">
+                                    <label class="control-label" for="slider-width">
+                                        <span>Ancho</span>
+                                        <span class="control-value" id="val-width">1.50 m</span>
+                                    </label>
+                                    <input type="range" id="slider-width" class="slider" min="0.5" max="5.0" step="0.1" value="1.5" aria-describedby="width-range">
+                                    <div class="slider-range" id="width-range">
+                                        <span>0.5 m</span>
+                                        <span>5.0 m</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="control-group">
+                                    <label class="control-label" for="slider-height">
+                                        <span>Alto</span>
+                                        <span class="control-value" id="val-height">2.00 m</span>
+                                    </label>
+                                    <input type="range" id="slider-height" class="slider" min="0.5" max="3.5" step="0.1" value="2.0" aria-describedby="height-range">
+                                    <div class="slider-range" id="height-range">
+                                        <span>0.5 m</span>
+                                        <span>3.5 m</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="cotizador-visual">
+                            <div class="croquis-box" id="croquis-container" aria-label="Vista previa del diseño"></div>
+                            
+                            <div class="special-card" id="special-container">
+                                <div class="special-card-icon" aria-hidden="true">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 20.063L17 11.5 12.5 7 4 15.5"></path><path d="M21 3l-8.5 8.5"></path><path d="M17 9l4-4"></path></svg>
+                                </div>
+                                <h4>Trabajo Personalizado</h4>
+                                <p>Para proyectos especiales y diseños únicos, contáctanos directamente. Nuestro equipo te asesorará para crear la solución perfecta.</p>
+                                <a href="https://wa.me/523310611338?text=Hola%2C%20me%20interesa%20cotizar%20un%20trabajo%20especial%20personalizado" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Contactar por WhatsApp</a>
+                            </div>
+                            
+                            <!-- AQUÍ AGREGAMOS EL COSTO ESTIMADO -->
+                            <div class="data-display" id="data-panel">
+                                <div class="data-item">
+                                    <strong id="data-w">1.50 m</strong>
+                                    <span>Ancho</span>
+                                </div>
+                                <div class="data-item">
+                                    <strong id="data-h">2.00 m</strong>
+                                    <span>Alto</span>
+                                </div>
+                                <div class="data-item">
+                                    <strong id="data-area">3.00 m²</strong>
+                                    <span>Área</span>
+                                </div>
+                                <!-- Nuevo ítem para el costo -->
+                                <div class="data-item" style="grid-column: span 3;">
+                                    <strong id="costo-estimado">$0.00</strong>
+                                    <span>Costo estimado (MXN)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cotizador-cta">
+                        <button class="btn-whatsapp-lg" id="btn-cotizar" aria-label="Enviar cotización por WhatsApp">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                            Enviar cotización por WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- PROYECTOS ESPECIALES (igual) -->
+        <section class="section special-projects" id="proyectos" aria-labelledby="proyectos-title">
+            <div class="container">
+                <div class="special-grid">
+                    <div class="special-content">
+                        <span class="section-eyebrow">Proyectos Especiales</span>
+                        <h3 id="proyectos-title">¿Tienes un proyecto único en mente?</h3>
+                        <p>En El Mundo de los Canceles nos especializamos en crear soluciones personalizadas que se adapten perfectamente a tus necesidades y estilo de vida.</p>
+                        <ul class="special-features">
+                            <li><span class="special-features-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span>Diseños a medida según tus especificaciones</span></li>
+                            <li><span class="special-features-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span>Asesoría técnica especializada sin costo</span></li>
+                            <li><span class="special-features-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span>Materiales de la más alta calidad</span></li>
+                            <li><span class="special-features-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span>Instalación profesional garantizada</span></li>
+                        </ul>
+                        <a href="https://wa.me/523310611338?text=Hola%2C%20me%20interesa%20cotizar%20un%20proyecto%20especial" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Consultar proyecto especial</a>
+                    </div>
+                    <div class="special-image" role="img" aria-label="Proyecto especial de cancel de baño moderno"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- TESTIMONIOS (igual) -->
+        <section class="section testimonials" id="testimonios" aria-labelledby="testimonios-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Testimonios</span>
+                    <h2 class="section-title" id="testimonios-title">Lo que dicen nuestros clientes</h2>
+                    <p class="section-description">La satisfacción de nuestros clientes es nuestra mejor carta de presentación.</p>
+                </div>
+                <div class="testimonials-grid">
+                    <article class="testimonial-card">
+                        <div class="testimonial-stars" aria-label="5 estrellas"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+                        <p class="testimonial-text">"Excelente servicio. El cancel de baño quedó perfecto, el vidrio es de muy buena calidad y la instalación fue rápida y limpia. Totalmente recomendados."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar" aria-hidden="true">MG</div>
+                            <div class="testimonial-author-info">
+                                <strong>María González</strong>
+                                <span>Tonalá, Jalisco</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="testimonial-card">
+                        <div class="testimonial-stars" aria-label="5 estrellas"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+                        <p class="testimonial-text">"Instalaron el barandal de vidrio templado en mi escalera y quedó espectacular. Muy profesionales, cumplieron con el tiempo prometido y el precio fue justo."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar" aria-hidden="true">CR</div>
+                            <div class="testimonial-author-info">
+                                <strong>Carlos Ramírez</strong>
+                                <span>Guadalajara, Jalisco</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="testimonial-card">
+                        <div class="testimonial-stars" aria-label="5 estrellas"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+                        <p class="testimonial-text">"Las mamparas para mi oficina quedaron increíbles. El diseño es moderno y la privacidad es excelente. El equipo fue muy atento durante todo el proceso."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar" aria-hidden="true">AL</div>
+                            <div class="testimonial-author-info">
+                                <strong>Ana López</strong>
+                                <span>Zapopan, Jalisco</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
     </main>
-
-    <div class="toast" id="toast"></div>
-
-    <script>
-        // ============================================================
-        // CATÁLOGO MAESTRO (basado en el JSON normalizado)
-        // ============================================================
-        const CATALOGO = {
-            "ventana_corrediza_estandar": {
-                "nombre": "Ventana corrediza estándar",
-                "categoria": "ventanas",
-                "icono": "🚪",
-                "perfiles": [
-                    { "nombre": "Riel / Jamba cabezal", "cantidad": 1, "formula": "ancho", "corte": "90°" },
-                    { "nombre": "Jambas verticales", "cantidad": 2, "formula": "alto - 26", "corte": "90°" },
-                    { "nombre": "Zoclo / Cabezal", "cantidad": 2, "formula": "(ancho - 185) / 2", "corte": "90°" }
-                ],
-                "vidrio": [
-                    { "nombre": "Vidrio fijo", "cantidad": 1, "ancho": "(ancho - 151) / 2", "alto": "alto - 125" },
-                    { "nombre": "Vidrio corredizo", "cantidad": 1, "ancho": "(ancho - 151) / 2", "alto": "alto - 135" }
-                ]
-            },
-            "ventana_3_hojas_telescopica": {
-                "nombre": "Ventana 3 hojas telescópica",
-                "categoria": "ventanas",
-                "icono": "🪟",
-                "perfiles": [
-                    { "nombre": "Riel de 3\"", "cantidad": 1, "formula": "ancho", "corte": "90°" },
-                    { "nombre": "Jamba de 3\" (cabezal)", "cantidad": 1, "formula": "ancho", "corte": "90°" },
-                    { "nombre": "Adaptador paloma", "cantidad": 1, "formula": "ancho - 65", "corte": "90°" },
-                    { "nombre": "Jambas de 3\"", "cantidad": 2, "formula": "alto - 26", "corte": "90°" },
-                    { "nombre": "Zoclo / Cabezal de 3\"", "cantidad": 3, "formula": "(ancho - 167) / 3", "corte": "90°" },
-                    { "nombre": "Cerco chapa fijo", "cantidad": 1, "formula": "alto", "corte": "90°" },
-                    { "nombre": "Cerco chapa corredizo", "cantidad": 1, "formula": "alto - 40", "corte": "90°" },
-                    { "nombre": "Traslape fijo", "cantidad": 1, "formula": "alto", "corte": "90°" },
-                    { "nombre": "Traslape corredizo", "cantidad": 3, "formula": "alto - 40", "corte": "90°" }
-                ],
-                "vidrio": [
-                    { "nombre": "Vidrio fijo", "cantidad": 1, "ancho": "(ancho - 117) / 3", "alto": "alto - 95" },
-                    { "nombre": "Vidrio corredizo", "cantidad": 2, "ancho": "(ancho - 117) / 3", "alto": "alto - 135" }
-                ]
-            },
-            "ventanal_oxxo": {
-                "nombre": "Ventanal OXXO",
-                "categoria": "ventanales",
-                "icono": "🏪",
-                "perfiles": [
-                    { "nombre": "Riel / Jamba c/mosquitero", "cantidad": 1, "formula": "ancho", "corte": "90°" },
-                    { "nombre": "Jambas de 3\"", "cantidad": 2, "formula": "alto - 26", "corte": "90°" },
-                    { "nombre": "Zoclo / Cabezal de 3\"", "cantidad": 8, "formula": "(ancho - 330) / 4", "corte": "90°" },
-                    { "nombre": "Cerco chapa / Traslape fijo", "cantidad": 4, "formula": "alto - 30", "corte": "90°" },
-                    { "nombre": "Cerco chapa / Traslape corredizo", "cantidad": 4, "formula": "alto - 40", "corte": "90°" }
-                ],
-                "vidrio": [
-                    { "nombre": "Vidrio fijo", "cantidad": 2, "ancho": "(ancho - 265) / 4", "alto": "alto - 125" },
-                    { "nombre": "Vidrio corredizo", "cantidad": 2, "ancho": "(ancho - 265) / 4", "alto": "alto - 135" }
-                ]
-            },
-            "puerta_batiente_estandar": {
-                "nombre": "Puerta batiente estándar",
-                "categoria": "puertas",
-                "icono": "🚪",
-                "perfiles": [
-                    { "nombre": "Bolsa lisa cabezal", "cantidad": 1, "formula": "ancho", "corte": "90°" },
-                    { "nombre": "Batiente cabezal", "cantidad": 1, "formula": "ancho - 64", "corte": "90°" },
-                    { "nombre": "Bolsas / Batientes verticales", "cantidad": 2, "formula": "alto - 32", "corte": "90°" },
-                    { "nombre": "Cercos chapa", "cantidad": 2, "formula": "alto - 47", "corte": "90°" },
-                    { "nombre": "Zoclo / Intermedio / Cabezal", "cantidad": 3, "formula": "ancho - 181", "corte": "90°" }
-                ],
-                "vidrio": [
-                    { "nombre": "Vidrio", "cantidad": 2, "ancho": "ancho - 191", "alto": "(alto - 205) / 2" }
-                ]
-            },
-            "puerta_ligera": {
-                "nombre": "Puerta ligera",
-                "categoria": "puertas",
-                "icono": "🚪",
-                "perfiles": [
-                    { "nombre": "Batiente cabezal", "cantidad": 1, "formula": "ancho - 25", "corte": "90°" },
-                    { "nombre": "Batientes", "cantidad": 2, "formula": "alto", "corte": "90°" },
-                    { "nombre": "Cercos chapa", "cantidad": 2, "formula": "alto - 27", "corte": "90°" },
-                    { "nombre": "Zoclo / Intermedio", "cantidad": 2, "formula": "ancho - 139", "corte": "90°" }
-                ],
-                "vidrio": []
-            },
-            "puerta_bano": {
-                "nombre": "Puerta de baño",
-                "categoria": "puertas",
-                "icono": "🚿",
-                "perfiles": [
-                    { "nombre": "Silla cabezal", "cantidad": 1, "formula": "ancho - 30", "corte": "90°" },
-                    { "nombre": "Silla", "cantidad": 2, "formula": "alto", "corte": "90°" },
-                    { "nombre": "Marco semilujo ancho", "cantidad": 2, "formula": "ancho - 42", "corte": "90°" },
-                    { "nombre": "Marco semilujo alto", "cantidad": 2, "formula": "alto - 30", "corte": "90°" }
-                ],
-                "vidrio": [
-                    { "nombre": "Plastico/Vidrio", "cantidad": 1, "ancho": "ancho - 112", "alto": "alto - 100" }
-                ]
-            },
-            "cancel_plastico_bano": {
-                "nombre": "Cancel de baño plástico",
-                "categoria": "canceles",
-                "icono": "🚿",
-                "perfiles": [
-                    { "nombre": "Riel / Guía", "cantidad": 1, "formula": "ancho", "corte": "90°" },
-                    { "nombre": "Jambas", "cantidad": 2, "formula": "alto - 30", "corte": "90°" },
-                    { "nombre": "Horizontales", "cantidad": 4, "formula": "(ancho + 30) / 2", "corte": "90°" },
-                    { "nombre": "Marcos económicos", "cantidad": 4, "formula": "alto - 50", "corte": "90°" }
-                ],
-                "vidrio": [
-                    { "nombre": "Hojas plástico", "cantidad": 2, "ancho": "(ancho - 30) / 2", "alto": "alto - 80" }
-                ]
-            },
-            "ventana_abatible_estandar": {
-                "nombre": "Ventana abatible estándar",
-                "categoria": "ventanas",
-                "icono": "🪟",
-                "perfiles": [
-                    { "nombre": "Marco ventana (ancho)", "cantidad": 2, "formula": "ancho", "corte": "45°" },
-                    { "nombre": "Marco ventana (alto)", "cantidad": 2, "formula": "alto", "corte": "45°" },
-                    { "nombre": "Hoja ventana (ancho)", "cantidad": 2, "formula": "ancho - 42", "corte": "45°" },
-                    { "nombre": "Hoja ventana (alto)", "cantidad": 2, "formula": "alto - 42", "corte": "45°" },
-                    { "nombre": "Junquillo redondo (ancho)", "cantidad": 2, "formula": "ancho - 114", "corte": "45°" },
-                    { "nombre": "Junquillo redondo (alto)", "cantidad": 2, "formula": "alto - 114", "corte": "45°" }
-                ],
-                "vidrio": [
-                    { "nombre": "Vidrio 6mm", "cantidad": 1, "ancho": "ancho - 127", "alto": "alto - 127" }
-                ],
-                "notas": "Se recomienda que el junquillo se ensamble en la hoja antes de cortarla."
-            },
-            "ventana_1_1_2_corrediza": {
-                "nombre": "Ventana 1 1/2 corrediza",
-                "categoria": "ventanas",
-                "icono": "🪟",
-                "perfiles": [
-                    { "nombre": "Riel / Jamba cabezal", "cantidad": 1, "formula": "ancho", "corte": "90°" },
-                    { "nombre": "Jambas verticales", "cantidad": 2, "formula": "alto - 20", "corte": "90°" },
-                    { "nombre": "Cabezales", "cantidad": 3, "formula": "(ancho - 100) / 2", "corte": "90°" }
-                ],
-                "vidrio": [
-                    { "nombre": "Vidrio fijo", "cantidad": 1, "ancho": "(ancho - 70) / 2", "alto": "alto - 45" },
-                    { "nombre": "Vidrio corredizo", "cantidad": 1, "ancho": "(ancho - 70) / 2", "alto": "alto - 75" }
-                ]
-            },
-            "ventana_fija_1_1_2": {
-                "nombre": "Ventana fija 1 1/2",
-                "categoria": "ventanas",
-                "icono": "🪟",
-                "perfiles": [
-                    { "nombre": "Bolsa / Escalonado cabezal", "cantidad": 1, "formula": "ancho", "corte": "90°" },
-                    { "nombre": "Bolsas verticales", "cantidad": 2, "formula": "alto - 40", "corte": "90°" }
-                ],
-                "vidrio": [
-                    { "nombre": "Vidrio", "cantidad": 1, "ancho": "ancho - 48", "alto": "alto - 42" }
-                ]
-            }
-        };
-
-        // ============================================================
-        // ESTADO
-        // ============================================================
-        let currentProduct = 'ventana_corrediza_estandar';
-        let currentAncho = 1500;
-        let currentAlto = 2000;
-
-        // ============================================================
-        // FUNCIONES DE EVALUACIÓN
-        // ============================================================
-        function evaluarFormula(formula, ancho, alto) {
-            try {
-                // Reemplazar variables y evaluar de forma segura
-                const expr = formula
-                    .replace(/ancho/g, `(${ancho})`)
-                    .replace(/alto/g, `(${alto})`);
-                const result = Function('"use strict"; return (' + expr + ')')();
-                return Math.round(result * 100) / 100;
-            } catch (e) {
-                console.warn('Error evaluando fórmula:', formula, e);
-                return 0;
-            }
-        }
-
-        function calcularComponentes(producto, ancho, alto) {
-            const data = CATALOGO[producto];
-            if (!data) return { perfiles: [], vidrios: [] };
-
-            const perfiles = data.perfiles.map(p => ({
-                ...p,
-                medida: evaluarFormula(p.formula, ancho, alto)
-            }));
-
-            const vidrios = (data.vidrio || []).map(v => ({
-                ...v,
-                medidaAncho: evaluarFormula(v.ancho, ancho, alto),
-                medidaAlto: evaluarFormula(v.alto, ancho, alto)
-            }));
-
-            return { perfiles, vidrios };
-        }
-
-        // ============================================================
-        // RENDER
-        // ============================================================
-        function renderNavegacion() {
-            const nav = document.getElementById('navCategorias');
-            const categorias = [...new Set(Object.values(CATALOGO).map(p => p.categoria))];
-            nav.innerHTML = categorias.map(cat =>
-                `<button class="nav-btn" data-categoria="${cat}">${cat.charAt(0).toUpperCase() + cat.slice(1)}</button>`
-            ).join('');
-
-            nav.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const cat = btn.dataset.categoria;
-                    const first = Object.keys(CATALOGO).find(k => CATALOGO[k].categoria === cat);
-                    if (first) {
-                        currentProduct = first;
-                        renderProductos();
-                        renderPreview();
-                    }
-                    nav.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                });
-            });
-
-            // Activar primera categoría
-            const firstCat = nav.querySelector('.nav-btn');
-            if (firstCat) firstCat.classList.add('active');
-        }
-
-        function renderProductos() {
-            const container = document.getElementById('productSelector');
-            const entries = Object.entries(CATALOGO);
-            container.innerHTML = entries.map(([key, val]) =>
-                `<button class="product-btn ${key === currentProduct ? 'active' : ''}" data-key="${key}">
-                    ${val.icono || '📐'} ${val.nombre.split(' ').slice(0, 2).join(' ')}
-                    <span class="sub">${val.categoria}</span>
-                </button>`
-            ).join('');
-
-            container.querySelectorAll('.product-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    currentProduct = btn.dataset.key;
-                    renderProductos();
-                    renderPreview();
-                });
-            });
-        }
-
-        function renderPreview() {
-            const data = CATALOGO[currentProduct];
-            if (!data) return;
-
-            const ancho = currentAncho;
-            const alto = currentAlto;
-            const area = (ancho * alto / 1000000).toFixed(2);
-
-            // Actualizar badges
-            document.getElementById('productNameBadge').textContent = data.nombre;
-
-            // Datos
-            document.getElementById('dataWidth').textContent = ancho;
-            document.getElementById('dataHeight').textContent = alto;
-            document.getElementById('dataArea').textContent = area;
-
-            // Slider values
-            document.getElementById('valWidth').textContent = ancho + ' mm';
-            document.getElementById('valHeight').textContent = alto + ' mm';
-
-            // Preview SVG
-            const previewBox = document.getElementById('previewContent');
-            previewBox.innerHTML = generarSVG(currentProduct, ancho, alto);
-
-            // Componentes
-            const { perfiles, vidrios } = calcularComponentes(currentProduct, ancho, alto);
-            const list = document.getElementById('componentesList');
-
-            let html = '<div style="font-size:0.75rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;padding:0 0.5rem 0.5rem;border-bottom:1px solid var(--border);">Perfiles</div>';
-            perfiles.forEach(p => {
-                html += `<div class="componente-item">
-                    <span class="cantidad">${p.cantidad}</span>
-                    <span class="nombre">${p.nombre}</span>
-                    <span class="tag">${p.corte}</span>
-                    <span class="medida">${p.medida} mm</span>
-                </div>`;
-            });
-
-            if (vidrios.length > 0) {
-                html += `<div style="font-size:0.75rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;padding:0.75rem 0.5rem 0.5rem;border-top:1px solid var(--border);">Vidrios</div>`;
-                vidrios.forEach(v => {
-                    const medida = v.medidaAncho !== undefined ?
-                        `${v.medidaAncho} x ${v.medidaAlto} mm` :
-                        `${v.medidaAlto || ''} mm`;
-                    html += `<div class="componente-item">
-                        <span class="cantidad">${v.cantidad}</span>
-                        <span class="nombre">${v.nombre}</span>
-                        <span class="tag">vidrio</span>
-                        <span class="medida">${medida}</span>
-                    </div>`;
-                });
-            }
-
-            if (data.notas) {
-                html += `<div style="padding:0.75rem 0.5rem 0;font-size:0.75rem;color:var(--text-muted);border-top:1px solid var(--border);margin-top:0.5rem;">📌 ${data.notas}</div>`;
-            }
-
-            list.innerHTML = html;
-        }
-
-        // ============================================================
-        // GENERADOR DE SVG
-        // ============================================================
-        function generarSVG(productKey, ancho, alto) {
-            const data = CATALOGO[productKey];
-            if (!data) return '<div class="placeholder">Producto no encontrado</div>';
-
-            // Escalamos para que quepa en el preview
-            const maxW = 280;
-            const maxH = 220;
-            const aspect = ancho / alto;
-            let w = maxW;
-            let h = maxH;
-            if (aspect > 1) {
-                h = maxW / aspect;
-            } else {
-                w = maxH * aspect;
-            }
-            w = Math.min(w, maxW);
-            h = Math.min(h, maxH);
-            if (w < 40) w = 40;
-            if (h < 40) h = 40;
-
-            const color = '#0077B6';
-            const light = 'rgba(0,119,182,0.08)';
-
-            // SVG básico según el tipo
-            let content = '';
-            const cat = data.categoria;
-
-            if (cat === 'ventanas' || cat === 'ventanales') {
-                content = `
-                    <rect x="4" y="4" width="${w-8}" height="${h-8}" fill="${light}" stroke="${color}" stroke-width="2.5" rx="3"/>
-                    <line x1="${w/2}" y1="4" x2="${w/2}" y2="${h-4}" stroke="${color}" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
-                    <circle cx="${w-18}" cy="${h/2}" r="4" fill="${color}" opacity="0.8"/>
-                    <circle cx="18" cy="${h/2}" r="4" fill="${color}" opacity="0.8"/>
-                `;
-                // Si tiene más de 2 hojas, agregar divisiones
-                const vidrios = data.vidrio || [];
-                if (vidrios.length > 1) {
-                    const parts = vidrios.length;
-                    for (let i = 1; i < parts; i++) {
-                        const x = (i / parts) * w;
-                        content += `<line x1="${x}" y1="4" x2="${x}" y2="${h-4}" stroke="${color}" stroke-width="1" opacity="0.3" stroke-dasharray="2 2"/>`;
-                    }
-                }
-            } else if (cat === 'puertas') {
-                content = `
-                    <rect x="4" y="4" width="${w-8}" height="${h-8}" fill="${light}" stroke="${color}" stroke-width="2.5" rx="3"/>
-                    <rect x="${w*0.08}" y="${h*0.08}" width="${w*0.84}" height="${h*0.84}" fill="none" stroke="${color}" stroke-width="1.5" rx="2" opacity="0.4"/>
-                    <circle cx="${w-20}" cy="${h/2}" r="5" fill="${color}" opacity="0.7"/>
-                `;
-            } else if (cat === 'canceles') {
-                content = `
-                    <rect x="4" y="4" width="${w-8}" height="${h-8}" fill="${light}" stroke="${color}" stroke-width="2.5" rx="3"/>
-                    <line x1="${w/2}" y1="4" x2="${w/2}" y2="${h-4}" stroke="${color}" stroke-width="2" opacity="0.5" stroke-dasharray="6 4"/>
-                    <circle cx="${w-16}" cy="${h/2}" r="3.5" fill="${color}" opacity="0.8"/>
-                    <circle cx="16" cy="${h/2}" r="3.5" fill="${color}" opacity="0.8"/>
-                    <rect x="${w/2+6}" y="8" width="${w/2-14}" height="${h-16}" fill="none" stroke="${color}" stroke-width="1" opacity="0.3" rx="2"/>
-                    <rect x="6" y="8" width="${w/2-14}" height="${h-16}" fill="none" stroke="${color}" stroke-width="1" opacity="0.3" rx="2"/>
-                `;
-            } else {
-                content = `
-                    <rect x="4" y="4" width="${w-8}" height="${h-8}" fill="${light}" stroke="${color}" stroke-width="2" rx="4"/>
-                    <text x="${w/2}" y="${h/2+4}" text-anchor="middle" font-size="${Math.min(w,h)*0.12}" fill="${color}" opacity="0.4" font-family="Inter, sans-serif">${data.icono || '📐'}</text>
-                `;
-            }
-
-            // Añadir etiqueta de medidas
-            const fontSize = Math.min(w, h) * 0.06;
-            content += `
-                <text x="${w/2}" y="${h-6}" text-anchor="middle" font-size="${Math.max(fontSize, 8)}" fill="${color}" opacity="0.5" font-family="Inter, sans-serif" font-weight="500">${ancho} × ${alto} mm</text>
-            `;
-
-            return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="Vista previa de ${data.nombre}">${content}</svg>`;
-        }
-
-        // ============================================================
-        // COTIZAR WHATSAPP
-        // ============================================================
-        function cotizarWhatsApp() {
-            const data = CATALOGO[currentProduct];
-            const nombre = data.nombre;
-            const ancho = currentAncho;
-            const alto = currentAlto;
-            const area = (ancho * alto / 1000000).toFixed(2);
-
-            const { perfiles, vidrios } = calcularComponentes(currentProduct, ancho, alto);
-
-            let detalle = '';
-            perfiles.forEach(p => {
-                detalle += `• ${p.cantidad}x ${p.nombre}: ${p.medida} mm (${p.corte})\n`;
-            });
-            vidrios.forEach(v => {
-                detalle += `• ${v.cantidad}x ${v.nombre}: ${v.medidaAncho} x ${v.medidaAlto} mm\n`;
-            });
-
-            const mensaje = `¡Hola! Me interesa cotizar un proyecto con Aluminio&Vidrio:
-
-📋 *Producto:* ${nombre}
-📐 *Medidas:* ${ancho} mm (ancho) x ${alto} mm (alto)
-📏 *Área:* ${area} m²
-
-📦 *Despiece técnico:*
-${detalle}
-
-¿Me podrían proporcionar información sobre precios y disponibilidad? ¡Gracias!`;
-
-            const url = `https://wa.me/523310611338?text=${encodeURIComponent(mensaje)}`;
-            window.open(url, '_blank');
-            mostrarToast('📤 Abriendo WhatsApp...');
-        }
-
-        // ============================================================
-        // TOAST
-        // ============================================================
-        function mostrarToast(msg) {
-            const t = document.getElementById('toast');
-            t.textContent = msg;
-            t.classList.add('show');
-            clearTimeout(t._timer);
-            t._timer = setTimeout(() => t.classList.remove('show'), 3000);
-        }
-
-        // ============================================================
-        // INICIALIZACIÓN
-        // ============================================================
-        document.addEventListener('DOMContentLoaded', () => {
-            renderNavegacion();
-            renderProductos();
-
-            // Sliders
-            const sliderW = document.getElementById('sliderWidth');
-            const sliderH = document.getElementById('sliderHeight');
-
-            sliderW.addEventListener('input', () => {
-                currentAncho = parseInt(sliderW.value);
-                renderPreview();
-            });
-
-            sliderH.addEventListener('input', () => {
-                currentAlto = parseInt(sliderH.value);
-                renderPreview();
-            });
-
-            // Botón cotizar
-            document.getElementById('btnCotizar').addEventListener('click', cotizarWhatsApp);
-
-            // Render inicial
-            renderPreview();
-        });
-    </script>
+    
+    <!-- FOOTER (igual) -->
+    <footer class="footer" id="contacto" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo" aria-label="El Mundo de los Canceles - Inicio">
+                        <div class="logo-mark" aria-hidden="true">MC</div>
+                        <div class="logo-text">
+                            <strong>El Mundo de los Canceles</strong>
+                            <span>Vidrio y Aluminio</span>
+                        </div>
+                    </a>
+                    <p>Especialistas en canceles de baño, barandales, pasamanos y mamparas. Más de 10 años transformando espacios en Tonalá y zona metropolitana de Guadalajara con calidad y profesionalismo.</p>
+                    <div class="footer-social">
+                        <a href="https://wa.me/523310611338" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+                        <a href="https://www.facebook.com/share/196K8tqYVQ/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Productos</h4>
+                    <ul>
+                        <li><a href="#productos">Canceles de Baño</a></li>
+                        <li><a href="#productos">Barandales</a></li>
+                        <li><a href="#productos">Pasamanos</a></li>
+                        <li><a href="#productos">Mamparas</a></li>
+                        <li><a href="#productos">Espejos</a></li>
+                        <li><a href="#productos">Vidrio Templado</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="#cotizador">Cotización Gratis</a></li>
+                        <li><a href="#proyectos">Proyectos Especiales</a></li>
+                        <li><a href="#productos">Instalación Profesional</a></li>
+                        <li><a href="#productos">Asesoría Técnica</a></li>
+                        <li><a href="#productos">Garantía</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contacto</h4>
+                    <div class="footer-contact-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span>Cerca de Tala 178, Jalisco IV Secc, 45403 Tonalá, Jal.</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <a href="https://wa.me/523310611338" target="_blank" rel="noopener noreferrer" style="color: inherit;">33 1061 1338</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span>Lun - Sáb: 9:00 - 18:00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 El Mundo de los Canceles. Todos los derechos reservados. Hecho con dedicación en Tonalá, Jalisco.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/523310611338?text=Hola%2C%20me%20interesa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20productos" 
+       class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp" data-tooltip="¡Chatea con nosotros!">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+    
+    <!-- Toast -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    
+    <!-- JavaScript externo -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
