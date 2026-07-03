@@ -2,1587 +2,1100 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MundoCancel - Calculadora línea de 3"</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Sistema de Cotización - Carpintería Aluminio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
+        :root {
+            --primary: #0077B6;
+            --primary-dark: #005A8C;
+            --primary-light: #E3F2FD;
+            --secondary: #00B4D8;
+            --accent: #FFB703;
+            --success: #10B981;
+            --whatsapp: #25D366;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-muted: #64748B;
+            --text-inverse: #FFFFFF;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8FAFC;
+            --bg-tertiary: #F1F5F9;
+            --border: #E2E8F0;
+            --border-strong: #CBD5E1;
+            --radius: 0.75rem;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f5f7fa;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
         }
-        
-        .sidebar {
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
-        
-        .sidebar.active {
-            transform: translateX(0);
+
+        /* Header */
+        .header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.92);
         }
-        
-        .backdrop {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s;
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
-        
-        .backdrop.active {
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.125rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-mark {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        .logo-text span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             display: block;
-            opacity: 0.5;
         }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+
+        .nav {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
         }
-        
-        .result-item {
-            transition: all 0.2s ease;
+
+        .nav-btn {
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            border: 2px solid transparent;
+            background: var(--bg-tertiary);
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition);
         }
-        
-        .result-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+        .nav-btn:hover {
+            background: var(--primary-light);
+            color: var(--primary);
         }
-        
-        .drawing-container {
-            min-height: 300px;
-            background-color: #f8fafc;
-            border: 1px solid #e2e8f0;
+
+        .nav-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
         }
-        
-        @media print {
-            .no-print {
-                display: none !important;
+
+        /* Main */
+        .main {
+            padding: 2rem 0 4rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .grid-2 {
+                grid-template-columns: 1fr 1fr;
             }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-primary);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title .badge {
+            font-size: 0.65rem;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
+
+        /* Controls */
+        .control-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .control-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .control-value {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1rem;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            background: var(--bg-tertiary);
+            border-radius: 9999px;
+            outline: none;
+            transition: background var(--transition);
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            background: var(--primary);
+            border: 3px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: transform var(--transition);
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 22px;
+            height: 22px;
+            background: var(--primary);
+            border: 3px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .slider-range {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.25rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Product selector */
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .product-btn {
+            padding: 0.75rem 0.5rem;
+            background: var(--bg-secondary);
+            border: 2px solid transparent;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--text-primary);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition);
+            line-height: 1.2;
+        }
+
+        .product-btn:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--border-strong);
+        }
+
+        .product-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .product-btn .sub {
+            display: block;
+            font-weight: 400;
+            font-size: 0.6rem;
+            opacity: 0.7;
+            margin-top: 0.1rem;
+        }
+
+        /* Visual Preview */
+        .preview-box {
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            border: 2px dashed var(--border-strong);
+            position: relative;
+        }
+
+        .preview-box svg {
+            max-width: 100%;
+            max-height: 280px;
+        }
+
+        .preview-box .placeholder {
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .preview-box .placeholder svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 0.5rem;
+            opacity: 0.3;
+        }
+
+        /* Data display */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .data-item {
+            text-align: center;
+            padding: 0.75rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .data-item strong {
+            display: block;
+            font-size: 1.125rem;
+            color: var(--primary);
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .data-item span {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        /* Componentes list */
+        .componentes-list {
+            margin-top: 1.5rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .componente-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.875rem;
+            gap: 0.5rem;
+        }
+
+        .componente-item:last-child {
+            border-bottom: none;
+        }
+
+        .componente-item .nombre {
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .componente-item .medida {
+            font-weight: 700;
+            color: var(--primary);
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
+        }
+
+        .componente-item .cantidad {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 600;
+            min-width: 2rem;
+            text-align: center;
+        }
+
+        .componente-item .tag {
+            font-size: 0.6rem;
+            background: var(--bg-tertiary);
+            padding: 0.1rem 0.4rem;
+            border-radius: 9999px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* WhatsApp button */
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background: var(--whatsapp);
+            color: white;
+            border-radius: var(--radius);
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+            box-shadow: var(--shadow);
+            margin-top: 1.5rem;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1DA851;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:active {
+            transform: translateY(0);
+        }
+
+        .btn-whatsapp svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--text-primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            transition: all var(--transition);
+            z-index: 999;
+            font-weight: 500;
+            font-size: 0.875rem;
+            max-width: 90vw;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Scrollbar */
+        .componentes-list::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .componentes-list::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 9999px;
+        }
+
+        .componentes-list::-webkit-scrollbar-thumb {
+            background: var(--border-strong);
+            border-radius: 9999px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 0.75rem;
+            }
+            .card {
+                padding: 1rem;
+            }
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .data-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .componente-item {
+                font-size: 0.75rem;
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Animación de carga sutil */
+        .fade-in {
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Especial card */
+        .special-card {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .special-card .icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .special-card h4 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .special-card p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .text-muted {
+            color: var(--text-muted);
         }
     </style>
 </head>
-<body class="min-h-screen">
-    <!-- Mobile Sidebar Overlay -->
-    <div class="backdrop fixed inset-0 bg-black z-40"></div>
-    
-    <!-- Sidebar -->
-    <div class="sidebar fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-50 p-4 overflow-y-auto">
-        <div class="flex items-center justify-between mb-8">
-            <div class="flex items-center space-x-2">
-                <i class="fas fa-window-maximize text-blue-600 text-xl"></i>
-                <h2 class="text-xl font-bold text-gray-800">MundoCancel</h2>
-            </div>
-            <button id="close-sidebar" class="md:hidden text-gray-500 hover:text-gray-700">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        
-        <div class="mb-6">
-            <h3 class="text-sm uppercase font-semibold text-gray-500 tracking-wider mb-2">Configuración</h3>
-            <ul class="space-y-1">
-                <li>
-                    <a href="#" id="edit-prices-btn" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition">
-                        <i class="fas fa-dollar-sign mr-3"></i> Editar precios
-                    </a>
-                </li>
-                <li>
-                    <a href="#" id="saved-calculations-btn" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition">
-                        <i class="fas fa-history mr-3"></i> Historial
-                    </a>
-                </li>
-            </ul>
-        </div>
-        
-        <div>
-            <h3 class="text-sm uppercase font-semibold text-gray-500 tracking-wider mb-2">Tipos de ventanas</h3>
-            <ul class="space-y-1">
-                <li>
-                    <a href="#" data-type="telescopica" class="window-type block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition">
-                        <i class="fas fa-vector-square mr-3"></i> Telescópica
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-type="oxxo" class="window-type block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition">
-                        <i class="fas fa-border-none mr-3"></i> OXXO
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-type="corrediza" class="window-type block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition">
-                        <i class="fas fa-window-restore mr-3"></i> Corrediza
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    
-    <!-- Main Content -->
-    <div class="flex flex-col min-h-screen">
-        <!-- Header -->
-        <header class="gradient-bg text-white shadow-md">
-            <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                    <button id="menu-toggle" class="md:hidden text-white">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                    <div class="flex items-center space-x-2">
-                        <i class="fas fa-window-maximize text-white text-2xl"></i>
-                        <h1 class="text-xl font-bold">MundoCancel</h1>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="logo">
+                    <div class="logo-mark">AC</div>
+                    <div class="logo-text">
+                        Aluminio&Vidrio
+                        <span>Catálogo técnico</span>
                     </div>
-                    <span class="hidden md:block text-sm px-3 py-1 bg-white bg-opacity-20 rounded-full">Calculadora línea de 3"</span>
-                </div>
-                <button id="help-btn" class="p-2 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 transition">
-                    <i class="fas fa-question"></i>
-                </button>
+                </a>
+                <nav class="nav" id="navCategorias">
+                    <!-- Generado por JS -->
+                </nav>
             </div>
-        </header>
-        
-        <!-- Content -->
-        <main class="flex-grow container mx-auto px-4 py-6">
-            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6">
-                <div class="p-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Calculadora de ventanas</h2>
-                    
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <!-- Window Type Card -->
-                        <div id="window-type-card" class="border border-gray-200 rounded-lg p-4">
-                            <h3 class="font-semibold text-lg text-gray-700 mb-3 flex items-center">
-                                <i class="fas fa-vector-square mr-2 text-blue-500"></i>
-                                Tipo de ventana
-                            </h3>
-                            <div class="flex flex-wrap gap-3">
-                                <button data-type="telescopica" class="window-type-btn flex-1 btn-type-default py-2 px-4 rounded-md border border-gray-300 bg-gray-50 hover:bg-blue-50 hover:border-blue-200 text-gray-700 hover:text-blue-700 transition">
-                                    Telescópica
-                                </button>
-                                <button data-type="oxxo" class="window-type-btn flex-1 btn-type-default py-2 px-4 rounded-md border border-gray-300 bg-gray-50 hover:bg-blue-50 hover:border-blue-200 text-gray-700 hover:text-blue-700 transition">
-                                    OXXO
-                                </button>
-                                <button data-type="corrediza" class="window-type-btn flex-1 btn-type-default py-2 px-4 rounded-md border border-gray-300 bg-gray-50 hover:bg-blue-50 hover:border-blue-200 text-gray-700 hover:text-blue-700 transition">
-                                    Corrediza
-                                </button>
-                            </div>
-                            <div id="selected-type-display" class="mt-4 hidden">
-                                <div class="flex items-center bg-blue-50 rounded-md p-3 border border-blue-100">
-                                    <i class="fas fa-check-circle text-blue-500 mr-3 text-xl"></i>
-                                    <div>
-                                        <p class="text-sm text-gray-600">Seleccionado:</p>
-                                        <p id="selected-type" class="font-medium text-blue-700"></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Measurements Card -->
-                        <div class="border border-gray-200 rounded-lg p-4">
-                            <h3 class="font-semibold text-lg text-gray-700 mb-3 flex items-center">
-                                <i class="fas fa-ruler-combined mr-2 text-blue-500"></i>
-                                Medidas del área (mm)
-                            </h3>
-                            <div class="space-y-4">
-                                <div>
-                                    <label for="width" class="block text-sm font-medium text-gray-700 mb-1">Ancho total</label>
-                                    <input type="number" id="width" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Ancho en milímetros">
-                                </div>
-                                <div>
-                                    <label for="height" class="block text-sm font-medium text-gray-700 mb-1">Alto total</label>
-                                    <input type="number" id="height" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Alto en milímetros">
-                                </div>
-                                <div class="pt-2">
-                                    <button id="calculate-btn" class="w-full gradient-bg text-white py-2 px-4 rounded-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition disabled:opacity-50" disabled>
-                                        Calcular materiales
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Results Section -->
-            <div id="results-section" class="hidden">
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6">
-                    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-                        <h2 class="text-xl font-bold text-gray-800">Resultados del cálculo</h2>
-                        <div class="flex space-x-2 no-print">
-                            <button id="save-btn" class="flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition">
-                                <i class="fas fa-save mr-2"></i> Guardar
-                            </button>
-                            <button id="pdf-btn" class="flex items-center px-4 py-2 bg-blue-50 text-blue-600 rounded-md hover:bg-blue-100 transition">
-                                <i class="fas fa-file-pdf mr-2"></i> Exportar PDF
-                            </button>
-                            <button id="print-btn" class="flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition">
-                                <i class="fas fa-print mr-2"></i> Imprimir
-                            </button>
-                            <button id="share-btn" class="flex items-center px-4 py-2 bg-green-50 text-green-600 rounded-md hover:bg-green-100 transition">
+        </div>
+    </header>
 
-                                <i class="fas fa-share-alt mr-2"></i> Compartir
-                            </button>
-                        </div>
+    <main class="main">
+        <div class="container">
+            <div class="grid-2">
+                <!-- Panel izquierdo: Controles -->
+                <div class="card fade-in">
+                    <div class="card-title">
+                        📐 Cotizador
+                        <span class="badge">medidas en mm</span>
                     </div>
-                    
-                    <div class="p-6 grid md:grid-cols-3 gap-6">
-                        <!-- Project Info -->
-                        <div class="md:col-span-1">
-                            <div class="bg-blue-50 rounded-lg p-4 mb-4">
-                                <h3 class="font-semibold text-gray-800 mb-2">Detalles del proyecto</h3>
-                                <div class="space-y-2">
-                                    <p><span class="text-gray-600">Tipo:</span> <span id="result-type" class="font-medium"></span></p>
-                                    <p><span class="text-gray-600">Ancho:</span> <span id="result-width" class="font-medium"></span> mm</p>
-                                    <p><span class="text-gray-600">Alto:</span> <span id="result-height" class="font-medium"></span> mm</p>
-                                    <p class="pt-2"><span class="text-gray-600">Fecha:</span> <span id="result-date" class="font-medium"></span></p>
-                                </div>
-                            </div>
-                            
-                            <!-- Drawing Area -->
-                            <div class="drawing-container rounded-lg border border-gray-200 p-4 flex items-center justify-center">
-                                <div id="window-drawing" class="relative" style="width: 100%; height: 100%;">
-                                    <!-- Drawing will be inserted here -->
-                                    <p class="text-gray-500 text-center">Dibujo del diseño aparecerá aquí</p>
-                                </div>
+
+                    <div id="productSelector" class="product-grid">
+                        <!-- Generado por JS -->
+                    </div>
+
+                    <div id="standardControls">
+                        <div class="control-group">
+                            <label class="control-label" for="sliderWidth">
+                                <span>Ancho</span>
+                                <span class="control-value" id="valWidth">1500 mm</span>
+                            </label>
+                            <input type="range" id="sliderWidth" class="slider" min="300" max="5000" step="10" value="1500">
+                            <div class="slider-range">
+                                <span>300 mm</span>
+                                <span>5000 mm</span>
                             </div>
                         </div>
-                        
-                        <!-- Materials List -->
-                        <div class="md:col-span-2">
-                            <div class="mb-4">
-                                <h3 class="font-semibold text-lg text-gray-800 mb-3">Lista de materiales necesarios</h3>
-                                <div id="materials-list" class="space-y-3">
-                                    <!-- Materials will be inserted here -->
-                                </div>
-                            </div>
-                            
-                            <!-- Total Cost -->
-                            <div class="bg-blue-50 rounded-lg p-4 border border-blue-100">
-                                <div class="flex justify-between items-center">
-                                    <h3 class="font-semibold text-gray-800">Costo total estimado</h3>
-                                    <p id="total-cost" class="text-2xl font-bold text-blue-700">$0.00</p>
-                                </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="sliderHeight">
+                                <span>Alto</span>
+                                <span class="control-value" id="valHeight">2000 mm</span>
+                            </label>
+                            <input type="range" id="sliderHeight" class="slider" min="300" max="3500" step="10" value="2000">
+                            <div class="slider-range">
+                                <span>300 mm</span>
+                                <span>3500 mm</span>
                             </div>
                         </div>
                     </div>
+
+                    <div class="special-card hidden" id="specialCard">
+                        <div class="icon">🔧</div>
+                        <h4>Trabajo Personalizado</h4>
+                        <p>Para proyectos especiales, contáctanos directamente. Nuestro equipo te asesorará con la mejor solución.</p>
+                    </div>
+
+                    <button class="btn-whatsapp" id="btnCotizar">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        Enviar cotización por WhatsApp
+                    </button>
                 </div>
-            </div>
-        </main>
-        
-        <!-- Footer -->
-        <footer class="bg-gray-800 text-white py-6">
-            <div class="container mx-auto px-4 text-center">
-                <p class="text-sm">© 2023 MundoCancel - Calculadora línea de 3". Todos los derechos reservados.</p>
-            </div>
-        </footer>
-    </div>
-    
-    <!-- Edit Prices Modal -->
-    <div id="edit-prices-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[80vh] overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-                <h3 class="text-xl font-bold text-gray-800">Editar precios de materiales</h3>
-                <button id="close-prices-modal" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="p-6 overflow-y-auto">
-                <div id="price-inputs" class="space-y-4">
-                    <!-- Price inputs will be inserted here -->
+
+                <!-- Panel derecho: Vista previa y despiece -->
+                <div class="card fade-in">
+                    <div class="card-title">
+                        🔍 Despiece técnico
+                        <span class="badge" id="productNameBadge">Ventana corrediza</span>
+                    </div>
+
+                    <div class="preview-box" id="previewBox">
+                        <div id="previewContent">
+                            <!-- Generado por JS -->
+                        </div>
+                    </div>
+
+                    <div class="data-grid" id="dataGrid">
+                        <div class="data-item">
+                            <strong id="dataWidth">1500</strong>
+                            <span>Ancho (mm)</span>
+                        </div>
+                        <div class="data-item">
+                            <strong id="dataHeight">2000</strong>
+                            <span>Alto (mm)</span>
+                        </div>
+                        <div class="data-item">
+                            <strong id="dataArea">3.00</strong>
+                            <span>Área (m²)</span>
+                        </div>
+                    </div>
+
+                    <div class="componentes-list" id="componentesList">
+                        <!-- Generado por JS -->
+                    </div>
                 </div>
-            </div>
-            <div class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3">
-                <button id="cancel-prices-btn" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition">
-                    Cancelar
-                </button>
-                <button id="save-prices-btn" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
-                    Guardar cambios
-                </button>
             </div>
         </div>
-    </div>
-    
-    <!-- Help Modal -->
-    <div id="help-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[80vh] overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-                <h3 class="text-xl font-bold text-gray-800">Ayuda - Cómo usar la calculadora</h3>
-                <button id="close-help-modal" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="p-6 overflow-y-auto">
-                <div class="space-y-4">
-                    <div class="bg-blue-50 p-4 rounded-lg">
-                        <h4 class="font-semibold text-blue-800 mb-2">Instrucciones básicas</h4>
-                        <ol class="list-decimal list-inside space-y-1 text-gray-700">
-                            <li>Seleccione el tipo de ventana que desea calcular</li>
-                            <li>Ingrese las medidas del área (ancho y alto) en milímetros</li>
-                            <li>Presione el botón "Calcular materiales"</li>
-                            <li>Revise los resultados obtenidos</li>
-                            <li>Si lo desea, puede guardar, exportar, imprimir o compartir los resultados</li>
-                        </ol>
-                    </div>
-                    
-                    <div class="bg-amber-50 p-4 rounded-lg">
-                        <h4 class="font-semibold text-amber-800 mb-2">Tipos de ventana</h4>
-                        <ul class="space-y-2 text-gray-700">
-                            <li>
-                                <span class="font-medium">Telescópica:</span> Ventana de 3 hojas que se superponen al deslizarse
-                            </li>
-                            <li>
-                                <span class="font-medium">OXXO:</span> Ventana de 4 hojas con diseños fijos y corredizos
-                            </li>
-                            <li>
-                                <span class="font-medium">Corrediza:</span> Ventana de 2 hojas (una fija y una corrediza)
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="bg-green-50 p-4 rounded-lg">
-                        <h4 class="font-semibold text-green-800 mb-2">Fórmulas de cálculo</h4>
-                        <p class="text-gray-700 mb-2">Las fórmulas para cada componente varían según el tipo de ventana:</p>
-                        <ul class="space-y-2 text-sm text-gray-600">
-                            <li class="font-semibold text-gray-700">Telescópica:</li>
-                            <li>· Riel & Jamba superior: W</li>
-                            <li>· Jambas laterales (2): H - 26</li>
-                            <li>· Zoclos (3): (W - 167) / 3</li>
-                            <li>· Vidrio fijo: ancho (W - 117) / 3, alto H - 95</li>
-                            <li class="pt-1 font-semibold text-gray-700">OXXO:</li>
-                            <li>· Zoclos & Cabezales (4): (W - 330) / 4</li>
-                            <li>· Vidrios (4): ancho (W - 265) / 4</li>
-                            <li class="pt-1 font-semibold text-gray-700">Corrediza:</li>
-                            <li>· Zoclos & Cabezales (2): (W - 185) / 2</li>
-                            <li>· Vidrio fijo: ancho (W - 151) / 2, alto H - 125</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="px-6 py-4 border-t border-gray-200 flex justify-end">
-                <button id="close-help-modal-2" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
-                    Entendido
-                </button>
-            </div>
-        </div>
-    </div>
+    </main>
+
+    <div class="toast" id="toast"></div>
 
     <script>
-        // Wait for DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize variables
-            let windowType = null;
-            let windowWidth = null;
-            let windowHeight = null;
-            const { jsPDF } = window.jspdf;
-            
-            // Default prices (can be updated from localStorage)
-            const defaultPrices = {
-                // Telescópica
-                "telescopica_riel_jamba_superior": 150,
-                "telescopica_jambas_laterales": 120,
-                "telescopica_adaptador_paloma": 100,
-                "telescopica_zoclos": 80,
-                "telescopica_cabezal": 80,
-                "telescopica_cerco_chapa_fijo": 90,
-                "telescopica_cerco_chapa_corredizo": 90,
-                "telescopica_traslape_fijo": 85,
-                "telescopica_traslapes_corredizos": 85,
-                "telescopica_vidrio_fijo": 500,
-                "telescopica_vidrios_corredizos": 450,
-                "telescopica_felpa": 2,  // per meter
-                "telescopica_vinil": 1.5, // per meter
-                
-                // OXXO
-                "oxxo_riel_jamba_mosq": 160,
-                "oxxo_adapt_mosq": 110,
-                "oxxo_jambas": 130,
-                "oxxo_zoclos": 85,
-                "oxxo_cabezales": 85,
-                "oxxo_cerco_chapa_fijo": 95,
-                "oxxo_cerco_chapa_corredizo": 95,
-                "oxxo_traslape_fijo": 90,
-                "oxxo_traslape_corredizo": 90,
-                "oxxo_verticales_mosq": 70,
-                "oxxo_horizontales_mosq": 70,
-                "oxxo_adapt_oxxo": 120,
-                "oxxo_felpa": 2.2,  // per meter
-                "oxxo_vinil": 1.7,  // per meter
-                "oxxo_vidrios_fijos": 520,
-                "oxxo_vidrios_corredizos": 470,
-                
-                // Corrediza
-                "corrediza_riel_jamba_mosq": 140,
-                "corrediza_adapt_mosq": 90,
-                "corrediza_zoclos": 75,
-                "corrediza_cabezales": 75,
-                "corrediza_jambas": 125,
-                "corrediza_cerco_chapa_fijo": 85,
-                "corrediza_cerco_chapa_corredizo": 85,
-                "corrediza_traslape_fijo": 80,
-                "corrediza_traslape_corredizo": 80,
-                "corrediza_vertical_mosq": 60,
-                "corrediza_horizontal_mosq": 60,
-                "corrediza_felpa": 1.8,  // per meter
-                "corrediza_vinil": 1.3,  // per meter
-                "corrediza_vidrio_fijo": 480,
-                "corrediza_vidrio_corredizo": 430
-            };
-            
-            // Load prices from localStorage or use defaults
-            let materialPrices = JSON.parse(localStorage.getItem('materialPrices')) || defaultPrices;
-            
-            // DOM Elements
-            const menuToggle = document.getElementById('menu-toggle');
-            const closeSidebar = document.getElementById('close-sidebar');
-            const sidebar = document.querySelector('.sidebar');
-            const backdrop = document.querySelector('.backdrop');
-            const windowTypeBtns = document.querySelectorAll('.window-type-btn');
-            const windowTypeLinks = document.querySelectorAll('.window-type');
-            const widthInput = document.getElementById('width');
-            const heightInput = document.getElementById('height');
-            const calculateBtn = document.getElementById('calculate-btn');
-            const resultsSection = document.getElementById('results-section');
-            const materialsList = document.getElementById('materials-list');
-            const totalCostElement = document.getElementById('total-cost');
-            const helpBtn = document.getElementById('help-btn');
-            const helpModal = document.getElementById('help-modal');
-            const closeHelpModal = document.getElementById('close-help-modal');
-            const closeHelpModal2 = document.getElementById('close-help-modal-2');
-            const editPricesBtn = document.getElementById('edit-prices-btn');
-            const editPricesModal = document.getElementById('edit-prices-modal');
-            const closePricesModal = document.getElementById('close-prices-modal');
-            const cancelPricesBtn = document.getElementById('cancel-prices-btn');
-            const savePricesBtn = document.getElementById('save-prices-btn');
-            const priceInputs = document.getElementById('price-inputs');
-            const saveBtn = document.getElementById('save-btn');
-            const pdfBtn = document.getElementById('pdf-btn');
-            const printBtn = document.getElementById('print-btn');
-            const shareBtn = document.getElementById('share-btn');
-            const selectedTypeDisplay = document.getElementById('selected-type-display');
-            const selectedType = document.getElementById('selected-type');
-            const resultType = document.getElementById('result-type');
-            const resultWidth = document.getElementById('result-width');
-            const resultHeight = document.getElementById('result-height');
-            const resultDate = document.getElementById('result-date');
-            const windowDrawing = document.getElementById('window-drawing');
-            
-            // Event Listeners
-            menuToggle.addEventListener('click', toggleSidebar);
-            closeSidebar.addEventListener('click', toggleSidebar);
-            backdrop.addEventListener('click', toggleSidebar);
-            
-            helpBtn.addEventListener('click', openHelpModal);
-            closeHelpModal.addEventListener('click', closeHelpModalFn);
-            closeHelpModal2.addEventListener('click', closeHelpModalFn);
-            
-            editPricesBtn.addEventListener('click', openEditPricesModal);
-            closePricesModal.addEventListener('click', closeEditPricesModal);
-            cancelPricesBtn.addEventListener('click', closeEditPricesModal);
-            savePricesBtn.addEventListener('click', savePrices);
-            
-            saveBtn.addEventListener('click', saveCalculation);
-            pdfBtn.addEventListener('click', generatePDF);
-            printBtn.addEventListener('click', printResults);
-            shareBtn.addEventListener('click', shareResults);
-            
-            widthInput.addEventListener('input', validateInputs);
-            heightInput.addEventListener('input', validateInputs);
-            
-            // Set window type buttons
-            windowTypeBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    setWindowType(this.getAttribute('data-type'), this.textContent.trim());
+        // ============================================================
+        // CATÁLOGO MAESTRO (basado en el JSON normalizado)
+        // ============================================================
+        const CATALOGO = {
+            "ventana_corrediza_estandar": {
+                "nombre": "Ventana corrediza estándar",
+                "categoria": "ventanas",
+                "icono": "🚪",
+                "perfiles": [
+                    { "nombre": "Riel / Jamba cabezal", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+                    { "nombre": "Jambas verticales", "cantidad": 2, "formula": "alto - 26", "corte": "90°" },
+                    { "nombre": "Zoclo / Cabezal", "cantidad": 2, "formula": "(ancho - 185) / 2", "corte": "90°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Vidrio fijo", "cantidad": 1, "ancho": "(ancho - 151) / 2", "alto": "alto - 125" },
+                    { "nombre": "Vidrio corredizo", "cantidad": 1, "ancho": "(ancho - 151) / 2", "alto": "alto - 135" }
+                ]
+            },
+            "ventana_3_hojas_telescopica": {
+                "nombre": "Ventana 3 hojas telescópica",
+                "categoria": "ventanas",
+                "icono": "🪟",
+                "perfiles": [
+                    { "nombre": "Riel de 3\"", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+                    { "nombre": "Jamba de 3\" (cabezal)", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+                    { "nombre": "Adaptador paloma", "cantidad": 1, "formula": "ancho - 65", "corte": "90°" },
+                    { "nombre": "Jambas de 3\"", "cantidad": 2, "formula": "alto - 26", "corte": "90°" },
+                    { "nombre": "Zoclo / Cabezal de 3\"", "cantidad": 3, "formula": "(ancho - 167) / 3", "corte": "90°" },
+                    { "nombre": "Cerco chapa fijo", "cantidad": 1, "formula": "alto", "corte": "90°" },
+                    { "nombre": "Cerco chapa corredizo", "cantidad": 1, "formula": "alto - 40", "corte": "90°" },
+                    { "nombre": "Traslape fijo", "cantidad": 1, "formula": "alto", "corte": "90°" },
+                    { "nombre": "Traslape corredizo", "cantidad": 3, "formula": "alto - 40", "corte": "90°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Vidrio fijo", "cantidad": 1, "ancho": "(ancho - 117) / 3", "alto": "alto - 95" },
+                    { "nombre": "Vidrio corredizo", "cantidad": 2, "ancho": "(ancho - 117) / 3", "alto": "alto - 135" }
+                ]
+            },
+            "ventanal_oxxo": {
+                "nombre": "Ventanal OXXO",
+                "categoria": "ventanales",
+                "icono": "🏪",
+                "perfiles": [
+                    { "nombre": "Riel / Jamba c/mosquitero", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+                    { "nombre": "Jambas de 3\"", "cantidad": 2, "formula": "alto - 26", "corte": "90°" },
+                    { "nombre": "Zoclo / Cabezal de 3\"", "cantidad": 8, "formula": "(ancho - 330) / 4", "corte": "90°" },
+                    { "nombre": "Cerco chapa / Traslape fijo", "cantidad": 4, "formula": "alto - 30", "corte": "90°" },
+                    { "nombre": "Cerco chapa / Traslape corredizo", "cantidad": 4, "formula": "alto - 40", "corte": "90°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Vidrio fijo", "cantidad": 2, "ancho": "(ancho - 265) / 4", "alto": "alto - 125" },
+                    { "nombre": "Vidrio corredizo", "cantidad": 2, "ancho": "(ancho - 265) / 4", "alto": "alto - 135" }
+                ]
+            },
+            "puerta_batiente_estandar": {
+                "nombre": "Puerta batiente estándar",
+                "categoria": "puertas",
+                "icono": "🚪",
+                "perfiles": [
+                    { "nombre": "Bolsa lisa cabezal", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+                    { "nombre": "Batiente cabezal", "cantidad": 1, "formula": "ancho - 64", "corte": "90°" },
+                    { "nombre": "Bolsas / Batientes verticales", "cantidad": 2, "formula": "alto - 32", "corte": "90°" },
+                    { "nombre": "Cercos chapa", "cantidad": 2, "formula": "alto - 47", "corte": "90°" },
+                    { "nombre": "Zoclo / Intermedio / Cabezal", "cantidad": 3, "formula": "ancho - 181", "corte": "90°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Vidrio", "cantidad": 2, "ancho": "ancho - 191", "alto": "(alto - 205) / 2" }
+                ]
+            },
+            "puerta_ligera": {
+                "nombre": "Puerta ligera",
+                "categoria": "puertas",
+                "icono": "🚪",
+                "perfiles": [
+                    { "nombre": "Batiente cabezal", "cantidad": 1, "formula": "ancho - 25", "corte": "90°" },
+                    { "nombre": "Batientes", "cantidad": 2, "formula": "alto", "corte": "90°" },
+                    { "nombre": "Cercos chapa", "cantidad": 2, "formula": "alto - 27", "corte": "90°" },
+                    { "nombre": "Zoclo / Intermedio", "cantidad": 2, "formula": "ancho - 139", "corte": "90°" }
+                ],
+                "vidrio": []
+            },
+            "puerta_bano": {
+                "nombre": "Puerta de baño",
+                "categoria": "puertas",
+                "icono": "🚿",
+                "perfiles": [
+                    { "nombre": "Silla cabezal", "cantidad": 1, "formula": "ancho - 30", "corte": "90°" },
+                    { "nombre": "Silla", "cantidad": 2, "formula": "alto", "corte": "90°" },
+                    { "nombre": "Marco semilujo ancho", "cantidad": 2, "formula": "ancho - 42", "corte": "90°" },
+                    { "nombre": "Marco semilujo alto", "cantidad": 2, "formula": "alto - 30", "corte": "90°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Plastico/Vidrio", "cantidad": 1, "ancho": "ancho - 112", "alto": "alto - 100" }
+                ]
+            },
+            "cancel_plastico_bano": {
+                "nombre": "Cancel de baño plástico",
+                "categoria": "canceles",
+                "icono": "🚿",
+                "perfiles": [
+                    { "nombre": "Riel / Guía", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+                    { "nombre": "Jambas", "cantidad": 2, "formula": "alto - 30", "corte": "90°" },
+                    { "nombre": "Horizontales", "cantidad": 4, "formula": "(ancho + 30) / 2", "corte": "90°" },
+                    { "nombre": "Marcos económicos", "cantidad": 4, "formula": "alto - 50", "corte": "90°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Hojas plástico", "cantidad": 2, "ancho": "(ancho - 30) / 2", "alto": "alto - 80" }
+                ]
+            },
+            "ventana_abatible_estandar": {
+                "nombre": "Ventana abatible estándar",
+                "categoria": "ventanas",
+                "icono": "🪟",
+                "perfiles": [
+                    { "nombre": "Marco ventana (ancho)", "cantidad": 2, "formula": "ancho", "corte": "45°" },
+                    { "nombre": "Marco ventana (alto)", "cantidad": 2, "formula": "alto", "corte": "45°" },
+                    { "nombre": "Hoja ventana (ancho)", "cantidad": 2, "formula": "ancho - 42", "corte": "45°" },
+                    { "nombre": "Hoja ventana (alto)", "cantidad": 2, "formula": "alto - 42", "corte": "45°" },
+                    { "nombre": "Junquillo redondo (ancho)", "cantidad": 2, "formula": "ancho - 114", "corte": "45°" },
+                    { "nombre": "Junquillo redondo (alto)", "cantidad": 2, "formula": "alto - 114", "corte": "45°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Vidrio 6mm", "cantidad": 1, "ancho": "ancho - 127", "alto": "alto - 127" }
+                ],
+                "notas": "Se recomienda que el junquillo se ensamble en la hoja antes de cortarla."
+            },
+            "ventana_1_1_2_corrediza": {
+                "nombre": "Ventana 1 1/2 corrediza",
+                "categoria": "ventanas",
+                "icono": "🪟",
+                "perfiles": [
+                    { "nombre": "Riel / Jamba cabezal", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+                    { "nombre": "Jambas verticales", "cantidad": 2, "formula": "alto - 20", "corte": "90°" },
+                    { "nombre": "Cabezales", "cantidad": 3, "formula": "(ancho - 100) / 2", "corte": "90°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Vidrio fijo", "cantidad": 1, "ancho": "(ancho - 70) / 2", "alto": "alto - 45" },
+                    { "nombre": "Vidrio corredizo", "cantidad": 1, "ancho": "(ancho - 70) / 2", "alto": "alto - 75" }
+                ]
+            },
+            "ventana_fija_1_1_2": {
+                "nombre": "Ventana fija 1 1/2",
+                "categoria": "ventanas",
+                "icono": "🪟",
+                "perfiles": [
+                    { "nombre": "Bolsa / Escalonado cabezal", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+                    { "nombre": "Bolsas verticales", "cantidad": 2, "formula": "alto - 40", "corte": "90°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Vidrio", "cantidad": 1, "ancho": "ancho - 48", "alto": "alto - 42" }
+                ]
+            }
+        };
+
+        // ============================================================
+        // ESTADO
+        // ============================================================
+        let currentProduct = 'ventana_corrediza_estandar';
+        let currentAncho = 1500;
+        let currentAlto = 2000;
+
+        // ============================================================
+        // FUNCIONES DE EVALUACIÓN
+        // ============================================================
+        function evaluarFormula(formula, ancho, alto) {
+            try {
+                // Reemplazar variables y evaluar de forma segura
+                const expr = formula
+                    .replace(/ancho/g, `(${ancho})`)
+                    .replace(/alto/g, `(${alto})`);
+                const result = Function('"use strict"; return (' + expr + ')')();
+                return Math.round(result * 100) / 100;
+            } catch (e) {
+                console.warn('Error evaluando fórmula:', formula, e);
+                return 0;
+            }
+        }
+
+        function calcularComponentes(producto, ancho, alto) {
+            const data = CATALOGO[producto];
+            if (!data) return { perfiles: [], vidrios: [] };
+
+            const perfiles = data.perfiles.map(p => ({
+                ...p,
+                medida: evaluarFormula(p.formula, ancho, alto)
+            }));
+
+            const vidrios = (data.vidrio || []).map(v => ({
+                ...v,
+                medidaAncho: evaluarFormula(v.ancho, ancho, alto),
+                medidaAlto: evaluarFormula(v.alto, ancho, alto)
+            }));
+
+            return { perfiles, vidrios };
+        }
+
+        // ============================================================
+        // RENDER
+        // ============================================================
+        function renderNavegacion() {
+            const nav = document.getElementById('navCategorias');
+            const categorias = [...new Set(Object.values(CATALOGO).map(p => p.categoria))];
+            nav.innerHTML = categorias.map(cat =>
+                `<button class="nav-btn" data-categoria="${cat}">${cat.charAt(0).toUpperCase() + cat.slice(1)}</button>`
+            ).join('');
+
+            nav.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const cat = btn.dataset.categoria;
+                    const first = Object.keys(CATALOGO).find(k => CATALOGO[k].categoria === cat);
+                    if (first) {
+                        currentProduct = first;
+                        renderProductos();
+                        renderPreview();
+                    }
+                    nav.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
                 });
             });
-            
-            windowTypeLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    setWindowType(this.getAttribute('data-type'), this.textContent.trim());
-                    toggleSidebar();
+
+            // Activar primera categoría
+            const firstCat = nav.querySelector('.nav-btn');
+            if (firstCat) firstCat.classList.add('active');
+        }
+
+        function renderProductos() {
+            const container = document.getElementById('productSelector');
+            const entries = Object.entries(CATALOGO);
+            container.innerHTML = entries.map(([key, val]) =>
+                `<button class="product-btn ${key === currentProduct ? 'active' : ''}" data-key="${key}">
+                    ${val.icono || '📐'} ${val.nombre.split(' ').slice(0, 2).join(' ')}
+                    <span class="sub">${val.categoria}</span>
+                </button>`
+            ).join('');
+
+            container.querySelectorAll('.product-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentProduct = btn.dataset.key;
+                    renderProductos();
+                    renderPreview();
                 });
             });
-            
-            calculateBtn.addEventListener('click', calculateMaterials);
-            
-            // Functions
-            function toggleSidebar() {
-                sidebar.classList.toggle('active');
-                backdrop.classList.toggle('active');
-            }
-            
-            function openHelpModal() {
-                helpModal.classList.remove('hidden');
-            }
-            
-            function closeHelpModalFn() {
-                helpModal.classList.add('hidden');
-            }
-            
-            function openEditPricesModal() {
-                // Populate price inputs
-                priceInputs.innerHTML = '';
-                
-                let groupedPrices = {
-                    "Telescópica": [],
-                    "OXXO": [],
-                    "Corrediza": []
-                };
-                
-                // Group prices by window type
-                for (const [key, value] of Object.entries(materialPrices)) {
-                    const parts = key.split('_');
-                    const type = parts[0];
-                    const name = parts.slice(1).join('_');
-                    
-                    if (type === 'telescopica') {
-                        groupedPrices["Telescópica"].push({key, name, value});
-                    } else if (type === 'oxxo') {
-                        groupedPrices["OXXO"].push({key, name, value});
-                    } else if (type === 'corrediza') {
-                        groupedPrices["Corrediza"].push({key, name, value});
-                    }
-                }
-                
-                // Create inputs for each group
-                for (const [type, prices] of Object.entries(groupedPrices)) {
-                    const groupDiv = document.createElement('div');
-                    groupDiv.className = 'mb-6 pb-4 border-b border-gray-200';
-                    
-                    const groupTitle = document.createElement('h4');
-                    groupTitle.className = 'font-semibold text-gray-800 mb-3';
-                    groupTitle.textContent = type;
-                    groupDiv.appendChild(groupTitle);
-                    
-                    const inputsDiv = document.createElement('div');
-                    inputsDiv.className = 'space-y-3';
-                    
-                    prices.forEach(item => {
-                        const inputDiv = document.createElement('div');
-                        inputDiv.className = 'grid grid-cols-5 gap-2 items-center';
-                        
-                        const label = document.createElement('label');
-                        label.className = 'col-span-3 text-sm text-gray-700';
-                        label.textContent = formatMaterialName(item.name);
-                        
-                        const input = document.createElement('input');
-                        input.type = 'number';
-                        input.className = 'col-span-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500';
-                        input.value = item.value;
-                        input.dataset.key = item.key;
-                        
-                        const currency = document.createElement('span');
-                        currency.className = 'col-span-1 text-sm text-gray-500';
-                        currency.textContent = '$/m, $/ud o $/m²';
-                        
-                        inputDiv.appendChild(label);
-                        inputDiv.appendChild(input);
-                        inputDiv.appendChild(currency);
-                        inputsDiv.appendChild(inputDiv);
-                    });
-                    
-                    groupDiv.appendChild(inputsDiv);
-                    priceInputs.appendChild(groupDiv);
-                }
-                
-                editPricesModal.classList.remove('hidden');
-            }
-            
-            function closeEditPricesModal() {
-                editPricesModal.classList.add('hidden');
-            }
-            
-            function savePrices() {
-                const inputs = document.querySelectorAll('#price-inputs input');
-                
-                inputs.forEach(input => {
-                    const key = input.dataset.key;
-                    const value = parseFloat(input.value);
-                    
-                    if (!isNaN(value)) {
-                        materialPrices[key] = value;
-                    }
+        }
+
+        function renderPreview() {
+            const data = CATALOGO[currentProduct];
+            if (!data) return;
+
+            const ancho = currentAncho;
+            const alto = currentAlto;
+            const area = (ancho * alto / 1000000).toFixed(2);
+
+            // Actualizar badges
+            document.getElementById('productNameBadge').textContent = data.nombre;
+
+            // Datos
+            document.getElementById('dataWidth').textContent = ancho;
+            document.getElementById('dataHeight').textContent = alto;
+            document.getElementById('dataArea').textContent = area;
+
+            // Slider values
+            document.getElementById('valWidth').textContent = ancho + ' mm';
+            document.getElementById('valHeight').textContent = alto + ' mm';
+
+            // Preview SVG
+            const previewBox = document.getElementById('previewContent');
+            previewBox.innerHTML = generarSVG(currentProduct, ancho, alto);
+
+            // Componentes
+            const { perfiles, vidrios } = calcularComponentes(currentProduct, ancho, alto);
+            const list = document.getElementById('componentesList');
+
+            let html = '<div style="font-size:0.75rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;padding:0 0.5rem 0.5rem;border-bottom:1px solid var(--border);">Perfiles</div>';
+            perfiles.forEach(p => {
+                html += `<div class="componente-item">
+                    <span class="cantidad">${p.cantidad}</span>
+                    <span class="nombre">${p.nombre}</span>
+                    <span class="tag">${p.corte}</span>
+                    <span class="medida">${p.medida} mm</span>
+                </div>`;
+            });
+
+            if (vidrios.length > 0) {
+                html += `<div style="font-size:0.75rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;padding:0.75rem 0.5rem 0.5rem;border-top:1px solid var(--border);">Vidrios</div>`;
+                vidrios.forEach(v => {
+                    const medida = v.medidaAncho !== undefined ?
+                        `${v.medidaAncho} x ${v.medidaAlto} mm` :
+                        `${v.medidaAlto || ''} mm`;
+                    html += `<div class="componente-item">
+                        <span class="cantidad">${v.cantidad}</span>
+                        <span class="nombre">${v.nombre}</span>
+                        <span class="tag">vidrio</span>
+                        <span class="medida">${medida}</span>
+                    </div>`;
                 });
-                
-                // Save to localStorage
-                localStorage.setItem('materialPrices', JSON.stringify(materialPrices));
-                
-                showAlert('success', 'Precios actualizados correctamente');
-                closeEditPricesModal();
             }
-            
-            function setWindowType(type, displayName) {
-                windowType = type;
-                
-                // Update selected button style
-                windowTypeBtns.forEach(btn => {
-                    if (btn.getAttribute('data-type') === type) {
-                        btn.classList.remove('btn-type-default');
-                        btn.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
-                    } else {
-                        btn.classList.add('btn-type-default');
-                        btn.classList.remove('bg-blue-600', 'text-white', 'border-blue-600');
-                    }
-                });
-                
-                // Update selected type display
-                selectedTypeDisplay.classList.remove('hidden');
-                selectedType.textContent = displayName;
-                
-                validateInputs();
+
+            if (data.notas) {
+                html += `<div style="padding:0.75rem 0.5rem 0;font-size:0.75rem;color:var(--text-muted);border-top:1px solid var(--border);margin-top:0.5rem;">📌 ${data.notas}</div>`;
             }
-            
-            function validateInputs() {
-                const width = widthInput.value;
-                const height = heightInput.value;
-                
-                if (windowType && width && height && !isNaN(width) && !isNaN(height) && width > 0 && height > 0) {
-                    calculateBtn.disabled = false;
-                } else {
-                    calculateBtn.disabled = true;
-                }
+
+            list.innerHTML = html;
+        }
+
+        // ============================================================
+        // GENERADOR DE SVG
+        // ============================================================
+        function generarSVG(productKey, ancho, alto) {
+            const data = CATALOGO[productKey];
+            if (!data) return '<div class="placeholder">Producto no encontrado</div>';
+
+            // Escalamos para que quepa en el preview
+            const maxW = 280;
+            const maxH = 220;
+            const aspect = ancho / alto;
+            let w = maxW;
+            let h = maxH;
+            if (aspect > 1) {
+                h = maxW / aspect;
+            } else {
+                w = maxH * aspect;
             }
-            
-            function formatMaterialName(name) {
-                return name.split('_').map(word => 
-                    word.charAt(0).toUpperCase() + word.slice(1).replace(/_/g, ' ')
-                ).join(' ');
-            }
-            
-            function calculateMaterials() {
-                windowWidth = parseFloat(widthInput.value);
-                windowHeight = parseFloat(heightInput.value);
-                
-                if (!windowType || !windowWidth || !windowHeight || windowWidth <= 0 || windowHeight <= 0) {
-                    showAlert('error', 'Por favor, completa todos los campos correctamente');
-                    return;
-                }
-                
-                // Clear previous results
-                materialsList.innerHTML = '';
-                
-                let totalCost = 0;
-                let materials = [];
-                
-                // Calculate based on window type
-                if (windowType === 'telescopica') {
-                    materials = calculateTelescopica();
-                } else if (windowType === 'oxxo') {
-                    materials = calculateOXXO();
-                } else if (windowType === 'corrediza') {
-                    materials = calculateCorrediza();
-                }
-                
-                // Display results
-                materials.forEach(material => {
-                    totalCost += material.total;
-                    
-                    const materialDiv = document.createElement('div');
-                    materialDiv.className = 'result-item bg-white p-4 rounded-lg border border-gray-200 hover:shadow-md';
-                    
-                    const nameDiv = document.createElement('div');
-                    nameDiv.className = 'flex justify-between items-start mb-1';
-                    
-                    const name = document.createElement('h4');
-                    name.className = 'font-medium text-gray-800';
-                    name.textContent = material.name;
-                    
-                    const total = document.createElement('span');
-                    total.className = 'font-semibold text-blue-600';
-                    total.textContent = `$${material.total.toFixed(2)}`;
-                    
-                    nameDiv.appendChild(name);
-                    nameDiv.appendChild(total);
-                    
-                    const detailsDiv = document.createElement('div');
-                    detailsDiv.className = 'flex justify-between text-sm text-gray-600';
-                    
-                    const quantity = document.createElement('span');
-                    quantity.textContent = `Cantidad: ${material.quantity} ${material.quantity > 1 ? 'unidades' : 'unidad'}`;
-                    
-                    const dimensions = document.createElement('span');
-                    dimensions.textContent = `Medidas: ${material.dimensions}`;
-                    
-                    const unitPrice = document.createElement('span');
-                    unitPrice.className = 'text-gray-700 font-medium';
-                    unitPrice.textContent = `Precio unitario: $${material.unitPrice.toFixed(2)}`;
-                    
-                    detailsDiv.appendChild(quantity);
-                    detailsDiv.appendChild(dimensions);
-                    detailsDiv.appendChild(unitPrice);
-                    
-                    materialDiv.appendChild(nameDiv);
-                    materialDiv.appendChild(detailsDiv);
-                    
-                    materialsList.appendChild(materialDiv);
-                });
-                
-                // Update project info
-                resultType.textContent = selectedType.textContent;
-                resultWidth.textContent = windowWidth;
-                resultHeight.textContent = windowHeight;
-                resultDate.textContent = new Date().toLocaleDateString('es-ES', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
-                
-                // Update total cost
-                totalCostElement.textContent = `$${totalCost.toFixed(2)}`;
-                
-                // Draw window
-                drawWindow();
-                
-                // Show results section
-                resultsSection.classList.remove('hidden');
-                
-                // Scroll to results
-                resultsSection.scrollIntoView({ behavior: 'smooth' });
-            }
-            
-            function calculateTelescopica() {
-                const W = windowWidth;
-                const H = windowHeight;
-                
-                return [
-                    {
-                        name: 'Riel & Jamba superior',
-                        quantity: 1,
-                        dimensions: `${W} mm`,
-                        unitPrice: materialPrices['telescopica_riel_jamba_superior'],
-                        total: materialPrices['telescopica_riel_jamba_superior']
-                    },
-                    {
-                        name: 'Jambas laterales',
-                        quantity: 2,
-                        dimensions: `${H - 26} mm`,
-                        unitPrice: materialPrices['telescopica_jambas_laterales'],
-                        total: materialPrices['telescopica_jambas_laterales'] * 2
-                    },
-                    {
-                        name: 'Adaptador paloma',
-                        quantity: 1,
-                        dimensions: `${W - 65} mm`,
-                        unitPrice: materialPrices['telescopica_adaptador_paloma'],
-                        total: materialPrices['telescopica_adaptador_paloma']
-                    },
-                    {
-                        name: 'Zoclos',
-                        quantity: 3,
-                        dimensions: `${Math.round((W - 167) / 3)} mm`,
-                        unitPrice: materialPrices['telescopica_zoclos'],
-                        total: materialPrices['telescopica_zoclos'] * 3
-                    },
-                    {
-                        name: 'Cabezal',
-                        quantity: 3,
-                        dimensions: `${Math.round((W - 167) / 3)} mm`,
-                        unitPrice: materialPrices['telescopica_cabezal'],
-                        total: materialPrices['telescopica_cabezal'] * 3
-                    },
-                    {
-                        name: 'Cerco chapa fijo',
-                        quantity: 1,
-                        dimensions: `${H} mm`,
-                        unitPrice: materialPrices['telescopica_cerco_chapa_fijo'],
-                        total: materialPrices['telescopica_cerco_chapa_fijo']
-                    },
-                    {
-                        name: 'Cerco chapa corredizo',
-                        quantity: 1,
-                        dimensions: `${H - 40} mm`,
-                        unitPrice: materialPrices['telescopica_cerco_chapa_corredizo'],
-                        total: materialPrices['telescopica_cerco_chapa_corredizo']
-                    },
-                    {
-                        name: 'Traslape fijo',
-                        quantity: 1,
-                        dimensions: `${H} mm`,
-                        unitPrice: materialPrices['telescopica_traslape_fijo'],
-                        total: materialPrices['telescopica_traslape_fijo']
-                    },
-                    {
-                        name: 'Traslapes corredizos',
-                        quantity: 3,
-                        dimensions: `${H - 40} mm`,
-                        unitPrice: materialPrices['telescopica_traslapes_corredizos'],
-                        total: materialPrices['telescopica_traslapes_corredizos'] * 3
-                    },
-                    {
-                        name: 'Vidrio fijo',
-                        quantity: 1,
-                        dimensions: `${Math.round((W - 117) / 3)} mm × ${H - 95} mm`,
-                        unitPrice: materialPrices['telescopica_vidrio_fijo'],
-                        total: materialPrices['telescopica_vidrio_fijo']
-                    },
-                    {
-                        name: 'Vidrios corredizos',
-                        quantity: 2,
-                        dimensions: `${Math.round((W - 117) / 3)} mm × ${H - 135} mm`,
-                        unitPrice: materialPrices['telescopica_vidrios_corredizos'],
-                        total: materialPrices['telescopica_vidrios_corredizos'] * 2
-                    },
-                    {
-                        name: 'Felpa',
-                        quantity: Math.round((W * 5 + H * 8) / 1000),
-                        dimensions: `${Math.round((W * 5 + H * 8) / 1000)} m`,
-                        unitPrice: materialPrices['telescopica_felpa'],
-                        total: Math.round((W * 5 + H * 8) / 1000) * materialPrices['telescopica_felpa']
-                    },
-                    {
-                        name: 'Vinil',
-                        quantity: Math.round((W * 2 + H * 9) / 1000),
-                        dimensions: `${Math.round((W * 2 + H * 9) / 1000)} m`,
-                        unitPrice: materialPrices['telescopica_vinil'],
-                        total: Math.round((W * 2 + H * 9) / 1000) * materialPrices['telescopica_vinil']
-                    }
-                ];
-            }
-            
-            function calculateOXXO() {
-                const W = windowWidth;
-                const H = windowHeight;
-                
-                return [
-                    {
-                        name: 'Riel & Jamba mosquitero',
-                        quantity: 1,
-                        dimensions: `${W} mm`,
-                        unitPrice: materialPrices['oxxo_riel_jamba_mosq'],
-                        total: materialPrices['oxxo_riel_jamba_mosq']
-                    },
-                    {
-                        name: 'Adaptador mosquitero',
-                        quantity: 1,
-                        dimensions: `${W} mm`,
-                        unitPrice: materialPrices['oxxo_adapt_mosq'],
-                        total: materialPrices['oxxo_adapt_mosq']
-                    },
-                    {
-                        name: 'Jambas',
-                        quantity: 2,
-                        dimensions: `${H - 26} mm`,
-                        unitPrice: materialPrices['oxxo_jambas'],
-                        total: materialPrices['oxxo_jambas'] * 2
-                    },
-                    {
-                        name: 'Zoclos',
-                        quantity: 4,
-                        dimensions: `${Math.round((W - 330) / 4)} mm`,
-                        unitPrice: materialPrices['oxxo_zoclos'],
-                        total: materialPrices['oxxo_zoclos'] * 4
-                    },
-                    {
-                        name: 'Cabezales',
-                        quantity: 4,
-                        dimensions: `${Math.round((W - 330) / 4)} mm`,
-                        unitPrice: materialPrices['oxxo_cabezales'],
-                        total: materialPrices['oxxo_cabezales'] * 4
-                    },
-                    {
-                        name: 'Cerco chapa fijo',
-                        quantity: 2,
-                        dimensions: `${H - 30} mm`,
-                        unitPrice: materialPrices['oxxo_cerco_chapa_fijo'],
-                        total: materialPrices['oxxo_cerco_chapa_fijo'] * 2
-                    },
-                    {
-                        name: 'Cerco chapa corredizo',
-                        quantity: 2,
-                        dimensions: `${H - 40} mm`,
-                        unitPrice: materialPrices['oxxo_cerco_chapa_corredizo'],
-                        total: materialPrices['oxxo_cerco_chapa_corredizo'] * 2
-                    },
-                    {
-                        name: 'Traslape fijo',
-                        quantity: 2,
-                        dimensions: `${H - 30} mm`,
-                        unitPrice: materialPrices['oxxo_traslape_fijo'],
-                        total: materialPrices['oxxo_traslape_fijo'] * 2
-                    },
-                    {
-                        name: 'Traslape corredizo',
-                        quantity: 2,
-                        dimensions: `${H - 40} mm`,
-                        unitPrice: materialPrices['oxxo_traslape_corredizo'],
-                        total: materialPrices['oxxo_traslape_corredizo'] * 2
-                    },
-                    {
-                        name: 'Verticales mosquitero',
-                        quantity: 4,
-                        dimensions: `${H - 20} mm`,
-                        unitPrice: materialPrices['oxxo_verticales_mosq'],
-                        total: materialPrices['oxxo_verticales_mosq'] * 4
-                    },
-                    {
-                        name: 'Horizontales mosquitero',
-                        quantity: 4,
-                        dimensions: `${Math.round((W - 10) / 4)} mm`,
-                        unitPrice: materialPrices['oxxo_horizontales_mosq'],
-                        total: materialPrices['oxxo_horizontales_mosq'] * 4
-                    },
-                    {
-                        name: 'Adaptador OXXO',
-                        quantity: 2,
-                        dimensions: `${H - 50} mm`,
-                        unitPrice: materialPrices['oxxo_adapt_oxxo'],
-                        total: materialPrices['oxxo_adapt_oxxo'] * 2
-                    },
-                    {
-                        name: 'Felpa',
-                        quantity: Math.round((W * 5 + H * 10) / 1000),
-                        dimensions: `${Math.round((W * 5 + H * 10) / 1000)} m`,
-                        unitPrice: materialPrices['oxxo_felpa'],
-                        total: Math.round((W * 5 + H * 10) / 1000) * materialPrices['oxxo_felpa']
-                    },
-                    {
-                        name: 'Vinil',
-                        quantity: Math.round((W * 2 + H * 8) / 1000),
-                        dimensions: `${Math.round((W * 2 + H * 8) / 1000)} m`,
-                        unitPrice: materialPrices['oxxo_vinil'],
-                        total: Math.round((W * 2 + H * 8) / 1000) * materialPrices['oxxo_vinil']
-                    },
-                    {
-                        name: 'Vidrios fijos',
-                        quantity: 2,
-                        dimensions: `${Math.round((W - 265) / 4)} mm × ${H - 125} mm`,
-                        unitPrice: materialPrices['oxxo_vidrios_fijos'],
-                        total: materialPrices['oxxo_vidrios_fijos'] * 2
-                    },
-                    {
-                        name: 'Vidrios corredizos',
-                        quantity: 2,
-                        dimensions: `${Math.round((W - 265) / 4)} mm × ${H - 135} mm`,
-                        unitPrice: materialPrices['oxxo_vidrios_corredizos'],
-                        total: materialPrices['oxxo_vidrios_corredizos'] * 2
-                    }
-                ];
-            }
-            
-            function calculateCorrediza() {
-                const W = windowWidth;
-                const H = windowHeight;
-                
-                return [
-                    {
-                        name: 'Riel & Jamba mosquitero',
-                        quantity: 1,
-                        dimensions: `${W} mm`,
-                        unitPrice: materialPrices['corrediza_riel_jamba_mosq'],
-                        total: materialPrices['corrediza_riel_jamba_mosq']
-                    },
-                    {
-                        name: 'Adaptador mosquitero',
-                        quantity: 1,
-                        dimensions: `${W} mm`,
-                        unitPrice: materialPrices['corrediza_adapt_mosq'],
-                        total: materialPrices['corrediza_adapt_mosq']
-                    },
-                    {
-                        name: 'Zoclos',
-                        quantity: 2,
-                        dimensions: `${Math.round((W - 185) / 2)} mm`,
-                        unitPrice: materialPrices['corrediza_zoclos'],
-                        total: materialPrices['corrediza_zoclos'] * 2
-                    },
-                    {
-                        name: 'Cabezales',
-                        quantity: 2,
-                        dimensions: `${Math.round((W - 185) / 2)} mm`,
-                        unitPrice: materialPrices['corrediza_cabezales'],
-                        total: materialPrices['corrediza_cabezales'] * 2
-                    },
-                    {
-                        name: 'Jambas',
-                        quantity: 2,
-                        dimensions: `${H - 26} mm`,
-                        unitPrice: materialPrices['corrediza_jambas'],
-                        total: materialPrices['corrediza_jambas'] * 2
-                    },
-                    {
-                        name: 'Cerco chapa fijo',
-                        quantity: 1,
-                        dimensions: `${H - 30} mm`,
-                        unitPrice: materialPrices['corrediza_cerco_chapa_fijo'],
-                        total: materialPrices['corrediza_cerco_chapa_fijo']
-                    },
-                    {
-                        name: 'Cerco chapa corredizo',
-                        quantity: 1,
-                        dimensions: `${H - 40} mm`,
-                        unitPrice: materialPrices['corrediza_cerco_chapa_corredizo'],
-                        total: materialPrices['corrediza_cerco_chapa_corredizo']
-                    },
-                    {
-                        name: 'Traslape fijo',
-                        quantity: 1,
-                        dimensions: `${H - 30} mm`,
-                        unitPrice: materialPrices['corrediza_traslape_fijo'],
-                        total: materialPrices['corrediza_traslape_fijo']
-                    },
-                    {
-                        name: 'Traslape corredizo',
-                        quantity: 1,
-                        dimensions: `${H - 40} mm`,
-                        unitPrice: materialPrices['corrediza_traslape_corredizo'],
-                        total: materialPrices['corrediza_traslape_corredizo']
-                    },
-                    {
-                        name: 'Vertical mosquitero',
-                        quantity: 2,
-                        dimensions: `${H - 20} mm`,
-                        unitPrice: materialPrices['corrediza_vertical_mosq'],
-                        total: materialPrices['corrediza_vertical_mosq'] * 2
-                    },
-                    {
-                        name: 'Horizontal mosquitero',
-                        quantity: 2,
-                        dimensions: `${Math.round((W - 25) / 2)} mm`,
-                        unitPrice: materialPrices['corrediza_horizontal_mosq'],
-                        total: materialPrices['corrediza_horizontal_mosq'] * 2
-                    },
-                    {
-                        name: 'Felpa',
-                        quantity: Math.round((W * 4 + H * 8) / 1000),
-                        dimensions: `${Math.round((W * 4 + H * 8) / 1000)} m`,
-                        unitPrice: materialPrices['corrediza_felpa'],
-                        total: Math.round((W * 4 + H * 8) / 1000) * materialPrices['corrediza_felpa']
-                    },
-                    {
-                        name: 'Vinil',
-                        quantity: Math.round((W * 2 + H * 4) / 1000),
-                        dimensions: `${Math.round((W * 2 + H * 4) / 1000)} m`,
-                        unitPrice: materialPrices['corrediza_vinil'],
-                        total: Math.round((W * 2 + H * 4) / 1000) * materialPrices['corrediza_vinil']
-                    },
-                    {
-                        name: 'Vidrio fijo',
-                        quantity: 1,
-                        dimensions: `${Math.round((W - 151) / 2)} mm × ${H - 125} mm`,
-                        unitPrice: materialPrices['corrediza_vidrio_fijo'],
-                        total: materialPrices['corrediza_vidrio_fijo']
-                    },
-                    {
-                        name: 'Vidrio corredizo',
-                        quantity: 1,
-                        dimensions: `${Math.round((W - 151) / 2)} mm × ${H - 135} mm`,
-                        unitPrice: materialPrices['corrediza_vidrio_corredizo'],
-                        total: materialPrices['corrediza_vidrio_corredizo']
-                    }
-                ];
-            }
-            
-            function drawWindow() {
-                windowDrawing.innerHTML = '';
-                
-                if (!windowType) return;
-                
-                const containerWidth = windowDrawing.offsetWidth;
-                const containerHeight = windowDrawing.offsetHeight;
-                
-                const scaleFactor = Math.min(
-                    containerWidth / windowWidth,
-                    containerHeight / windowHeight
-                );
-                
-                const scaledWidth = windowWidth * scaleFactor * 0.9;
-                const scaledHeight = windowHeight * scaleFactor * 0.9;
-                
-                const canvas = document.createElement('div');
-                canvas.style.width = `${scaledWidth}px`;
-                canvas.style.height = `${scaledHeight}px`;
-                canvas.style.border = '2px solid #1e40af';
-                canvas.style.position = 'relative';
-                canvas.style.backgroundColor = '#f8fafc';
-                
-                if (windowType === 'telescopica') {
-                    // Draw telescopic window
-                    const partWidth = scaledWidth / 3;
-                    const glassHeight = scaledHeight * 0.8;
-                    
-                    // Fixed part
-                    const fixedPart = document.createElement('div');
-                    fixedPart.style.position = 'absolute';
-                    fixedPart.style.left = '0';
-                    fixedPart.style.top = '0';
-                    fixedPart.style.width = `${partWidth}px`;
-                    fixedPart.style.height = `${scaledHeight}px`;
-                    fixedPart.style.borderRight = '1px solid #334155';
-                    fixedPart.style.backgroundColor = '#e2e8f0';
-                    canvas.appendChild(fixedPart);
-                    
-                    // Fixed glass
-                    const fixedGlass = document.createElement('div');
-                    fixedGlass.style.position = 'absolute';
-                    fixedGlass.style.left = '10px';
-                    fixedGlass.style.top = '10px';
-                    fixedGlass.style.width = `${partWidth - 20}px`;
-                    fixedGlass.style.height = `${glassHeight}px`;
-                    fixedGlass.style.backgroundColor = '#60a5fa';
-                    fixedGlass.style.opacity = '0.6';
-                    fixedPart.appendChild(fixedGlass);
-                    
-                    // Sliding parts
-                    const slidingPart1 = document.createElement('div');
-                    slidingPart1.style.position = 'absolute';
-                    slidingPart1.style.left = `${partWidth - 10}px`;
-                    slidingPart1.style.top = '0';
-                    slidingPart1.style.width = `${partWidth}px`;
-                    slidingPart1.style.height = `${scaledHeight - 10}px`;
-                    slidingPart1.style.borderRight = '1px solid #334155';
-                    slidingPart1.style.backgroundColor = '#e2e8f0';
-                    canvas.appendChild(slidingPart1);
-                    
-                    const slidingGlass1 = document.createElement('div');
-                    slidingGlass1.style.position = 'absolute';
-                    slidingGlass1.style.left = '10px';
-                    slidingGlass1.style.top = '10px';
-                    slidingGlass1.style.width = `${partWidth - 20}px`;
-                    slidingGlass1.style.height = `${glassHeight - 10}px`;
-                    slidingGlass1.style.backgroundColor = '#60a5fa';
-                    slidingGlass1.style.opacity = '0.6';
-                    slidingPart1.appendChild(slidingGlass1);
-                    
-                    const slidingPart2 = document.createElement('div');
-                    slidingPart2.style.position = 'absolute';
-                    slidingPart2.style.left = `${2 * partWidth - 20}px`;
-                    slidingPart2.style.top = '0';
-                    slidingPart2.style.width = `${partWidth}px`;
-                    slidingPart2.style.height = `${scaledHeight - 20}px`;
-                    slidingPart2.style.backgroundColor = '#e2e8f0';
-                    canvas.appendChild(slidingPart2);
-                    
-                    const slidingGlass2 = document.createElement('div');
-                    slidingGlass2.style.position = 'absolute';
-                    slidingGlass2.style.left = '10px';
-                    slidingGlass2.style.top = '10px';
-                    slidingGlass2.style.width = `${partWidth - 20}px`;
-                    slidingGlass2.style.height = `${glassHeight - 20}px`;
-                    slidingGlass2.style.backgroundColor = '#60a5fa';
-                    slidingGlass2.style.opacity = '0.6';
-                    slidingPart2.appendChild(slidingGlass2);
-                    
-                    // Add lines to represent the sliding mechanism
-                    for (let i = 1; i <= 2; i++) {
-                        const line = document.createElement('div');
-                        line.style.position = 'absolute';
-                        line.style.left = `${i * partWidth - 5}px`;
-                        line.style.top = '0';
-                        line.style.width = '2px';
-                        line.style.height = `${scaledHeight - (i * 10)}px`;
-                        line.style.backgroundColor = '#4b5563';
-                        canvas.appendChild(line);
-                    }
-                    
-                } else if (windowType === 'oxxo') {
-                    // Draw OXXO window
-                    const partWidth = scaledWidth / 4;
-                    const glassHeight = scaledHeight * 0.7;
-                    
-                    // Fixed parts (left and right)
-                    const fixedPartLeft = document.createElement('div');
-                    fixedPartLeft.style.position = 'absolute';
-                    fixedPartLeft.style.left = '0';
-                    fixedPartLeft.style.top = '0';
-                    fixedPartLeft.style.width = `${partWidth}px`;
-                    fixedPartLeft.style.height = `${scaledHeight}px`;
-                    fixedPartLeft.style.borderRight = '1px solid #334155';
-                    fixedPartLeft.style.backgroundColor = '#e2e8f0';
-                    canvas.appendChild(fixedPartLeft);
-                    
-                    const fixedGlassLeft = document.createElement('div');
-                    fixedGlassLeft.style.position = 'absolute';
-                    fixedGlassLeft.style.left = '10px';
-                    fixedGlassLeft.style.top = '10px';
-                    fixedGlassLeft.style.width = `${partWidth - 20}px`;
-                    fixedGlassLeft.style.height = `${glassHeight}px`;
-                    fixedGlassLeft.style.backgroundColor = '#60a5fa';
-                    fixedGlassLeft.style.opacity = '0.6';
-                    fixedPartLeft.appendChild(fixedGlassLeft);
-                    
-                    const fixedPartRight = document.createElement('div');
-                    fixedPartRight.style.position = 'absolute';
-                    fixedPartRight.style.right = '0';
-                    fixedPartRight.style.top = '0';
-                    fixedPartRight.style.width = `${partWidth}px`;
-                    fixedPartRight.style.height = `${scaledHeight}px`;
-                    fixedPartRight.style.borderLeft = '1px solid #334155';
-                    fixedPartRight.style.backgroundColor = '#e2e8f0';
-                    canvas.appendChild(fixedPartRight);
-                    
-                    const fixedGlassRight = document.createElement('div');
-                    fixedGlassRight.style.position = 'absolute';
-                    fixedGlassRight.style.right = '10px';
-                    fixedGlassRight.style.top = '10px';
-                    fixedGlassRight.style.width = `${partWidth - 20}px`;
-                    fixedGlassRight.style.height = `${glassHeight}px`;
-                    fixedGlassRight.style.backgroundColor = '#60a5fa';
-                    fixedGlassRight.style.opacity = '0.6';
-                    fixedPartRight.appendChild(fixedGlassRight);
-                    
-                    // Sliding parts (middle)
-                    const slidingPart1 = document.createElement('div');
-                    slidingPart1.style.position = 'absolute';
-                    slidingPart1.style.left = `${partWidth - 10}px`;
-                    slidingPart1.style.top = '0';
-                    slidingPart1.style.width = `${partWidth}px`;
-                    slidingPart1.style.height = `${scaledHeight - 10}px`;
-                    slidingPart1.style.borderRight = '1px solid #334155';
-                    slidingPart1.style.backgroundColor = '#e2e8f0';
-                    canvas.appendChild(slidingPart1);
-                    
-                    const slidingGlass1 = document.createElement('div');
-                    slidingGlass1.style.position = 'absolute';
-                    slidingGlass1.style.left = '10px';
-                    slidingGlass1.style.top = '10px';
-                    slidingGlass1.style.width = `${partWidth - 20}px`;
-                    slidingGlass1.style.height = `${glassHeight - 10}px`;
-                    slidingGlass1.style.backgroundColor = '#60a5fa';
-                    slidingGlass1.style.opacity = '0.6';
-                    slidingPart1.appendChild(slidingGlass1);
-                    
-                    const slidingPart2 = document.createElement('div');
-                    slidingPart2.style.position = 'absolute';
-                    slidingPart2.style.left = `${2 * partWidth - 20}px`;
-                    slidingPart2.style.top = '0';
-                    slidingPart2.style.width = `${partWidth}px`;
-                    slidingPart2.style.height = `${scaledHeight - 20}px`;
-                    slidingPart2.style.backgroundColor = '#e2e8f0';
-                    canvas.appendChild(slidingPart2);
-                    
-                    const slidingGlass2 = document.createElement('div');
-                    slidingGlass2.style.position = 'absolute';
-                    slidingGlass2.style.left = '10px';
-                    slidingGlass2.style.top = '10px';
-                    slidingGlass2.style.width = `${partWidth - 20}px`;
-                    slidingGlass2.style.height = `${glassHeight - 20}px`;
-                    slidingGlass2.style.backgroundColor = '#60a5fa';
-                    slidingGlass2.style.opacity = '0.6';
-                    slidingPart2.appendChild(slidingGlass2);
-                    
-                    // Add lines to represent the sliding mechanism
-                    for (let i = 1; i <= 3; i++) {
-                        const line = document.createElement('div');
-                        line.style.position = 'absolute';
-                        line.style.left = `${i * partWidth - 5}px`;
-                        line.style.top = '0';
-                        line.style.width = '2px';
-                        line.style.height = `${scaledHeight - (i * 10)}px`;
-                        line.style.backgroundColor = '#4b5563';
-                        canvas.appendChild(line);
-                    }
-                    
-                } else if (windowType === 'corrediza') {
-                    // Draw sliding window
-                    const partWidth = scaledWidth / 2;
-                    const glassHeight = scaledHeight * 0.7;
-                    
-                    // Fixed part (left)
-                    const fixedPart = document.createElement('div');
-                    fixedPart.style.position = 'absolute';
-                    fixedPart.style.left = '0';
-                    fixedPart.style.top = '0';
-                    fixedPart.style.width = `${partWidth}px`;
-                    fixedPart.style.height = `${scaledHeight}px`;
-                    fixedPart.style.borderRight = '1px solid #334155';
-                    fixedPart.style.backgroundColor = '#e2e8f0';
-                    canvas.appendChild(fixedPart);
-                    
-                    const fixedGlass = document.createElement('div');
-                    fixedGlass.style.position = 'absolute';
-                    fixedGlass.style.left = '10px';
-                    fixedGlass.style.top = '10px';
-                    fixedGlass.style.width = `${partWidth - 20}px`;
-                    fixedGlass.style.height = `${glassHeight}px`;
-                    fixedGlass.style.backgroundColor = '#60a5fa';
-                    fixedGlass.style.opacity = '0.6';
-                    fixedPart.appendChild(fixedGlass);
-                    
-                    // Sliding part (right)
-                    const slidingPart = document.createElement('div');
-                    slidingPart.style.position = 'absolute';
-                    slidingPart.style.right = '0';
-                    slidingPart.style.top = '0';
-                    slidingPart.style.width = `${partWidth - 10}px`;
-                    slidingPart.style.height = `${scaledHeight - 10}px`;
-                    slidingPart.style.backgroundColor = '#e2e8f0';
-                    canvas.appendChild(slidingPart);
-                    
-                    const slidingGlass = document.createElement('div');
-                    slidingGlass.style.position = 'absolute';
-                    slidingGlass.style.left = '10px';
-                    slidingGlass.style.top = '10px';
-                    slidingGlass.style.width = `${partWidth - 20}px`;
-                    slidingGlass.style.height = `${glassHeight - 10}px`;
-                    slidingGlass.style.backgroundColor = '#60a5fa';
-                    slidingGlass.style.opacity = '0.6';
-                    slidingPart.appendChild(slidingGlass);
-                    
-                    // Add line to represent the sliding mechanism
-                    const line = document.createElement('div');
-                    line.style.position = 'absolute';
-                    line.style.left = `${partWidth - 5}px`;
-                    line.style.top = '0';
-                    line.style.width = '2px';
-                    line.style.height = `${scaledHeight - 10}px`;
-                    line.style.backgroundColor = '#4b5563';
-                    canvas.appendChild(line);
-                }
-                
-                // Add title
-                const title = document.createElement('div');
-                title.style.position = 'absolute';
-                title.style.bottom = '5px';
-                title.style.left = '0';
-                title.style.width = '100%';
-                title.style.textAlign = 'center';
-                title.style.fontSize = '12px';
-                title.style.color = '#374151';
-                title.textContent = `Ventana ${windowType.charAt(0).toUpperCase() + windowType.slice(1)} (${windowWidth}mm × ${windowHeight}mm)`;
-                canvas.appendChild(title);
-                
-                windowDrawing.appendChild(canvas);
-            }
-            
-            function saveCalculation() {
-                if (!windowType || !windowWidth || !windowHeight) {
-                    showAlert('error', 'No hay datos para guardar');
-                    return;
-                }
-                
-                // Get current calculations
-                const calculation = {
-                    type: windowType,
-                    width: windowWidth,
-                    height: windowHeight,
-                    date: new Date().toISOString(),
-                    materials: [],
-                    total: parseFloat(totalCostElement.textContent.substring(1))
-                };
-                
-                // Get materials from the list
-                const materialElements = document.querySelectorAll('#materials-list > div');
-                materialElements.forEach(el => {
-                    const name = el.querySelector('h4').textContent;
-                    const quantity = el.querySelector('div > span:first-child').textContent.split(': ')[1].split(' ')[0];
-                    const dimensions = el.querySelector('div > span:nth-child(2)').textContent.split(': ')[1];
-                    const unitPrice = parseFloat(el.querySelector('div > span:nth-child(3)').textContent.split('$')[1]);
-                    const total = parseFloat(el.querySelector('h4 ~ span').textContent.substring(1));
-                    
-                    calculation.materials.push({
-                        name,
-                        quantity: parseInt(quantity),
-                        dimensions,
-                        unitPrice,
-                        total
-                    });
-                });
-                
-                // Get saved calculations from localStorage or create empty array
-                const savedCalculations = JSON.parse(localStorage.getItem('savedCalculations')) || [];
-                
-                // Add new calculation
-                savedCalculations.push(calculation);
-                
-                // Save to localStorage
-                localStorage.setItem('savedCalculations', JSON.stringify(savedCalculations));
-                
-                showAlert('success', 'Cálculo guardado correctamente');
-            }
-            
-            function generatePDF() {
-                if (!windowType || !windowWidth || !windowHeight) {
-                    showAlert('error', 'No hay datos para exportar');
-                    return;
-                }
-                
-                // Create a new jsPDF instance
-                const doc = new jsPDF();
-                
-                // Add title
-                doc.setFontSize(18);
-                doc.setTextColor(30, 58, 138);
-                doc.text('MundoCancel - Cálculo de materiales', 105, 15, { align: 'center' });
-                
-                doc.setFontSize(14);
-                doc.setTextColor(30, 41, 59);
-                doc.text(`Ventana ${windowType.charAt(0).toUpperCase() + windowType.slice(1)}`, 105, 25, { align: 'center' });
-                
-                // Add project details
-                doc.setFontSize(12);
-                doc.setTextColor(71, 85, 105);
-                doc.text(`Medidas: ${windowWidth} mm (ancho) × ${windowHeight} mm (alto)`, 14, 35);
-                doc.text(`Fecha: ${new Date().toLocaleDateString('es-ES')}`, 14, 42);
-                
-                // Add materials table
-                doc.setFontSize(12);
-                doc.setTextColor(255, 255, 255);
-                doc.setFillColor(30, 58, 138);
-                doc.rect(14, 50, 182, 8, 'F');
-                doc.text('Material', 20, 55);
-                doc.text('Cantidad', 70, 55);
-                doc.text('Medidas', 100, 55);
-                doc.text('Precio', 150, 55);
-                doc.text('Total', 180, 55);
-                
-                // Get materials data
-                const materials = Array.from(document.querySelectorAll('#materials-list > div')).map(el => {
-                    return {
-                        name: el.querySelector('h4').textContent,
-                        quantity: el.querySelector('div > span:first-child').textContent.split(': ')[1],
-                        dimensions: el.querySelector('div > span:nth-child(2)').textContent.split(': ')[1],
-                        unitPrice: el.querySelector('div > span:nth-child(3)').textContent.split('$')[1],
-                        total: el.querySelector('h4 ~ span').textContent
-                    };
-                });
-                
-                // Add materials rows
-                doc.setFontSize(10);
-                doc.setTextColor(0, 0, 0);
-                let y = 60;
-                
-                materials.forEach((material, index) => {
-                    if (index % 2 === 0) {
-                        doc.setFillColor(241, 245, 249);
-                        doc.rect(14, y, 182, 8, 'F');
-                    }
-                    
-                    doc.text(material.name.substring(0, 30), 20, y + 5);
-                    doc.text(material.quantity, 70, y + 5);
-                    doc.text(material.dimensions.substring(0, 20), 100, y + 5);
-                    doc.text(`$${material.unitPrice}`, 150, y + 5);
-                    doc.text(material.total, 180, y + 5);
-                    
-                    y += 8;
-                    
-                    // Add new page if needed
-                    if (y > 280 && index < materials.length - 1) {
-                        doc.addPage();
-                        doc.setFontSize(12);
-                        doc.setTextColor(255, 255, 255);
-                        doc.setFillColor(30, 58, 138);
-                        doc.rect(14, 20, 182, 8, 'F');
-                        doc.text('Material', 20, 25);
-                        doc.text('Cantidad', 70, 25);
-                        doc.text('Medidas', 100, 25);
-                        doc.text('Precio', 150, 25);
-                        doc.text('Total', 180, 25);
-                        doc.setFontSize(10);
-                        doc.setTextColor(0, 0, 0);
-                        y = 28;
-                    }
-                });
-                
-                // Add total
-                doc.setFontSize(12);
-                doc.setTextColor(30, 41, 59);
-                doc.text(`Costo total estimado: ${totalCostElement.textContent}`, 14, y + 15);
-                
-                // Save the PDF
-                doc.save(`MundoCancel_${windowType}_${windowWidth}x${windowHeight}.pdf`);
-                
-                showAlert('success', 'PDF generado correctamente');
-            }
-            
-            function printResults() {
-                if (!windowType || !windowWidth || !windowHeight) {
-                    showAlert('error', 'No hay datos para imprimir');
-                    return;
-                }
-                
-                // Open print dialog
-                window.print();
-            }
-            
-            function shareResults() {
-                if (!windowType || !windowWidth || !windowHeight) {
-                    showAlert('error', 'No hay datos para compartir');
-                    return;
-                }
-                
-                // Generate PDF first
-                generatePDF();
-                
-                // Then try to share (if supported)
-                if (navigator.share) {
-                    const pdfName = `MundoCancel_${windowType}_${windowWidth}x${windowHeight}.pdf`;
-                    
-                    // For demo purposes, we'll just show an alert
-                    // In a real app, you would use the actual PDF file
-                    showAlert('info', 'La función de compartir está habilitada. Se abrirá el diálogo de compartir cuando el PDF esté listo.');
-                    
-                    /* Actual implementation would look like:
-                    generatePDF().then(pdfBlob => {
-                        navigator.share({
-                            title: `Cálculo de ventana ${windowType}`,
-                            text: `Ventana ${windowType} de ${windowWidth}mm × ${windowHeight}mm`,
-                            files: [new File([pdfBlob], pdfName, { type: 'application/pdf' })]
-                        })
-                        .catch(error => {
-                            showAlert('error', 'Error al compartir: ' + error.message);
-                        });
-                    });
-                    */
-                } else {
-                    showAlert('info', 'La función de compartir no está disponible en este navegador. Puede descargar el PDF y compartirlo manualmente.');
-                }
-            }
-            
-            function showAlert(type, message) {
-                // Create alert element
-                const alert = document.createElement('div');
-                alert.className = `fixed top-4 right-4 px-6 py-4 rounded-md shadow-md z-50 flex items-center animate-fade-in 
-                    ${type === 'success' ? 'bg-green-100 border border-green-400 text-green-700' : 
-                    type === 'error' ? 'bg-red-100 border border-red-400 text-red-700' :
-                    'bg-blue-100 border border-blue-400 text-blue-700'}`;
-                    
-                // Icon
-                const icon = document.createElement('i');
-                icon.className = `mr-3 ${type === 'success' ? 'fas fa-check-circle' : 
-                    type === 'error' ? 'fas fa-exclamation-circle' : 'fas fa-info-circle'}`;
-                
-                // Message
-                const messageSpan = document.createElement('span');
-                messageSpan.textContent = message;
-                
-                // Close button
-                const closeBtn = document.createElement('button');
-                closeBtn.className = 'ml-4 text-xl';
-                closeBtn.innerHTML = '&times;';
-                closeBtn.addEventListener('click', () => {
-                    alert.classList.add('animate-fade-out');
-                    setTimeout(() => alert.remove(), 300);
-                });
-                
-                alert.appendChild(icon);
-                alert.appendChild(messageSpan);
-                alert.appendChild(closeBtn);
-                
-                document.body.appendChild(alert);
-                
-                // Auto-remove after 5 seconds
-                setTimeout(() => {
-                    alert.classList.add('animate-fade-out');
-                    setTimeout(() => alert.remove(), 300);
-                }, 5000);
-                
-                // CSS animations
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes fadeIn {
-                        from { opacity: 0; transform: translateY(-20px); }
-                        to { opacity: 1; transform: translateY(0); }
-                    }
-                    @keyframes fadeOut {
-                        from { opacity: 1; transform: translateY(0); }
-                        to { opacity: 0; transform: translateY(-20px); }
-                    }
-                    .animate-fade-in {
-                        animation: fadeIn 0.3s ease-out forwards;
-                    }
-                    .animate-fade-out {
-                        animation: fadeOut 0.3s ease-out forwards;
-                    }
+            w = Math.min(w, maxW);
+            h = Math.min(h, maxH);
+            if (w < 40) w = 40;
+            if (h < 40) h = 40;
+
+            const color = '#0077B6';
+            const light = 'rgba(0,119,182,0.08)';
+
+            // SVG básico según el tipo
+            let content = '';
+            const cat = data.categoria;
+
+            if (cat === 'ventanas' || cat === 'ventanales') {
+                content = `
+                    <rect x="4" y="4" width="${w-8}" height="${h-8}" fill="${light}" stroke="${color}" stroke-width="2.5" rx="3"/>
+                    <line x1="${w/2}" y1="4" x2="${w/2}" y2="${h-4}" stroke="${color}" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+                    <circle cx="${w-18}" cy="${h/2}" r="4" fill="${color}" opacity="0.8"/>
+                    <circle cx="18" cy="${h/2}" r="4" fill="${color}" opacity="0.8"/>
                 `;
-                document.head.appendChild(style);
+                // Si tiene más de 2 hojas, agregar divisiones
+                const vidrios = data.vidrio || [];
+                if (vidrios.length > 1) {
+                    const parts = vidrios.length;
+                    for (let i = 1; i < parts; i++) {
+                        const x = (i / parts) * w;
+                        content += `<line x1="${x}" y1="4" x2="${x}" y2="${h-4}" stroke="${color}" stroke-width="1" opacity="0.3" stroke-dasharray="2 2"/>`;
+                    }
+                }
+            } else if (cat === 'puertas') {
+                content = `
+                    <rect x="4" y="4" width="${w-8}" height="${h-8}" fill="${light}" stroke="${color}" stroke-width="2.5" rx="3"/>
+                    <rect x="${w*0.08}" y="${h*0.08}" width="${w*0.84}" height="${h*0.84}" fill="none" stroke="${color}" stroke-width="1.5" rx="2" opacity="0.4"/>
+                    <circle cx="${w-20}" cy="${h/2}" r="5" fill="${color}" opacity="0.7"/>
+                `;
+            } else if (cat === 'canceles') {
+                content = `
+                    <rect x="4" y="4" width="${w-8}" height="${h-8}" fill="${light}" stroke="${color}" stroke-width="2.5" rx="3"/>
+                    <line x1="${w/2}" y1="4" x2="${w/2}" y2="${h-4}" stroke="${color}" stroke-width="2" opacity="0.5" stroke-dasharray="6 4"/>
+                    <circle cx="${w-16}" cy="${h/2}" r="3.5" fill="${color}" opacity="0.8"/>
+                    <circle cx="16" cy="${h/2}" r="3.5" fill="${color}" opacity="0.8"/>
+                    <rect x="${w/2+6}" y="8" width="${w/2-14}" height="${h-16}" fill="none" stroke="${color}" stroke-width="1" opacity="0.3" rx="2"/>
+                    <rect x="6" y="8" width="${w/2-14}" height="${h-16}" fill="none" stroke="${color}" stroke-width="1" opacity="0.3" rx="2"/>
+                `;
+            } else {
+                content = `
+                    <rect x="4" y="4" width="${w-8}" height="${h-8}" fill="${light}" stroke="${color}" stroke-width="2" rx="4"/>
+                    <text x="${w/2}" y="${h/2+4}" text-anchor="middle" font-size="${Math.min(w,h)*0.12}" fill="${color}" opacity="0.4" font-family="Inter, sans-serif">${data.icono || '📐'}</text>
+                `;
             }
+
+            // Añadir etiqueta de medidas
+            const fontSize = Math.min(w, h) * 0.06;
+            content += `
+                <text x="${w/2}" y="${h-6}" text-anchor="middle" font-size="${Math.max(fontSize, 8)}" fill="${color}" opacity="0.5" font-family="Inter, sans-serif" font-weight="500">${ancho} × ${alto} mm</text>
+            `;
+
+            return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="Vista previa de ${data.nombre}">${content}</svg>`;
+        }
+
+        // ============================================================
+        // COTIZAR WHATSAPP
+        // ============================================================
+        function cotizarWhatsApp() {
+            const data = CATALOGO[currentProduct];
+            const nombre = data.nombre;
+            const ancho = currentAncho;
+            const alto = currentAlto;
+            const area = (ancho * alto / 1000000).toFixed(2);
+
+            const { perfiles, vidrios } = calcularComponentes(currentProduct, ancho, alto);
+
+            let detalle = '';
+            perfiles.forEach(p => {
+                detalle += `• ${p.cantidad}x ${p.nombre}: ${p.medida} mm (${p.corte})\n`;
+            });
+            vidrios.forEach(v => {
+                detalle += `• ${v.cantidad}x ${v.nombre}: ${v.medidaAncho} x ${v.medidaAlto} mm\n`;
+            });
+
+            const mensaje = `¡Hola! Me interesa cotizar un proyecto con Aluminio&Vidrio:
+
+📋 *Producto:* ${nombre}
+📐 *Medidas:* ${ancho} mm (ancho) x ${alto} mm (alto)
+📏 *Área:* ${area} m²
+
+📦 *Despiece técnico:*
+${detalle}
+
+¿Me podrían proporcionar información sobre precios y disponibilidad? ¡Gracias!`;
+
+            const url = `https://wa.me/523310611338?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+            mostrarToast('📤 Abriendo WhatsApp...');
+        }
+
+        // ============================================================
+        // TOAST
+        // ============================================================
+        function mostrarToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            clearTimeout(t._timer);
+            t._timer = setTimeout(() => t.classList.remove('show'), 3000);
+        }
+
+        // ============================================================
+        // INICIALIZACIÓN
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            renderNavegacion();
+            renderProductos();
+
+            // Sliders
+            const sliderW = document.getElementById('sliderWidth');
+            const sliderH = document.getElementById('sliderHeight');
+
+            sliderW.addEventListener('input', () => {
+                currentAncho = parseInt(sliderW.value);
+                renderPreview();
+            });
+
+            sliderH.addEventListener('input', () => {
+                currentAlto = parseInt(sliderH.value);
+                renderPreview();
+            });
+
+            // Botón cotizar
+            document.getElementById('btnCotizar').addEventListener('click', cotizarWhatsApp);
+
+            // Render inicial
+            renderPreview();
         });
     </script>
 </body>
