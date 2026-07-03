@@ -1,4 +1,84 @@
-
+a//tmp/AluCalc1/css/main.css → b//tmp/AluCalc1/css/main.css
+@@ -1,767 +1,767 @@
+-:raíz {
+-            --primario: #0077B6;
+-            --primary-dark: #005A8C;
+-            --primary-light: #E3F2FD;
+-            --secundario: #00B4D8;
+-            --acento: #FFB703;
+-            --accent-dark: #E09F00;
+-            --éxito: #10B981;
+-            --peligro: #EF4444;
+-            --WhatsApp: #25D366;
+-            --texto-primario: #0F172A;
+-            --texto-secundario: #475569;
+-            --texto silenciado: #64748B;
+-            --texto-inverso: #FFFFFF;
+-            --bg-primary: #FFFFFF;
+-            --bg-secundario: #F8FAFC;
+-            --bg-terciario: #F1F5F9;
+-            --borde: #E2E8F0;
+-            --border-strong: #CBD5E1;
+-            --radio: 0,75rem;
+-            --radius-sm: 0,5rem;
+-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+-            --transición: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+-        }
+-
+-        * {
+-            margen: 0;
+-            relleno: 0;
+-            box-size: border-box;
+-        }
+-        cuerpo {
+-            font-family: 'Inter', -apple-system, sans-serif;
+-            fondo: var(--bg-secundario);
+-            color: var(--text-primary);
+-            interlineado: 1,6;
+-            -webkit-font-smoothing: antialiased;
+-        }
+-        .contenedor {
+-            ancho máximo: 1340px;
+-            margen: 0 automático;
+-            relleno: 0 1.5rem;
+-        }
+-
+-        /* Encabezado */
+-        .encabezado {
+-            fondo: var(--bg-primary);
+-            borde inferior: var sólido de 1 px (--borde);
+-            relleno: 0,75rem 0;
+-            posición: pegajosa;
+-            superior: 0;
+-            Índice z: 100;
+-            filtro de fondo: desenfoque (12px);
+-            fondo: rgba(255, 255, 255, 0.94);
+-        }
+-        .header-inner {
+-            pantalla: flexible;
+-            alinear-elementos: centro;
+-            justificar-contenido: espacio-entre;
+-            brecha: 0,75rem;
+-            flex-wrap: envoltura;
+-        }
+-        .logo {
+-            pantalla: flexible;
+-            alinear-elementos: centro;
+-            brecha: 0,6 rem;
+-            grosor de fuente: 700;
+-            tamaño de fuente: 1,05rem;
+-            decoración de texto: ninguna;
+-            color: var(--text-primary);
+-            espacio en blanco: ahora rap;
+-        }
+-        .logo-marca {
+-            ancho: 38px;
+-            altura: 38px;
+-            fondo: gradiente lineal (135 grados, var (--primario), var (--secundario));
+-            radio-borde: var(--radius-sm);
+… omitted 1455 diff line(s) across 1 additional file(s)/section(s)
         // ============================================================
         // CATÁ LOGO MAESTRO AMPLIADO
         // ============================================================
