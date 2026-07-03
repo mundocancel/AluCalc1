@@ -1,445 +1,695 @@
-// =========================================
-// main.js - Toda la lógica de la página
-// =========================================
 
-import { PRECIOS, WHATSAPP_NUMBER, COTIZACION_MSG, IVA, DESCUENTO_VOLUMEN } from './config.js';
+        // ============================================================
+        // CATÁ LOGO MAESTRO AMPLIADO
+        // ============================================================
+        const CATÁLOGO = {
+            "ventana_corrediza_estandar": {
+                "nombre": "Ventana corrediza estándar",
+                "categoria": "ventanas",
+                "icono": "ðŸªŸ",
+                "tipoVidrio": "4mm",
+                "perfiles": [
+                    { "nombre": "Riel / Jamba cabezal", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+                    { "nombre": "Jambas verticales", "cantidad": 2, "formula": "alto - 26", "corte": "90°" },
+                    { "nombre": "Zoclo / Cabezal", "cantidad": 2, "formula": "(ancho - 185) / 2", "corte": "90°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Vidrio fijo 4mm", "cantidad": 1, "ancho": "(ancho - 151) / 2", "alto": "alto - 125",
+                        "tipo": "4mm" },
+                    { "nombre": "Vidrio corredizo 4mm", "cantidad": 1, "ancho": "(ancho - 151) / 2",
+                    "alto": "alto - 135", "tipo": "4mm" }
+                ],
+                "notas": "ðŸ”§ Usar felpa en zoclo y cabezal para deslizamiento suave. Revisar escuadra antes de ensamblar.",
+                "porcentajeHerrajesOverride": nulo
+            },
+            "ventana_3_hojas_telescópica": {
+                "nombre": "Ventana 3 hojas telescópica",
+                "categoria": "ventanas",
+                "icono": "ðŸªŸ",
+                "tipoVidrio": "6mm",
+                "perfiles": [
+                    { "nombre": "Riel de 3\"", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+                    { "nombre": "Jamba de 3\" (cabezal)", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+                    { "nombre": "Adaptador paloma", "cantidad": 1, "formula": "ancho - 65", "corte": "90°" },
+                    { "nombre": "Jambas de 3\"", "cantidad": 2, "formula": "alto - 26", "corte": "90°" },
+                    { "nombre": "Zoclo / Cabezal de 3\"", "cantidad": 3, "formula": "(ancho - 167) / 3",
+                    "corte": "90°" },
+                    { "nombre": "Cerco chapa fija", "cantidad": 1, "formula": "alto", "corte": "90°" },
+                    { "nombre": "Cerco chapa corredizo", "cantidad": 1, "formula": "alto - 40", "corte": "90°" },
+                    { "nombre": "Traslape fijo", "cantidad": 1, "formula": "alto", "corte": "90°" },
+                    { "nombre": "Traslape corredizo", "cantidad": 3, "formula": "alto - 40", "corte": "90°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Vidrio fijo 6mm", "cantidad": 1, "ancho": "(ancho - 117) / 3", "alto": "alto - 95",
+                        "tipo": "6mm" },
+                    { "nombre": "Vidrio corredizo 6mm", "cantidad": 2, "ancho": "(ancho - 117) / 3",
+                    "alto": "alto - 135", "tipo": "6mm" }
+                ],
+                "notas": "âš ï¸ Requiere riel de 3 servicios. El adaptador paloma debe quedar centrado. Usar rodajas de nylon.",
+                "porcentajeHerrajesOverride": 20
+            },
+            "ventanal_oxxo": {
+                "nombre": "Ventanal OXXO",
+                "categoria": "ventanales",
+                "icono": "ðŸ ª",
+                "tipoVidrio": "6mm",
+                "perfiles": [
+                    { "nombre": "Riel / Jamba c/mosquitero", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+                    { "nombre": "Jambas de 3\"", "cantidad": 2, "formula": "alto - 26", "corte": "90°" },
+                    { "nombre": "Zoclo / Cabezal de 3\"", "cantidad": 8, "formula": "(ancho - 330) / 4",
+                    "corte": "90°" },
+                    { "nombre": "Cerco chapa / Traslape fijo", "cantidad": 4, "formula": "alto - 30", "corte": "90°" },
+                    { "nombre": "Cerco chapa / Traslape corredizo", "cantidad": 4, "formula": "alto - 40",
+                    "corte": "90°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Vidrio fijo 6mm", "cantidad": 2, "ancho": "(ancho - 265) / 4", "alto": "alto - 125",
+                        "tipo": "6mm" },
+                    { "nombre": "Vidrio corredizo 6mm", "cantidad": 2, "ancho": "(ancho - 265) / 4",
+                    "alto": "alto - 135", "tipo": "6mm" }
+                ],
+                "notas": "ðŸ —ï¸ Para vanos grandes, reforzar el riel inferior. Considere dilatación térmica en climas extremos.",
+                "porcentajeHerrajesOverride": 22
+            },
+            "puerta_batente_estandar": {
+                "nombre": "Puerta batiente estÃ¡ndar",
+                "categoría": "puertas",
+                "icono": "ðŸšª",
+                "tipoVidrio": "6mm",
+                "perfiles": [
+                    { "nombre": "Bolsa lisa cabezal", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+                    { "nombre": "Batiente cabezal", "cantidad": 1, "formula": "ancho - 64", "corte": "90°" },
+                    { "nombre": "Bolsas / Batientes verticales", "cantidad": 2, "formula": "alto - 32",
+                    "corte": "90°" },
+                    { "nombre": "Cercos chapa", "cantidad": 2, "formula": "alto - 47", "corte": "90°" },
+                    { "nombre": "Zoclo / Intermedio / Cabezal", "cantidad": 3, "formula": "ancho - 181",
+                    "corte": "90°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Vidrio 6mm", "cantidad": 2, "ancho": "ancho - 191", "alto": "(alto - 205) / 2",
+                        "tipo": "6mm" }
+                ],
+                "notas": "ðŸ”' La chapa se coloca a 950 mm del piso. Usar 3 bisagras para puertas de más de 2m de alto.",
+                "porcentajeHerrajesOverride": 25
+            },
+            "puerta_ligera": {
+                "nombre": "Puerta ligera",
+                "categoría": "puertas",
+                "icono": "ðŸšª",
+                "tipoVidrio": null,
+                "perfiles": [
+                    { "nombre": "Batiente cabezal", "cantidad": 1, "formula": "ancho - 25", "corte": "90°" },
+                    { "nombre": "Batientes", "cantidad": 2, "formula": "alto", "corte": "90°" },
+                    { "nombre": "Cercos chapa", "cantidad": 2, "formula": "alto - 27", "corte": "90°" },
+                    { "nombre": "Zoclo / Intermedio", "cantidad": 2, "formula": "ancho - 139", "corte": "90°" }
+                ],
+                "vidrio": [],
+                "notas": "ðŸ“Œ Puerta ciega sin vidrio. Ideal para closets o áreas de servicio. Usar panel de aluminio compuesto.",
+                "porcentajeHerrajesOverride": 15
+            },
+            "puerta_bano": {
+                "nombre": "Puerta de baño",
+                "categoría": "puertas",
+                "icono": "ðŸš¿",
+                "tipoVidrio": "4mm",
+                "perfiles": [
+                    { "nombre": "Silla cabezal", "cantidad": 1, "formula": "ancho - 30", "corte": "90°" },
+                    { "nombre": "Silla", "cantidad": 2, "formula": "alto", "corte": "90°" },
+                    { "nombre": "Marco semilujo ancho", "cantidad": 2, "formula": "ancho - 42", "corte": "90°" },
+                    { "nombre": "Marco semilujo alto", "cantidad": 2, "formula": "alto - 30", "corte": "90°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Plástico/Vidrio 4mm", "cantidad": 1, "ancho": "ancho - 112", "alto": "alto - 100",
+                        "tipo": "4mm" }
+                ],
+                "notas": "ðŸš¿ Asegurar ventilación inferior. Se puede usar plástico corrugado o vidrio esmerilado.",
+                "porcentajeHerrajesOverride": 18
+            },
+            "cancel_plastico_bano": {
+                "nombre": "Cancelar baño plástico",
+                "categoria": "canceles",
+                "icono": "ðŸš¿",
+                "tipoVidrio": null,
+                "perfiles": [
+                    { "nombre": "Riel / Guía", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+                    { "nombre": "Jambas", "cantidad": 2, "formula": "alto - 30", "corte": "90°" },
+                    { "nombre": "Horizontales", "cantidad": 4, "formula": "(ancho + 30) / 2", "corte": "90°" },
+                    { "nombre": "Marcos económicos", "cantidad": 4, "formula": "alto - 50", "corte": "90°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Hojas plástico", "cantidad": 2, "ancho": "(ancho - 30) / 2", "alto": "alto - 80",
+                        "tipo": null }
+                ],
+                "notas": "ðŸ› El plástico se corta con navaja. Dejar 3mm de holgura por lado para dilatación.",
+                "porcentajeHerrajesOverride": 12
+            },
+            "cancel_templado_estandar": {
+                "nombre": "Cancelar temperatura estándar",
+                "categoria": "canceles",
+                "icono": "ðŸªž",
+                "tipoVidrio": "templado8mm",
+                "perfiles": [
+                    { "nombre": "Riel inferior de piso", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+                    { "nombre": "Jamba guía superior", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+                    { "nombre": "Jambas verticales", "cantidad": 2, "formula": "alto - 20", "corte": "90°" },
+                    { "nombre": "Perfil tapajunta vertical", "cantidad": 1, "formula": "alto - 30", "corte": "90°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Hoja fija templada 8mm", "cantidad": 1, "ancho": "(ancho - 40) / 2",
+                        "alto": "alto - 25", "tipo": "templado8mm", "perforaciones": [
+                            { "descripcion": "Perforación para corona superior",
+                                "distanciaBordeSuperior": 60, "distanciaBordeLateral": 40, "diametro": 12 },
+                            { "descripcion": "Perforación para corona inferior",
+                                "distanciaBordeSuperior": 60, "distanciaBordeLateral": 40, "diámetro": 12,
+                                "desdeAbajo": verdadero }
+                        ] },
+                    { "nombre": "Hoja corrediza templada 8mm", "cantidad": 1, "ancho": "(ancho - 40) / 2",
+                        "alto": "alto - 35", "tipo": "templado8mm", "perforaciones": [
+                            { "descripcion": "Perforación para corona superior",
+                                "distanciaBordeSuperior": 60, "distanciaBordeLateral": 40, "diametro": 12 },
+                            { "descripcion": "Perforación para corona inferior",
+                                "distanciaBordeSuperior": 60, "distanciaBordeLateral": 40, "diámetro": 12,
+                                "desdeAbajo": verdadero },
+                            { "descripcion": "Perforación para jaladera", "distanciaBordeSuperior": null,
+                                "distanciaBordeLateral": null, "diametro": 25, "centroHorizontal": true,
+                                "alturaJaladera": 1000 }
+                        ] }
+                ],
+                "notas": "âš ï¸ VIDRIO TEMPLADO: Las perforaciones deben realizarse ANTES del templado. Diámetro estándar de corona: 12mm. La jaladera se centra horizontalmente a ~1000mm de altura. No se puede cortar ni perforar después del templado.",
+                "porcentajeHerrajesOverride": 28,
+                "esTemplado": true
+            },
+            "ventana_abatible_estandar": {
+                "nombre": "Ventana abatible estándar",
+                "categoria": "ventanas",
+                "icono": "ðŸªŸ",
+                "tipoVidrio": "6mm",
+                "perfiles": [
+                    { "nombre": "Marco ventana (ancho)", "cantidad": 2, "formula": "ancho", "corte": "45°" },
+                    { "nombre": "Marco ventana (alto)", "cantidad": 2, "formula": "alto", "corte": "45°" },
+                    { "nombre": "Hoja ventana (ancho)", "cantidad": 2, "formula": "ancho - 42", "corte": "45°" },
+                    { "nombre": "Hoja ventana (alto)", "cantidad": 2, "formula": "alto - 42", "corte": "45°" },
+                    { "nombre": "Junquillo redondo (ancho)", "cantidad": 2, "formula": "ancho - 114", "corte": "45°" },
+                    { "nombre": "Junquillo redondo (alto)", "cantidad": 2, "formula": "alto - 114", "corte": "45°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Vidrio 6mm", "cantidad": 1, "ancho": "ancho - 127", "alto": "alto - 127", "tipo": "6mm" }
+                ],
+                "notas": "ðŸ“ Cortes a 45° con ingletadora. Ensamble el junquillo en la hoja antes de cortar. Usar escuadras de alineación.",
+                "porcentajeHerrajesOverride": 20
+            },
+            "ventana_fija_1_1_2": {
+                "nombre": "Ventana fija 1 1/2",
+                "categoria": "ventanas",
+                "icono": "ðŸªŸ",
+                "tipoVidrio": "4mm",
+                "perfiles": [
+                    { "nombre": "Bolsa / Escalonado cabezal", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+                    { "nombre": "Bolsas verticales", "cantidad": 2, "formula": "alto - 40", "corte": "90°" }
+                ],
+                "vidrio": [
+                    { "nombre": "Vidrio 4mm", "cantidad": 1, "ancho": "ancho - 48", "alto": "alto - 42", "tipo": "4mm" }
+                ],
+                "notas": "ðŸªŸ Ventana fija sin apertura. Sellar perimetralmente con silicio neutro.",
+                "porcentajeHerrajesOverride": 10
+            }
+        };
 
-// =========================================
-// DATOS DE CATEGORÍAS (igual que antes)
-// =========================================
-const categorias = [
-    { 
-        id: 'canceles', 
-        nombre: 'Canceles de Baño',
-        tag: 'Baños',
-        descripcion: 'Diseños modernos en vidrio templado con herrajes de alta calidad para tu baño.',
-        images: [
-            'https://images.unsplash.com/photo-1552321554-5f4080da6337?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1620626011761-996316b5f023?auto=format&fit=crop&w=800&q=80'
-        ]
-    },
-    { 
-        id: 'barandales', 
-        nombre: 'Barandales',
-        tag: 'Seguridad',
-        descripcion: 'Barandales en vidrio templado y acero inoxidable para escaleras y balcones.',
-        images: [
-            'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80'
-        ]
-    },
-    { 
-        id: 'pasamanos', 
-        nombre: 'Pasamanos',
-        tag: 'Accesorios',
-        descripcion: 'Pasamanos personalizados en vidrio y aluminio para escaleras interiores y exteriores.',
-        images: [
-            'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=800&q=80'
-        ]
-    },
-    { 
-        id: 'mamparas', 
-        nombre: 'Mamparas',
-        tag: 'Oficinas',
-        descripcion: 'Mamparas divisorias para oficinas y espacios comerciales con máxima funcionalidad.',
-        images: [
-            'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80'
-        ]
-    },
-    { 
-        id: 'vidrio', 
-        nombre: 'Vidrio Templado',
-        tag: 'Materiales',
-        descripcion: 'Vidrio templado de seguridad para todo tipo de aplicaciones arquitectónicas.',
-        images: [
-            'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=800&q=80'
-        ]
-    },
-    { 
-        id: 'espejos', 
-        nombre: 'Espejos',
-        tag: 'Decoración',
-        descripcion: 'Espejos a medida con acabados premium para baños, salas y comercios.',
-        images: [
-            'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1617103996702-96ff29b1c467?auto=format&fit=crop&w=800&q=80'
-        ]
-    },
-    { 
-        id: 'aluminio', 
-        nombre: 'Estructuras de Aluminio',
-        tag: 'Construcción',
-        descripcion: 'Ventanería y estructuras en aluminio de alta resistencia y durabilidad.',
-        images: [
-            'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=800&q=80'
-        ]
-    },
-    { 
-        id: 'accesorios', 
-        nombre: 'Herrajes y Accesorios',
-        tag: 'Complementos',
-        descripcion: 'Herrajes, bisagras y accesorios de la mejor calidad para tus proyectos.',
-        images: [
-            'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80'
-        ]
-    }
-];
+        // ============================================================
+        // ESTADO GLOBAL
+        // ============================================================
+        let productoactual = 'ventana_corrediza_estandar';
+        sea ​​currentAncho = 1500;
+        sea ​​currentAlto = 2000;
+        let preciosCollapsed = false;
 
-// =========================================
-// ESTADO GLOBAL
-// =========================================
-let currentType = 'cancel';
-
-// =========================================
-// INICIALIZACIÓN
-// =========================================
-document.addEventListener('DOMContentLoaded', () => {
-    initHeader();
-    initMobileMenu();
-    initCategories();
-    initCotizador();
-    initScrollAnimations();
-});
-
-// =========================================
-// HEADER SCROLL
-// =========================================
-function initHeader() {
-    const header = document.getElementById('header');
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+        // ============================================================
+        // FUNCIONES AUXILIARES
+        // ============================================================
+        función evaluarFormula(formula, ancho, alto) {
+            intentar {
+                const expr = formula.replace(/ancho/g, `(${ancho})`).replace(/alto/g, `(${alto})`);
+                const result = Function('"use strict"; return (' + expr + ')')();
+                devolver Math.round(resultado * 100) / 100;
+            } capturar (e) {
+                console.warn('Error al evaluar la fórmula:', fórmula, e);
+                devolver 0;
+            }
         }
-    }, { passive: true });
-}
 
-// =========================================
-// MOBILE MENU
-// =========================================
-function initMobileMenu() {
-    const toggle = document.getElementById('mobileMenuToggle');
-    const close = document.getElementById('mobileMenuClose');
-    const menu = document.getElementById('mobileMenu');
-    const overlay = document.getElementById('mobileMenuOverlay');
-    const links = menu.querySelectorAll('a');
-    
-    function openMenu() {
-        menu.classList.add('open');
-        overlay.classList.add('open');
-        toggle.setAttribute('aria-expanded', 'true');
-        menu.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-    }
-    
-    function closeMenu() {
-        menu.classList.remove('open');
-        overlay.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        menu.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-    }
-    
-    toggle.addEventListener('click', openMenu);
-    close.addEventListener('click', closeMenu);
-    overlay.addEventListener('click', closeMenu);
-    links.forEach(link => link.addEventListener('click', closeMenu));
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && menu.classList.contains('open')) {
-            closeMenu();
-            toggle.focus();
+        function calcularComponentes(producto, ancho, alto) {
+            datos const = CATALOGO[producto];
+            if (!data) return { perfiles: [], vidrios: [] };
+            const perfiles = data.perfiles.map(p => ({ ...p, medida: evaluarFormula(p.formula, ancho, alto) }));
+            const vidrios = (data.vidrio || []).map(v => ({
+                ...v,
+                medidaAncho: evaluarFormula(v.ancho, ancho, alto),
+                medidaAlto: evaluarFormula(v.alto, ancho, alto),
+                perforaciones: v.perforaciones ? v.perforaciones.map(perf => ({ ...perf })) : indefinido
+            }));
+            devolver { perfiles, vidrios };
         }
-    });
-}
 
-// =========================================
-// CATEGORÍAS (con slideshow)
-// =========================================
-function initCategories() {
-    const grid = document.getElementById('categories-grid');
-    categorias.forEach((cat, index) => {
-        const card = document.createElement('a');
-        card.href = '#cotizador';
-        card.className = 'category-card';
-        card.dataset.category = cat.id;
-        card.style.transitionDelay = `${index * 0.05}s`;
-        
-        card.innerHTML = `
-            <div class="category-card-slideshow" data-images='${JSON.stringify(cat.images)}'></div>
-            <div class="category-card-content">
-                <span class="category-card-tag">${cat.tag}</span>
-                <h3 class="category-card-title">${cat.nombre}</h3>
-                <p class="category-card-description">${cat.descripcion}</p>
-                <span class="category-card-cta">
-                    Cotizar ahora
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </span>
-            </div>
-        `;
-        
-        card.addEventListener('click', (e) => {
-            e.preventDefault();
-            selectCategoryFromCard(cat.id);
-            document.getElementById('cotizador').scrollIntoView({ behavior: 'smooth' });
-        });
-        
-        grid.appendChild(card);
-    });
-    
-    // Slideshows
-    const containers = document.querySelectorAll('.category-card-slideshow');
-    containers.forEach(container => {
-        const images = JSON.parse(container.getAttribute('data-images'));
-        images.forEach((imgUrl, index) => {
-            const div = document.createElement('div');
-            div.classList.add('category-card-slide');
-            div.style.backgroundImage = `url('${imgUrl}')`;
-            if (index === 0) div.classList.add('active');
-            container.appendChild(div);
-        });
+        función obtenerPrecioVidrio(tipo) {
+            const mapa = {
+                '4mm': parseFloat(document.getElementById('precioVidrio4mm')?.value || 450),
+                '6mm': parseFloat(document.getElementById('precioVidrio6mm')?.value || 620),
+                'templado8mm': parseFloat(document.getElementById('precioVidrioTemplado8mm')?.value || 980),
+                'templado10mm': parseFloat(document.getElementById('precioVidrioTemplado10mm')?.value || 1250),
+            };
+            devolver mapa[tipo] || 0;
+        }
 
-        let currentSlide = 0;
-        const slides = container.querySelectorAll('.category-card-slide');
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 4500);
-    });
-}
+        función obtenerAluminioPrecio() {
+            return parseFloat(document.getElementById('precioAluminio')?.value || 180);
+        }
 
-// =========================================
-// SCROLL ANIMATIONS
-// =========================================
-function initScrollAnimations() {
-    const cards = document.querySelectorAll('.category-card');
-    if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+        function getPorcentajeHerrajes(producto) {
+            datos const = CATALOGO[producto];
+            if (datos && datos.porcentajeHerrajesOverride !== null) {
+                datos de retorno.porcentajeHerrajesOverride;
+            }
+            return parseFloat(document.getElementById('porcentajeHerrajes')?.value || 18);
+        }
+
+        función obtenerCostoInstalacion() {
+            return parseFloat(document.getElementById('costoInstalacion')?.value || 0);
+        }
+
+        function calcularCostos(producto, ancho, alto) {
+            const { perfiles, vidrios } = calcularComponentes(producto, ancho, alto);
+            const precioAl = getPrecioAluminio();
+            sea ​​costoAluminio = 0;
+            perfiles.forEach(p => {
+                const metros = (p.medida * p.cantidad) / 1000;
+                costoAluminio += metros * precioAl;
+            });
+            sea ​​costoVidrio = 0;
+            vidrios.forEach(v => {
+                si (v.tipo) {
+                    const areaM2 = (v.medidaAncho * v.medidaAlto * v.cantidad) / 1000000;
+                    costoVidrio += áreaM2 * getPrecioVidrio(v.tipo);
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        cards.forEach(card => observer.observe(card));
-    } else {
-        cards.forEach(card => card.classList.add('visible'));
-    }
-}
+            const subtotal = costoAluminio + costoVidrio;
+            const porcHerrajes = getPorcentajeHerrajes(producto);
+            const costoHerrajes = subtotal * (porcHerrajes / 100);
+            const instalacion = getCostoInstalacion();
+            const total = subtotal + costoHerrajes + instalación;
 
-// =========================================
-// COTIZADOR
-// =========================================
-function initCotizador() {
-    const selectorButtons = document.querySelectorAll('.type-btn');
-    const widthSlider = document.getElementById('slider-width');
-    const heightSlider = document.getElementById('slider-height');
-    const cotizarBtn = document.getElementById('btn-cotizar');
-    
-    selectorButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            selectorButtons.forEach(b => {
-                b.classList.remove('active');
-                b.setAttribute('aria-checked', 'false');
-            });
-            btn.classList.add('active');
-            btn.setAttribute('aria-checked', 'true');
-            currentType = btn.dataset.type;
-            updateQuote();
-        });
-    });
-    
-    widthSlider.addEventListener('input', updateQuote);
-    heightSlider.addEventListener('input', updateQuote);
-    cotizarBtn.addEventListener('click', cotizarWhatsApp);
-    
-    updateQuote();
-}
-
-function selectCategoryFromCard(catId) {
-    const typeMap = {
-        'canceles': 'cancel',
-        'barandales': 'barandal',
-        'pasamanos': 'pasamano',
-        'mamparas': 'mampara',
-        'espejos': 'espejo',
-        'vidrio': 'cancel',
-        'aluminio': 'cancel',
-        'accesorios': 'especial'
-    };
-    const type = typeMap[catId] || 'cancel';
-    currentType = type;
-    const buttons = document.querySelectorAll('.type-btn');
-    buttons.forEach(btn => {
-        btn.classList.remove('active');
-        btn.setAttribute('aria-checked', 'false');
-        if (btn.dataset.type === type) {
-            btn.classList.add('active');
-            btn.setAttribute('aria-checked', 'true');
+            devolver {
+                costoAluminio: Math.round(costoAluminio * 100) / 100,
+                costoVidrio: Math.round(costoVidrio * 100) / 100,
+                subtotal: Math.round(subtotal * 100) / 100,
+                porcentajeHerrajes: porcHerrajes,
+                costoHerrajes: Math.round(costoHerrajes * 100) / 100,
+                costoInstalacion: instalacion,
+                total: Math.round(total * 100) / 100,
+                metrosAluminio: Math.round((perfiles.reduce((suma, p) => suma + (p.medida * p.cantidad) / 1000,
+                0)) * 100) / 100,
+                areaVidrio: Math.round((vidrios.filter(v => v.tipo).reduce((suma, v) => suma + (v
+                    .medidaAncho * v.medidaAlto * v.cantidad) / 1000000, 0)) * 100) / 100,
+            };
         }
-    });
-    updateQuote();
-}
 
-function generateSVG(type, w, h) {
-    const baseSize = 220;
-    const aspect = w / h;
-    let boxWidth = baseSize;
-    let boxHeight = baseSize;
+        // ============================================================
+        // GENERADOR DE SVG MEJORADO
+        // ============================================================
+        función generarSVG(productKey, ancho, alto) {
+            const datos = CATÁLOGO[claveProducto];
+            if (!data) return '<div class="text-muted text-center">Producto no encontrado</div>';
 
-    if (aspect > 1) {
-        boxHeight = baseSize / aspect;
-    } else {
-        boxWidth = baseSize * aspect;
-    }
+            const maxW = 280;
+            const maxH = 220;
+            const aspecto = ancho / alto;
+            sea ​​w = maxW;
+            sea ​​h = maxH;
+            if (aspecto > 1) { h = maxW / aspecto; } else { w = maxH * aspecto; }
+            w = Math.min(Math.max(w, 60), maxW);
+            h = Math.min(Math.max(h, 60), maxH);
 
-    let svgContent = '';
+            const color = '#0077B6';
+            const colorAccent = '#FFB703';
+            const light = 'rgba(0,119,182,0.07)';
+            const gato = datos.categoría;
+            let contenido = '';
 
-    switch(type) {
-        case 'cancel':
-            svgContent = `
-                <rect x="5" y="5" width="${boxWidth-10}" height="${boxHeight-10}" fill="rgba(0, 119, 182, 0.05)" stroke="#0077B6" stroke-width="3" rx="4"/>
-                <line x1="${boxWidth/2}" y1="5" x2="${boxWidth/2}" y2="${boxHeight-5}" stroke="#0077B6" stroke-width="2" stroke-dasharray="4 2"/>
-                <circle cx="${boxWidth - 20}" cy="${boxHeight/2}" r="5" fill="#0077B6"/>
-                <circle cx="20" cy="${boxHeight/2}" r="5" fill="#0077B6"/>
-            `;
-            break;
-        case 'barandal':
-            svgContent = `
-                <line x1="5" y1="${boxHeight - 15}" x2="${boxWidth-5}" y2="${boxHeight - 15}" stroke="#0077B6" stroke-width="4" stroke-linecap="round"/>
-                <line x1="5" y1="${boxHeight - 15}" x2="5" y2="5" stroke="#0077B6" stroke-width="3" stroke-linecap="round"/>
-                <line x1="${boxWidth-5}" y1="${boxHeight - 15}" x2="${boxWidth-5}" y2="5" stroke="#0077B6" stroke-width="3" stroke-linecap="round"/>
-                <line x1="5" y1="5" x2="${boxWidth-5}" y2="5" stroke="#0077B6" stroke-width="3" stroke-linecap="round"/>
-                <line x1="${boxWidth/3}" y1="5" x2="${boxWidth/3}" y2="${boxHeight - 15}" stroke="#0077B6" stroke-width="1.5" opacity="0.5"/>
-                <line x1="${boxWidth*2/3}" y1="5" x2="${boxWidth*2/3}" y2="${boxHeight - 15}" stroke="#0077B6" stroke-width="1.5" opacity="0.5"/>
-            `;
-            break;
-        case 'pasamano':
-            svgContent = `
-                <path d="M 5 ${boxHeight - 10} Q ${boxWidth/2} ${boxHeight/2} ${boxWidth-5} ${boxHeight - 10}" fill="none" stroke="#0077B6" stroke-width="5" stroke-linecap="round"/>
-                <line x1="${boxWidth/2}" y1="${boxHeight/2 + 15}" x2="${boxWidth/2}" y2="${boxHeight - 10}" stroke="#0077B6" stroke-width="2"/>
-                <circle cx="${boxWidth/2}" cy="${boxHeight/2 + 15}" r="4" fill="#0077B6"/>
-            `;
-            break;
-        case 'mampara':
-            svgContent = `
-                <rect x="5" y="5" width="${boxWidth-10}" height="${boxHeight-10}" fill="rgba(0, 119, 182, 0.08)" stroke="#0077B6" stroke-width="2" rx="2"/>
-                <line x1="${boxWidth/3}" y1="5" x2="${boxWidth/3}" y2="${boxHeight-5}" stroke="#0077B6" stroke-width="2"/>
-                <line x1="${boxWidth*2/3}" y1="5" x2="${boxWidth*2/3}" y2="${boxHeight-5}" stroke="#0077B6" stroke-width="2"/>
-            `;
-            break;
-        case 'espejo':
-            svgContent = `
-                <rect x="10" y="10" width="${boxWidth-20}" height="${boxHeight-20}" fill="rgba(0, 119, 182, 0.1)" stroke="#0077B6" stroke-width="2" rx="4"/>
-                <ellipse cx="${boxWidth/2}" cy="${boxHeight/2}" rx="${boxWidth/4}" ry="${boxHeight/3}" fill="none" stroke="#0077B6" stroke-width="1" opacity="0.5"/>
-                <line x1="${boxWidth/4}" y1="${boxHeight/4}" x2="${boxWidth*3/4}" y2="${boxHeight*3/4}" stroke="#0077B6" stroke-width="0.5" opacity="0.3"/>
-            `;
-            break;
-        default:
-            svgContent = `<rect x="5" y="5" width="${boxWidth-10}" height="${boxHeight-10}" fill="rgba(0,119,182,0.05)" stroke="#0077B6" stroke-width="2"/>`;
-    }
+            // Marco base
+            contenido +=
+                `<rect x="3" y="3" width="${w-6}" height="${h-6}" fill="${light}" stroke="${color}" stroke-width="2.5" rx="3"/>`;
 
-    return `<svg width="${boxWidth}" height="${boxHeight}" viewBox="0 0 ${boxWidth} ${boxHeight}" role="img" aria-label="Vista previa de ${type}">${svgContent}</svg>`;
-}
+            si (data.esTemplado) {
+                // --- CROQUIS ESPECIAL PARA CANCELAR TEMPLADO ---
+                const mitadAncho = w / 2;
+                // Hoja fija (izquierda)
+                contenido +=
+                    `<rect x="8" y="8" width="${mitadAncho-14}" height="${h-16}" fill="rgba(0,180,216,0.12)" stroke="${color}" stroke-width="1.8" rx="2"/>`;
+                contenido +=
+                    `<text x="${8+(mitadAncho-14)/2}" y="${h/2-4}" text-anchor="middle" font-size="9" fill="${color}" opacity="0.8" font-family="Inter,sans-serif" font-weight="600">FIJO</text>`;
+                // Hoja corrediza (derecha) - ligeramente desplazada
+                contenido +=
+                    `<rect x="${mitadAncho+4}" y="11" width="${mitadAncho-14}" height="${h-19}" fill="rgba(255,183,3,0.12)" stroke="${colorAccent}" stroke-width="1.8" rx="2" stroke-dasharray="4 2"/>`;
+                contenido +=
+                    `<text x="${mitadAncho+4+(mitadAncho-14)/2}" y="${h/2-4}" text-anchor="middle" font-size="8" fill="${colorAccent}" opacity="0.9" font-family="Inter,sans-serif" font-weight="600">CORREDIZO</text>`;
 
-function updateQuote() {
-    const widthSlider = document.getElementById('slider-width');
-    const heightSlider = document.getElementById('slider-height');
-    const w = parseFloat(widthSlider.value);
-    const h = parseFloat(heightSlider.value);
-    const area = w * h;
+                // Perforaciones en hoja fija
+                const perfFija = [
+                    { x: 8 + 18, y: 8 + 22, d: 8, etiqueta: 'âŒ€12' },
+                    { x: 8 + 18, y: h - 8 - 22, d: 8, etiqueta: 'âŒ€12' },
+                ];
+                perfFija.forEach(p => {
+                    contenido +=
+                        `<circle cx="${px}" cy="${py}" r="${pd/2}" fill="none" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="2 1"/>`;
+                    contenido +=
+                        `<circle cx="${px}" cy="${py}" r="1.5" fill="#EF4444"/>`;
+                    contenido +=
+                        `<text x="${px}" y="${py-7}" text-anchor="middle" font-size="5" fill="#EF4444" font-family="Inter,sans-serif" font-weight="700">${p.label}</text>`;
+                });
 
-    document.getElementById('val-width').textContent = `${w.toFixed(2)} m`;
-    document.getElementById('val-height').textContent = `${h.toFixed(2)} m`;
-    document.getElementById('data-w').textContent = `${w.toFixed(2)} m`;
-    document.getElementById('data-h').textContent = `${h.toFixed(2)} m`;
-    document.getElementById('data-area').textContent = `${area.toFixed(2)} m²`;
+                // Perforaciones en hoja corrediza
+                const perfCorr = [
+                    { x: mitadAncho + 4 + 18, y: 11 + 22, d: 8, etiqueta: 'âŒ€12' },
+                    { x: mitadAncho + 4 + 18, y: h - 11 - 22, d: 8, etiqueta: 'âŒ€12' },
+                    { x: mitadAncho + 4 + (mitadAncho - 14) / 2, y: h * 0.55, d: 10, etiqueta: 'âŒ€25' },
+                ];
+                perfCorr.forEach(p => {
+                    contenido +=
+                        `<circle cx="${px}" cy="${py}" r="${pd/2}" fill="none" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="2 1"/>`;
+                    contenido +=
+                        `<circle cx="${px}" cy="${py}" r="1.5" fill="#EF4444"/>`;
+                    contenido +=
+                        `<text x="${px}" y="${py-7}" text-anchor="middle" font-size="5" fill="#EF4444" font-family="Inter,sans-serif" font-weight="700">${p.label}</text>`;
+                });
 
-    // Calcular costo usando PRECIOS
-    let costo = 0;
-    if (currentType !== 'especial') {
-        const info = PRECIOS[currentType];
-        if (info) {
-            costo = info.base + (info.precio_m2 * area);
-            // Aplicar descuento por volumen si aplica
-            if (area > 5) {
-                costo = costo * (1 - DESCUENTO_VOLUMEN);
+                // Líneas de cota para perforaciones
+                contenido +=
+                    `<line x1="3" y1="8+22" x2="8+18" y2="8+22" stroke="#EF4444" stroke-width="0.6" stroke-dasharray="3 2" opacity="0.6"/>`;
+                contenido +=
+                    `<text x="5" y="8+22-4" font-size="5" fill="#EF4444" font-family="Inter,sans-serif" opacity="0.7">~60mm</text>`;
+
+                // Flecha de deslizamiento
+                contenido +=
+                    `<line x1="${mitadAncho+4+5}" y1="${h/2}" x2="${mitadAncho+4+(mitadAncho-14)-5}" y2="${h/2}" stroke="${colorAccent}" stroke-width="1" marker-end="url(#arrowhead)" opacity="0.6"/>`;
+                contenido += `<defs><marker id="arrowhead" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
+                <polygon points="0 0, 6 2, 0 4" fill="${colorAccent}" opacity="0.6"/></marker></defs>`;
+
+                contenido +=
+                    `<text x="${w-10}" y="10" text-anchor="end" font-size="5" fill="#EF4444" font-family="Inter,sans-serif" font-weight="700">âŒ€ = diámetro de perforación</text>`;
+            } else if (cat === 'ventanas' || cat === 'ventanales') {
+                const vidrios = datos.vidrio || [];
+                const numHojas = vidrios.length || 2;
+                si (numHojas >= 2) {
+                    para (sea i = 1; i < numHojas; i++) {
+                        const x = (i / numHojas) * w;
+                        contenido +=
+                            `<line x1="${x}" y1="4" x2="${x}" y2="${h-4}" stroke="${color}" stroke-width="1.2" opacity="0.35" stroke-dasharray="5 3"/>`;
+                    }
+                }
+                contenido +=
+                    `<circle cx="${w-16}" cy="${h/2}" r="4" fill="${color}" opacity="0.7"/><circle cx="16" cy="${h/2}" r="4" fill="${color}" opacity="0.7"/>`;
+                // Flechas de direcciÃ³n
+                contenido +=
+                    `<text x="${w/2}" y="${h-8}" text-anchor="middle" font-size="6" fill="${color}" opacity="0.5">â†” corredizo</text>`;
+            } else if (cat === 'puertas') {
+                contenido +=
+                    `<rect x="${w*0.1}" y="${h*0.08}" width="${w*0.8}" height="${h*0.84}" fill="none" stroke="${color}" stroke-width="1.2" rx="2" opacity="0.35"/>`;
+                contenido +=
+                    `<circle cx="${w-18}" cy="${h/2}" r="5" fill="${color}" opacity="0.6"/><line x1="${w-18}" y1="${h/2}" x2="${w-18}" y2="${h/2+20}" stroke="${color}" stroke-width="1.5" opacity="0.4"/>`;
+                contenido +=
+                    `<text x="${w/2}" y="${h-8}" text-anchor="middle" font-size="6" fill="${color}" opacity="0.5">abatible â†'</text>`;
+            } else if (cat === 'canceles' && !data.esTemplado) {
+                contenido +=
+                    `<line x1="${w/2}" y1="4" x2="${w/2}" y2="${h-4}" stroke="${color}" stroke-width="1.8" opacity="0.4" stroke-dasharray="6 3"/>`;
+                contenido +=
+                    `<circle cx="${w-14}" cy="${h/2}" r="3.5" fill="${color}" opacity="0.7"/><circle cx="14" cy="${h/2}" r="3.5" fill="${color}" opacity="0.7"/>`;
+                contenido +=
+                    `<rect x="${w/2+5}" y="7" width="${w/2-12}" height="${h-14}" fill="none" stroke="${color}" stroke-width="0.8" opacity="0.25" rx="2"/>`;
+                contenido +=
+                    `<rect x="5" y="7" width="${w/2-12}" height="${h-14}" fill="none" stroke="${color}" stroke-width="0.8" opacity="0.25" rx="2"/>`;
             }
-            // Aplicar IVA (opcional)
-            // costo = costo * (1 + IVA);
-            costo = Math.round(costo);
+
+            // Cota de ancho
+            contenido +=
+                `<line x1="8" y1="${h-2}" x2="${w-8}" y2="${h-2}" stroke="${color}" stroke-width="0.8" opacity="0.5"/><line x1="8" y1="${h-5}" x2="8" y2="${h+1}" stroke="${color}" stroke-width="0.8" opacity="0.5"/><line x1="${w-8}" y1="${h-5}" x2="${w-8}" y2="${h+1}" stroke="${color}" stroke-width="0.8" opacity="0.5"/>`;
+            contenido +=
+                `<text x="${w/2}" y="${h+3}" text-anchor="middle" font-size="7" fill="${color}" opacity="0.6" font-family="Inter,sans-serif" font-weight="500">${ancho} mm</text>`;
+
+            return `<svg width="${w}" height="${h+14}" viewBox="0 0 ${w} ${h+14}" role="img" aria-label="Croquis de ${data.nombre}">${content}</svg>`;
         }
-    }
 
-    // Mostrar costo
-    const costoElement = document.getElementById('costo-estimado');
-    if (costoElement) {
-        if (currentType === 'especial') {
-            costoElement.textContent = 'Cotizar especial';
-        } else {
-            costoElement.textContent = `$${costo.toFixed(2)} MXN`;
+        // ============================================================
+        // RENDER PRINCIPAL
+        // ============================================================
+        función renderNavegacion() {
+            const nav = document.getElementById('navCategorias');
+            const categorias = [...new Set(Object.values(CATALOGO).map(p => p.categoria))];
+            nav.innerHTML = categorias.map(cat =>
+                `<button class="nav-btn" data-categoria="${cat}">${cat.charAt(0).toUpperCase() + cat.slice(1)}</button>`
+            ).unirse('');
+            nav.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const cat = btn.dataset.categoria;
+                    const first = Object.keys(CATALOGO).find(k => CATALOGO[k].categoria === cat);
+                    si (primero) { productoActual = primero;
+                        renderProductos();
+                        renderTodo(); }
+                    nav.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+            const firstCat = nav.querySelector('.nav-btn');
+            if (firstCat) firstCat.classList.add('active');
         }
-    }
 
-    // Mostrar/ocultar elementos según tipo
-    const croquisContainer = document.getElementById('croquis-container');
-    const specialContainer = document.getElementById('special-container');
-    const standardControls = document.getElementById('standard-controls');
-    const dataPanel = document.getElementById('data-panel');
+        función renderProductos() {
+            const container = document.getElementById('productSelector');
+            const entradas = Object.entries(CATALOGO);
+            contenedor.innerHTML = entradas.map(([clave, valor]) =>
+                `<button class="product-btn ${key === currentProduct ? 'active' : ''}" data-key="${key}">
+                ${val.icono || 'ðŸ“ '} ${val.nombre.split(' ').slice(0,2).join(' ')}
+                <span class="sub">${val.categoria}${val.esTemplado ? ' · templado' : ''}</span>
+              </button>`
+            ).unirse('');
+            contenedor.querySelectorAll('.product-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentProduct = btn.dataset.key;
+                    renderProductos();
+                    renderTodo();
+                });
+            });
+        }
 
-    if (currentType === 'especial') {
-        croquisContainer.style.display = 'none';
-        dataPanel.style.display = 'none';
-        standardControls.style.display = 'none';
-        specialContainer.classList.add('visible');
-    } else {
-        croquisContainer.style.display = 'flex';
-        dataPanel.style.display = 'grid';
-        standardControls.style.display = 'block';
-        specialContainer.classList.remove('visible');
-        croquisContainer.innerHTML = generateSVG(currentType, w, h);
-    }
-}
+        función renderTodo() {
+            renderPreview();
+            renderCostos();
+        }
 
-function cotizarWhatsApp() {
-    const w = document.getElementById('slider-width').value;
-    const h = document.getElementById('slider-height').value;
-    const area = (parseFloat(w) * parseFloat(h)).toFixed(2);
-    
-    // Obtener costo actual
-    let costoTexto = '';
-    const costoElement = document.getElementById('costo-estimado');
-    if (costoElement) {
-        costoTexto = costoElement.textContent;
-    }
-    
-    const typeNames = {
-        'cancel': 'Cancel de Baño',
-        'barandal': 'Barandal',
-        'pasamano': 'Pasamano',
-        'mampara': 'Mampara',
-        'espejo': 'Espejo',
-        'especial': 'Trabajo Especial'
-    };
-    
-    const message = `${COTIZACION_MSG}*Tipo:* ${typeNames[currentType]}%0A*Ancho:* ${w} m%0A*Alto:* ${h} m%0A*Área:* ${area} m²%0A*Costo estimado:* ${costoTexto}%0A%0A¿Me podrían proporcionar más información y precio final? ¡Gracias!`;
-    
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
-    showToast('Abriendo WhatsApp...');
-}
+        función renderPreview() {
+            const datos = CATÁLOGO[productoactual];
+            si (!datos) regresar;
+            const ancho = currentAncho;
+            const alto = currentAlto;
+            const area = (ancho * alto / 1000000).toFixed(2);
 
-function showToast(message) {
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.classList.add('show');
-    setTimeout(() => {
-        toast.classList.remove('show');
-    }, 3000);
-}
+            document.getElementById('productNameBadge').textContent = data.nombre;
+            document.getElementById('dataWidth').textContent = ancho;
+            document.getElementById('dataHeight').textContent = alto;
+            document.getElementById('dataArea').textContent = área;
+            document.getElementById('valWidth').textContent = ancho + ' mm';
+            document.getElementById('valHeight').textContent = alto + ' mm';
+            document.getElementById('previewContent').innerHTML = generarSVG(currentProduct, ancho, alto);
+
+            const { perfiles, vidrios } = calcularComponentes(productoactual, ancho, alto);
+            const lista = document.getElementById('componentesList');
+            dejar html =
+                '<div style="font-size:0.7rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;padding:0 0.4rem 0.4rem;border-bottom:1px solid var(--border);">ðŸ”© Perfiles</div>';
+            perfiles.forEach(p => {
+                html += `<div class="componente-item">
+                <span class="cantidad">${p.cantidad}x</span>
+                <span class="nombre">${p.nombre}</span>
+                <span class="tag">${p.corte}</span>
+                <span class="medida">${p.medida} mm</span>
+              </div>`;
+            });
+            si (vidrios.length > 0) {
+                html +=
+                    `<div style="font-size:0.7rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;padding:0.6rem 0.4rem 0.4rem;border-top:1px solid var(--border);">ðŸªž Vidrios</div>`;
+                vidrios.forEach(v => {
+                    const medida = v.medidaAncho !== undefinido ?
+                        `${v.medidaAncho} Ã— ${v.medidaAlto} mm` : `${v.medidaAlto || ''}mm`;
+                    let extraInfo = '';
+                    if (v.perforaciones && v.perforaciones.longitud > 0) {
+                        Información adicional =
+                            ` <span style="font-size:0.55rem;color:#EF4444;">(${v.perforaciones.length} perf. âŒ€${v.perforaciones.map(p=>p.diametro).join(',âŒ€')}mm)</span>`;
+                    }
+                    html += `<div class="componente-item">
+                <span class="cantidad">${v.cantidad}x</span>
+                <span class="nombre">${v.nombre}${extraInfo}</span>
+                <span class="tag">${v.tipo || 'vidrio'}</span>
+                <span class="medida">${medida}</span>
+              </div>`;
+                    // Mostrar detalle de perforaciones si es templado
+                    if (v.perforaciones && v.perforaciones.longitud > 0) {
+                        v.perforaciones.forEach(perf => {
+                            html += `<div class="componente-item" style="padding-left:1.5rem;font-size:0.65rem;background:#FFF5F5;">
+                    <span class="cantidad" style="color:#EF4444;">â€¢</span>
+                    <span class="nombre" style="font-size:0.65rem;">${perf.descripcion}</span>
+                    <span class="tag" style="background:#FEE2E2;color:#991B1B;">âŒ€${perf.diametro}mm</span>
+                    <span class="medida" style="font-size:0.6rem;">a ${perf.distanciaBordeSuperior || '~'}mm del borde</span>
+                  </div>`;
+                        });
+                    }
+                });
+            }
+            lista.innerHTML = html;
+
+            // Notas
+            const notasBox = document.getElementById('notasBox');
+            si (datos.notas) {
+                notasBox.innerHTML = `<strong>ðŸ“Œ Notas y recomendaciones:</strong> ${data.notas}`;
+                notasBox.classList.remove('hidden');
+            } demás {
+                notasBox.classList.add('oculto');
+            }
+
+            // Fecha y folio para impresión
+            const ahora = new Date();
+            document.getElementById('printFecha').textContent = ahora.toLocaleDateString('es-MX', { day: 'numeric',
+                mes: 'largo', año: 'numérico' });
+            document.getElementById('printFolio').textContent = 'COT-' + ahora.getFullYear() + '-' + Math.floor(Math
+            .random() * 9000 + 1000);
+        }
+
+        función renderCostos() {
+            const costos = calcularCostos(currentProduct, currentAncho, currentAlto);
+            const container = document.getElementById('costSummary');
+            contenedor.innerHTML = `
+            <div class="cost-row"><span class="label">ðŸ“ Aluminio (${costos.metrosAluminio.toFixed(2)} m lineales)</span><span class="value">$${costos.costoAluminio.toFixed(2)}</span></div>
+            <div class="cost-row"><span class="label">ðŸªž Vidrio (${costos.areaVidrio.toFixed(3)} mÂ²)</span><span class="value">$${costos.costoVidrio.toFixed(2)}</span></div>
+            <div class="cost-row"><span class="label">ðŸ“¦ Subtotal materiales</span><span class="value">$${costos.subtotal.toFixed(2)}</span></div>
+            <div class="cost-row"><span class="label">ðŸ”§ Herrajes e insumos (${costos.porcentajeHerrajes}%)</span><span class="value">$${costos.costoHerrajes.toFixed(2)}</span></div>
+            ${costos.costoInstalacion > 0 ? `<div class="cost-row"><span class="label">ðŸ› ï¸ InstalaciÃ³n</span><span class="value">$${costos.costoInstalacion.toFixed(2)}</span></div>` : ''}
+            <div class="cost-row total"><span class="label">ðŸ'° TOTAL ESTIMADO</span><span class="value">$${costos.total.toFixed(2)} MXN</span></div>
+          `;
+        }
+
+        // ============================================================
+        // COTIZAR WHATSAPP
+        // ============================================================
+        función cotizarWhatsApp() {
+            const datos = CATÁLOGO[productoactual];
+            const nombre = data.nombre;
+            const ancho = currentAncho;
+            const alto = currentAlto;
+            const area = (ancho * alto / 1000000).toFixed(2);
+            const { perfiles, vidrios } = calcularComponentes(productoactual, ancho, alto);
+            const costos = calcularCostos(productoactual, ancho, alto);
+
+            let detalle = '';
+            perfiles.forEach(p => { detalle +=
+                    `â€¢ ${p.cantidad}x ${p.nombre}: ${p.medida} mm (corte ${p.corte})\n`; });
+            vidrios.forEach(v => {
+                const medida = v.medidaAncho !== undefinido ?
+                    `${v.medidaAncho} x ${v.medidaAlto} mm` : `${v.medidaAlto || ''}mm`;
+                detalle += `â€¢ ${v.cantidad}x ${v.nombre}: ${medida}\n`;
+                si (v.perforaciones) {
+                    v.perforaciones.forEach(perf => {
+                        detalle +=
+                            ` â†³ ${perf.descripcion}: âŒ€${perf.diametro}mm a ~${perf.distanciaBordeSuperior || 'centro'} del borde\n`;
+                    });
+                }
+            });
+
+            const mensaje =
+                `¡Hola! Cotización desde Aluminio&Vidrio:
+
+        ðŸ“‹ *Producto:* ${nombre}${data.esTemplado ? ' (VIDRIO TEMPLADO)' : ''}
+        ðŸ“ *Medidas:* ${ancho} mm (ancho) Ã— ${alto} mm (alto) | Ã rea: ${area} m²
+
+        ðŸ“¦ *Despiece técnico:*
+        ${detalle}
+        ðŸ'° *Resumen de costos:*
+        â€¢ Aluminio: $${costos.costoAluminio.toFixed(2)}
+        â€¢ Vidrio: $${costos.costoVidrio.toFixed(2)}
+        â€¢ Herrajes e insumos (${costos.porcentajeHerrajes}%): $${costos.costoHerrajes.toFixed(2)}
+        ${costos.costoInstalacion > 0 ? `â€¢ Instalación: $${costos.costoInstalacion.toFixed(2)}\n` : ''}
+        ðŸ ·ï¸ *TOTAL ESTIMADO: $${costos.total.toFixed(2)} MXN*
+
+        ${datos.notas ? 'ðŸ“Œ *Notas:* ' + data.notas.split('.')[0] + '.' : ''}
+
+        ¿Me podrÃan confirmar precios y disponibilidad? ¡Gracias!`;
+
+            const url = `https://wa.me/523320827128?text=${encodeURIComponent(mensaje)}`;
+            ventana.abrir(url, '_blank');
+            mostrarToast('ðŸ“¤ Abriendo WhatsApp con cotización...');
+        }
+
+        // ============================================================
+        // IMPRIMIR / PDF
+        // ============================================================
+        función imprimirPDF() {
+            mostrarToast('ðŸ–¨ï¸ Preparando impresión / PDF...');
+            setTimeout(() => window.print(), 400);
+        }
+
+        // ============================================================
+        // TOSTADA
+        // ============================================================
+        función mostrarToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            clearTimeout(t._timer);
+            t._timer = setTimeout(() => t.classList.remove('show'), 3000);
+        }
+
+        // ============================================================
+        // INICIALIZACIÃ“N
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            renderNavegación();
+            renderProductos();
+            renderTodo();
+
+            // Deslizadores
+            const sliderW = document.getElementById('sliderWidth');
+            const sliderH = document.getElementById('sliderHeight');
+            sliderW.addEventListener('input', () => { currentAncho = parseInt(sliderW.value);
+                renderTodo(); });
+            sliderH.addEventListener('input', () => { currentAlto = parseInt(sliderH.value);
+                renderTodo(); });
+
+            // Botones
+            document.getElementById('btnCotizar').addEventListener('click', cotizarWhatsApp);
+            document.getElementById('btnImprimir').addEventListener('click', imprimirPDF);
+            document.getElementById('btnImprimirTop').addEventListener('click', imprimirPDF);
+
+            // Panel de precios plegable
+            const panelPrecios = document.getElementById('panelPrecios');
+            const priceHeader = document.getElementById('priceHeader');
+            priceHeader.addEventListener('click', () => {
+                preciosCollapsed = !preciosCollapsed;
+                si (preciosCollapsed) {
+                    panelPrecios.classList.add('collapsed');
+                } demás {
+                    panelPrecios.classList.remove('collapsed');
+                }
+            });
+            document.getElementById('btnTogglePrecios').addEventListener('click', () => {
+                preciosCollapsed = !preciosCollapsed;
+                si (preciosCollapsed) {
+                    panelPrecios.classList.add('collapsed');
+                } demás {
+                    panelPrecios.classList.remove('collapsed');
+                }
+                panelPrecios.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+
+            // Actualizar costos cuando cambian los precios
+            const priceInputs = document.querySelectorAll('#priceBody input');
+            priceInputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    renderCostos();
+                });
+            });
+        });
