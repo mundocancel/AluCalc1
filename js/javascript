@@ -1,0 +1,11 @@
+// =========================================
+// CONFIGURACIÓN DE PRECIOS (editable)
+// =========================================
+const PRECIOS = {
+    cancel: { base: 2500, precio_m2: 1200, incluye: 'vidrio templado + herrajes' },
+    barandal: { base: 1800, precio_m2: 900, incluye: 'vidrio templado + pasamanos' },
+    pasamano: { base: 1500, precio_m2: 750, incluye: 'vidrio y aluminio' },
+    mampara: { base: 2000, precio_m2: 1100, incluye: 'vidrio + perfiles de aluminio' },
+    espejo: { base: 800, precio_m2: 500, incluye: 'espejo de 6mm con bisel' },
+    especial: { base: 0, precio_m2: 0, incluye: 'proyecto personalizado' }
+};
