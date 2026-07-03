@@ -1,84 +1,84 @@
-a//tmp/AluCalc1/css/main.css → b//tmp/AluCalc1/css/main.css
-@@ -1,767 +1,767 @@
--:raíz {
--            --primario: #0077B6;
--            --primary-dark: #005A8C;
--            --primary-light: #E3F2FD;
--            --secundario: #00B4D8;
--            --acento: #FFB703;
--            --accent-dark: #E09F00;
--            --éxito: #10B981;
--            --peligro: #EF4444;
--            --WhatsApp: #25D366;
--            --texto-primario: #0F172A;
--            --texto-secundario: #475569;
--            --texto silenciado: #64748B;
--            --texto-inverso: #FFFFFF;
--            --bg-primary: #FFFFFF;
--            --bg-secundario: #F8FAFC;
--            --bg-terciario: #F1F5F9;
--            --borde: #E2E8F0;
--            --border-strong: #CBD5E1;
--            --radio: 0,75rem;
--            --radius-sm: 0,5rem;
--            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
--            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
--            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
--            --transición: 250ms cubic-bezier(0.4, 0, 0.2, 1);
--        }
+a//tmp/AluCalc1/js/main.js → b//tmp/AluCalc1/js/main.js
+@@ -1,695 +1,655 @@
 -
--        * {
--            margen: 0;
--            relleno: 0;
--            box-size: border-box;
--        }
--        cuerpo {
--            font-family: 'Inter', -apple-system, sans-serif;
--            fondo: var(--bg-secundario);
--            color: var(--text-primary);
--            interlineado: 1,6;
--            -webkit-font-smoothing: antialiased;
--        }
--        .contenedor {
--            ancho máximo: 1340px;
--            margen: 0 automático;
--            relleno: 0 1.5rem;
--        }
--
--        /* Encabezado */
--        .encabezado {
--            fondo: var(--bg-primary);
--            borde inferior: var sólido de 1 px (--borde);
--            relleno: 0,75rem 0;
--            posición: pegajosa;
--            superior: 0;
--            Índice z: 100;
--            filtro de fondo: desenfoque (12px);
--            fondo: rgba(255, 255, 255, 0.94);
--        }
--        .header-inner {
--            pantalla: flexible;
--            alinear-elementos: centro;
--            justificar-contenido: espacio-entre;
--            brecha: 0,75rem;
--            flex-wrap: envoltura;
--        }
--        .logo {
--            pantalla: flexible;
--            alinear-elementos: centro;
--            brecha: 0,6 rem;
--            grosor de fuente: 700;
--            tamaño de fuente: 1,05rem;
--            decoración de texto: ninguna;
--            color: var(--text-primary);
--            espacio en blanco: ahora rap;
--        }
--        .logo-marca {
--            ancho: 38px;
--            altura: 38px;
--            fondo: gradiente lineal (135 grados, var (--primario), var (--secundario));
--            radio-borde: var(--radius-sm);
-… omitted 1455 diff line(s) across 1 additional file(s)/section(s)
+-        // ============================================================
+-        // CATÁ LOGO MAESTRO AMPLIADO
+-        // ============================================================
+-        const CATÁLOGO = {
+-            "ventana_corrediza_estandar": {
+-                "nombre": "Ventana corrediza estándar",
+-                "categoria": "ventanas",
+-                "icono": "ðŸªŸ",
+-                "tipoVidrio": "4mm",
+-                "perfiles": [
+-                    { "nombre": "Riel / Jamba cabezal", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+-                    { "nombre": "Jambas verticales", "cantidad": 2, "formula": "alto - 26", "corte": "90°" },
+-                    { "nombre": "Zoclo / Cabezal", "cantidad": 2, "formula": "(ancho - 185) / 2", "corte": "90°" }
+-                ],
+-                "vidrio": [
+-                    { "nombre": "Vidrio fijo 4mm", "cantidad": 1, "ancho": "(ancho - 151) / 2", "alto": "alto - 125",
+-                        "tipo": "4mm" },
+-                    { "nombre": "Vidrio corredizo 4mm", "cantidad": 1, "ancho": "(ancho - 151) / 2",
+-                    "alto": "alto - 135", "tipo": "4mm" }
+-                ],
+-                "notas": "ðŸ”§ Usar felpa en zoclo y cabezal para deslizamiento suave. Revisar escuadra antes de ensamblar.",
+-                "porcentajeHerrajesOverride": nulo
+-            },
+-            "ventana_3_hojas_telescópica": {
+-                "nombre": "Ventana 3 hojas telescópica",
+-                "categoria": "ventanas",
+-                "icono": "ðŸªŸ",
+-                "tipoVidrio": "6mm",
+-                "perfiles": [
+-                    { "nombre": "Riel de 3\"", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+-                    { "nombre": "Jamba de 3\" (cabezal)", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+-                    { "nombre": "Adaptador paloma", "cantidad": 1, "formula": "ancho - 65", "corte": "90°" },
+-                    { "nombre": "Jambas de 3\"", "cantidad": 2, "formula": "alto - 26", "corte": "90°" },
+-                    { "nombre": "Zoclo / Cabezal de 3\"", "cantidad": 3, "formula": "(ancho - 167) / 3",
+-                    "corte": "90°" },
+-                    { "nombre": "Cerco chapa fija", "cantidad": 1, "formula": "alto", "corte": "90°" },
+-                    { "nombre": "Cerco chapa corredizo", "cantidad": 1, "formula": "alto - 40", "corte": "90°" },
+-                    { "nombre": "Traslape fijo", "cantidad": 1, "formula": "alto", "corte": "90°" },
+-                    { "nombre": "Traslape corredizo", "cantidad": 3, "formula": "alto - 40", "corte": "90°" }
+-                ],
+-                "vidrio": [
+-                    { "nombre": "Vidrio fijo 6mm", "cantidad": 1, "ancho": "(ancho - 117) / 3", "alto": "alto - 95",
+-                        "tipo": "6mm" },
+-                    { "nombre": "Vidrio corredizo 6mm", "cantidad": 2, "ancho": "(ancho - 117) / 3",
+-                    "alto": "alto - 135", "tipo": "6mm" }
+-                ],
+-                "notas": "âš ï¸ Requiere riel de 3 servicios. El adaptador paloma debe quedar centrado. Usar rodajas de nylon.",
+-                "porcentajeHerrajesOverride": 20
+-            },
+-            "ventanal_oxxo": {
+-                "nombre": "Ventanal OXXO",
+-                "categoria": "ventanales",
+-                "icono": "ðŸ ª",
+-                "tipoVidrio": "6mm",
+-                "perfiles": [
+-                    { "nombre": "Riel / Jamba c/mosquitero", "cantidad": 1, "formula": "ancho", "corte": "90°" },
+-                    { "nombre": "Jambas de 3\"", "cantidad": 2, "formula": "alto - 26", "corte": "90°" },
+-                    { "nombre": "Zoclo / Cabezal de 3\"", "cantidad": 8, "formula": "(ancho - 330) / 4",
+-                    "corte": "90°" },
+-                    { "nombre": "Cerco chapa / Traslape fijo", "cantidad": 4, "formula": "alto - 30", "corte": "90°" },
+-                    { "nombre": "Cerco chapa / Traslape corredizo", "cantidad": 4, "formula": "alto - 40",
+-                    "corte": "90°" }
+-                ],
+-                "vidrio": [
+-                    { "nombre": "Vidrio fijo 6mm", "cantidad": 2, "ancho": "(ancho - 265) / 4", "alto": "alto - 125",
+-                        "tipo": "6mm" },
+-                    { "nombre": "Vidrio corredizo 6mm", "cantidad": 2, "ancho": "(ancho - 265) / 4",
+-                    "alto": "alto - 135", "tipo": "6mm" }
+-                ],
+-                "notas": "ðŸ —ï¸ Para vanos grandes, reforzar el riel inferior. Considere dilatación térmica en climas extremos.",
+-                "porcentajeHerrajesOverride": 22
+-            },
+-            "puerta_batente_estandar": {
+-                "nombre": "Puerta batiente estÃ¡ndar",
+-                "categoría": "puertas",
+-                "icono": "ðŸšª",
+-                "tipoVidrio": "6mm",
+… omitted 1271 diff line(s) across 1 additional file(s)/section(s)
         // ============================================================
         // CATÁ LOGO MAESTRO AMPLIADO
         // ============================================================
