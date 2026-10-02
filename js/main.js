@@ -1,40 +1,720 @@
-a//tmp/AluCalc1/js/main.js → b//tmp/AluCalc1/js/main.js
-@@ -1,695 +1,655 @@
--
--        // ============================================================
--        // CATÁ LOGO MAESTRO AMPLIADO
--        // ============================================================
--        const CATÁLOGO = {
--            "ventana_corrediza_estandar": {
--                "nombre": "Ventana corrediza estándar",
--                "categoria": "ventanas",
--                "icono": "ðŸªŸ",
--                "tipoVidrio": "4mm",
--                "perfiles": [
--                    { "nombre": "Riel / Jamba cabezal", "cantidad": 1, "formula": "ancho", "corte": "90°" },
--                    { "nombre": "Jambas verticales", "cantidad": 2, "formula": "alto - 26", "corte": "90°" },
--                    { "nombre": "Zoclo / Cabezal", "cantidad": 2, "formula": "(ancho - 185) / 2", "corte": "90°" }
--                ],
--                "vidrio": [
--                    { "nombre": "Vidrio fijo 4mm", "cantidad": 1, "ancho": "(ancho - 151) / 2", "alto": "alto - 125",
--                        "tipo": "4mm" },
--                    { "nombre": "Vidrio corredizo 4mm", "cantidad": 1, "ancho": "(ancho - 151) / 2",
--                    "alto": "alto - 135", "tipo": "4mm" }
--                ],
--                "notas": "ðŸ”§ Usar felpa en zoclo y cabezal para deslizamiento suave. Revisar escuadra antes de ensamblar.",
--                "porcentajeHerrajesOverride": nulo
--            },
--            "ventana_3_hojas_telescópica": {
--                "nombre": "Ventana 3 hojas telescópica",
--                "categoria": "ventanas",
--                "icono": "ðŸªŸ",
--                "tipoVidrio": "6mm",
--                "perfiles": [
--                    { "nombre": "Riel de 3\"", "cantidad": 1, "formula": "ancho", "corte": "90°" },
--                    { "nombre": "Jamba de 3\" (cabezal)", "cantidad": 1, "formula": "ancho", "corte": "90°" },
--                    { "nombre": "Adaptador paloma", "cantidad": 1, "formula": "ancho - 65", "corte": "90°" },
--                    { "nombre": "Jambas de 3\"", "cantidad": 2, "formula": "alto - 26", "corte": "90°" },
--                    { "nombre": "Zoclo / Cabezal de 3\"", "cantidad": 3, "formula": "(ancho - 167) / 3",
+// ============================================================
+// CATÁLOGO MAESTRO AMPLIADO
+// ============================================================
+const CATALOG = {
+  ventana_corrediza_estandar: {
+    nombre: "Ventana corrediza estándar",
+    categoria: "ventanas",
+    icono: "🪟",
+    tipoVidrio: "4mm",
+    perfiles: [
+      { nombre: "Riel / Jamba cabezal", cantidad: 1, formula: "ancho", corte: "90°" },
+      { nombre: "Jambas verticales", cantidad: 2, formula: "alto - 26", corte: "90°" },
+      { nombre: "Zoclo / Cabezal", cantidad: 2, formula: "(ancho - 185) / 2", corte: "90°" }
+    ],
+    vidrio: [
+      { nombre: "Vidrio fijo 4mm", cantidad: 1, ancho: "(ancho - 151) / 2", alto: "alto - 125", tipo: "4mm" },
+      { nombre: "Vidrio corredizo 4mm", cantidad: 1, ancho: "(ancho - 151) / 2", alto: "alto - 135", tipo: "4mm" }
+    ],
+    notas: "🔧 Usar felpa en zoclo y cabezal para deslizamiento suave. Revisar escuadra antes de ensamblar.",
+    porcentajeHerrajesOverride: null
+  },
+  ventana_3_hojas_telescopica: {
+    nombre: "Ventana 3 hojas telescópica",
+    categoria: "ventanas",
+    icono: "🪟",
+    tipoVidrio: "6mm",
+    perfiles: [
+      { nombre: "Riel de 3\"", cantidad: 1, formula: "ancho", corte: "90°" },
+      { nombre: "Jamba de 3\" (cabezal)", cantidad: 1, formula: "ancho", corte: "90°" },
+      { nombre: "Adaptador paloma", cantidad: 1, formula: "ancho - 65", corte: "90°" },
+      { nombre: "Jambas de 3\"", cantidad: 2, formula: "alto - 26", corte: "90°" },
+      { nombre: "Zoclo / Cabezal de 3\"", cantidad: 3, formula: "(ancho - 167) / 3", corte: "90°" },
+      { nombre: "Cerco chapa fija", cantidad: 1, formula: "alto", corte: "90°" },
+      { nombre: "Cerco chapa corredizo", cantidad: 1, formula: "alto - 40", corte: "90°" },
+      { nombre: "Traslape fijo", cantidad: 1, formula: "alto", corte: "90°" },
+      { nombre: "Traslape corredizo", cantidad: 3, formula: "alto - 40", corte: "90°" }
+    ],
+    vidrio: [
+      { nombre: "Vidrio fijo 6mm", cantidad: 1, ancho: "(ancho - 117) / 3", alto: "alto - 95", tipo: "6mm" },
+      { nombre: "Vidrio corredizo 6mm", cantidad: 2, ancho: "(ancho - 117) / 3", alto: "alto - 135", tipo: "6mm" }
+    ],
+    notas: "⚠️ Requiere riel de 3 servicios. El adaptador paloma debe quedar centrado. Usar rodajas de nylon.",
+    porcentajeHerrajesOverride: 20
+  },
+  ventanal_oxxo: {
+    nombre: "Ventanal OXXO",
+    categoria: "ventanales",
+    icono: "🏢",
+    tipoVidrio: "6mm",
+    perfiles: [
+      { nombre: "Riel / Jamba c/mosquitero", cantidad: 1, formula: "ancho", corte: "90°" },
+      { nombre: "Jambas de 3\"", cantidad: 2, formula: "alto - 26", corte: "90°" },
+      { nombre: "Zoclo / Cabezal de 3\"", cantidad: 8, formula: "(ancho - 330) / 4", corte: "90°" },
+      { nombre: "Cerco chapa / Traslape fijo", cantidad: 4, formula: "alto - 30", corte: "90°" },
+      { nombre: "Cerco chapa / Traslape corredizo", cantidad: 4, formula: "alto - 40", corte: "90°" }
+    ],
+    vidrio: [
+      { nombre: "Vidrio fijo 6mm", cantidad: 2, ancho: "(ancho - 265) / 4", alto: "alto - 125", tipo: "6mm" },
+      { nombre: "Vidrio corredizo 6mm", cantidad: 2, ancho: "(ancho - 265) / 4", alto: "alto - 135", tipo: "6mm" }
+    ],
+    notas: "📌 Para vanos grandes, reforzar el riel inferior. Considere dilatación térmica en climas extremos.",
+    porcentajeHerrajesOverride: 22
+  },
+  puerta_batente_estandar: {
+    nombre: "Puerta batiente estándar",
+    categoria: "puertas",
+    icono: "🚪",
+    tipoVidrio: "6mm",
+    perfiles: [
+      { nombre: "Bolsa lisa cabezal", cantidad: 1, formula: "ancho", corte: "90°" },
+      { nombre: "Batiente cabezal", cantidad: 1, formula: "ancho - 64", corte: "90°" },
+      { nombre: "Bolsas / Batientes verticales", cantidad: 2, formula: "alto - 32", corte: "90°" },
+      { nombre: "Cercos chapa", cantidad: 2, formula: "alto - 47", corte: "90°" },
+      { nombre: "Zoclo / Intermedio / Cabezal", cantidad: 3, formula: "ancho - 181", corte: "90°" }
+    ],
+    vidrio: [
+      { nombre: "Vidrio 6mm", cantidad: 2, ancho: "ancho - 191", alto: "(alto - 205) / 2", tipo: "6mm" }
+    ],
+    notas: "🔒 La chapa se coloca a 950 mm del piso. Usar 3 bisagras para puertas de más de 2m de alto.",
+    porcentajeHerrajesOverride: 25
+  },
+  puerta_ligera: {
+    nombre: "Puerta ligera",
+    categoria: "puertas",
+    icono: "🚪",
+    tipoVidrio: null,
+    perfiles: [
+      { nombre: "Batiente cabezal", cantidad: 1, formula: "ancho - 25", corte: "90°" },
+      { nombre: "Batientes", cantidad: 2, formula: "alto", corte: "90°" },
+      { nombre: "Cercos chapa", cantidad: 2, formula: "alto - 27", corte: "90°" },
+      { nombre: "Zoclo / Intermedio", cantidad: 2, formula: "ancho - 139", corte: "90°" }
+    ],
+    vidrio: [],
+    notas: "📌 Puerta ciega sin vidrio. Ideal para closets o áreas de servicio. Usar panel de aluminio compuesto.",
+    porcentajeHerrajesOverride: 15
+  },
+  puerta_bano: {
+    nombre: "Puerta de baño",
+    categoria: "puertas",
+    icono: "🚿",
+    tipoVidrio: "4mm",
+    perfiles: [
+      { nombre: "Silla cabezal", cantidad: 1, formula: "ancho - 30", corte: "90°" },
+      { nombre: "Silla", cantidad: 2, formula: "alto", corte: "90°" },
+      { nombre: "Marco semilujo ancho", cantidad: 2, formula: "ancho - 42", corte: "90°" },
+      { nombre: "Marco semilujo alto", cantidad: 2, formula: "alto - 30", corte: "90°" }
+    ],
+    vidrio: [
+      { nombre: "Plástico/Vidrio 4mm", cantidad: 1, ancho: "ancho - 112", alto: "alto - 100", tipo: "4mm" }
+    ],
+    notas: "🚿 Asegurar ventilación inferior. Se puede usar plástico corrugado o vidrio esmerilado.",
+    porcentajeHerrajesOverride: 18
+  },
+  cancel_plastico_bano: {
+    nombre: "Cancel baño plástico",
+    categoria: "canceles",
+    icono: "🚿",
+    tipoVidrio: null,
+    perfiles: [
+      { nombre: "Riel / Guía", cantidad: 1, formula: "ancho", corte: "90°" },
+      { nombre: "Jambas", cantidad: 2, formula: "alto - 30", corte: "90°" },
+      { nombre: "Horizontales", cantidad: 4, formula: "(ancho + 30) / 2", corte: "90°" },
+      { nombre: "Marcos económicos", cantidad: 4, formula: "alto - 50", corte: "90°" }
+    ],
+    vidrio: [
+      { nombre: "Hojas plástico", cantidad: 2, ancho: "(ancho - 30) / 2", alto: "alto - 80", tipo: null }
+    ],
+    notas: "📏 El plástico se corta con navaja. Dejar 3mm de holgura por lado para dilatación.",
+    porcentajeHerrajesOverride: 12
+  },
+  cancel_templado_estandar: {
+    nombre: "Cancel templado estándar",
+    categoria: "canceles",
+    icono: "🪞",
+    tipoVidrio: "templado8mm",
+    perfiles: [
+      { nombre: "Riel inferior de piso", cantidad: 1, formula: "ancho", corte: "90°" },
+      { nombre: "Jamba guía superior", cantidad: 1, formula: "ancho", corte: "90°" },
+      { nombre: "Jambas verticales", cantidad: 2, formula: "alto - 20", corte: "90°" },
+      { nombre: "Perfil tapajunta vertical", cantidad: 1, formula: "alto - 30", corte: "90°" }
+    ],
+    vidrio: [
+      { 
+        nombre: "Hoja fija templada 8mm", cantidad: 1, ancho: "(ancho - 40) / 2", alto: "alto - 25", tipo: "templado8mm", 
+        perforaciones: [
+          { descripcion: "Perforación para corona superior", distanciaBordeSuperior: 60, distanciaBordeLateral: 40, diametro: 12 },
+          { descripcion: "Perforación para corona inferior", distanciaBordeSuperior: 60, distanciaBordeLateral: 40, diametro: 12, desdeAbajo: true }
+        ] 
+      },
+      { 
+        nombre: "Hoja corrediza templada 8mm", cantidad: 1, ancho: "(ancho - 40) / 2", alto: "alto - 35", tipo: "templado8mm", 
+        perforaciones: [
+          { descripcion: "Perforación para corona superior", distanciaBordeSuperior: 60, distanciaBordeLateral: 40, diametro: 12 },
+          { descripcion: "Perforación para corona inferior", distanciaBordeSuperior: 60, distanciaBordeLateral: 40, diametro: 12, desdeAbajo: true },
+          { descripcion: "Perforación para jaladera", distanciaBordeSuperior: null, distanciaBordeLateral: null, diametro: 25, centroHorizontal: true, alturaJaladera: 1000 }
+        ] 
+      }
+    ],
+    notas: "⚠️ VIDRIO TEMPLADO: Las perforaciones deben realizarse ANTES del templado. Diámetro estándar de corona: 12mm. La jaladera se centra horizontalmente a ~1000mm de altura. No se puede cortar ni perforar después del templado.",
+    porcentajeHerrajesOverride: 28,
+    esTemplado: true
+  },
+  ventana_abatible_estandar: {
+    nombre: "Ventana abatible estándar",
+    categoria: "ventanas",
+    icono: "🪟",
+    tipoVidrio: "6mm",
+    perfiles: [
+      { nombre: "Marco ventana (ancho)", cantidad: 2, formula: "ancho", corte: "45°" },
+      { nombre: "Marco ventana (alto)", cantidad: 2, formula: "alto", corte: "45°" },
+      { nombre: "Hoja ventana (ancho)", cantidad: 2, formula: "ancho - 42", corte: "45°" },
+      { nombre: "Hoja ventana (alto)", cantidad: 2, formula: "alto - 42", corte: "45°" },
+      { nombre: "Junquillo redondo (ancho)", cantidad: 2, formula: "ancho - 114", corte: "45°" },
+      { nombre: "Junquillo redondo (alto)", cantidad: 2, formula: "alto - 114", corte: "45°" }
+    ],
+    vidrio: [
+      { nombre: "Vidrio 6mm", cantidad: 1, ancho: "ancho - 127", alto: "alto - 127", tipo: "6mm" }
+    ],
+    notas: "📐 Cortes a 45° con ingletadora. Ensamble el junquillo en la hoja antes de cortar. Usar escuadras de alineación.",
+    porcentajeHerrajesOverride: 20
+  },
+  ventana_fija_1_1_2: {
+    nombre: "Ventana fija 1 1/2",
+    categoria: "ventanas",
+    icono: "🪟",
+    tipoVidrio: "4mm",
+    perfiles: [
+      { nombre: "Bolsa / Escalonado cabezal", cantidad: 1, formula: "ancho", corte: "90°" },
+      { nombre: "Bolsas verticales", cantidad: 2, formula: "alto - 40", corte: "90°" }
+    ],
+    vidrio: [
+      { nombre: "Vidrio 4mm", cantidad: 1, ancho: "ancho - 48", alto: "alto - 42", tipo: "4mm" }
+    ],
+    notas: "🪟 Ventana fija sin apertura. Sellar perimetralmente con silicón neutro.",
+    porcentajeHerrajesOverride: 10
+  }
+};
+
+// ============================================================
+// ESTADO GLOBAL
+// ============================================================
+let currentProduct = 'ventana_corrediza_estandar';
+let currentWidth = 1500;
+let currentHeight = 2000;
+let pricesCollapsed = false;
+
+// ============================================================
+// FUNCIONES AUXILIARES
+// ============================================================
+function evaluateFormula(formula, width, height) {
+  if (typeof width !== 'number' || typeof height !== 'number' || width <= 0 || height <= 0) {
+    console.warn('Dimensiones inválidas:', { width, height });
+    return 0;
+  }
+  try {
+    // Sanitización básica: solo permite números, operadores matemáticos y las palabras 'ancho' o 'alto'
+    const safeFormula = formula.replace(/[^0-9+\-*/().\s ancohlto]/g, '');
+    const expr = safeFormula.replace(/\bancho\b/g, `(${width})`).replace(/\balto\b/g, `(${height})`);
+    const result = Function('"use strict"; return (' + expr + ')')();
+    
+    if (isNaN(result) || !isFinite(result)) return 0;
+    return Math.round(result * 100) / 100;
+  } catch (e) {
+    console.warn('Error al evaluar la fórmula:', formula, e);
+    return 0;
+  }
+}
+
+function calculateComponents(product, width, height) {
+  const data = CATALOG[product];
+  if (!data) return { perfiles: [], vidrios: [] };
+  
+  const perfiles = data.perfiles.map(p => ({ 
+    ...p, 
+    medida: evaluateFormula(p.formula, width, height) 
+  }));
+  
+  const vidrios = (data.vidrio || []).map(v => ({
+    ...v,
+    medidaAncho: evaluateFormula(v.ancho, width, height),
+    medidaAlto: evaluateFormula(v.alto, width, height),
+    perforaciones: v.perforaciones ? v.perforaciones.map(perf => ({ ...perf })) : undefined
+  }));
+  
+  return { perfiles, vidrios };
+}
+
+function getGlassPrice(type) {
+  const map = {
+    '4mm': parseFloat(document.getElementById('precioVidrio4mm')?.value || 450),
+    '6mm': parseFloat(document.getElementById('precioVidrio6mm')?.value || 620),
+    'templado8mm': parseFloat(document.getElementById('precioVidrioTemplado8mm')?.value || 980),
+    'templado10mm': parseFloat(document.getElementById('precioVidrioTemplado10mm')?.value || 1250),
+  };
+  return map[type] || 0;
+}
+
+function getAluminumPrice() {
+  return parseFloat(document.getElementById('precioAluminio')?.value || 180);
+}
+
+function getHardwarePercentage(product) {
+  const data = CATALOG[product];
+  if (data && data.porcentajeHerrajesOverride != null) {
+    return data.porcentajeHerrajesOverride;
+  }
+  return parseFloat(document.getElementById('porcentajeHerrajes')?.value || 18);
+}
+
+function getInstallationCost() {
+  return parseFloat(document.getElementById('costoInstalacion')?.value || 0);
+}
+
+function calculateCosts(product, width, height) {
+  const { perfiles, vidrios } = calculateComponents(product, width, height);
+  const priceAl = getAluminumPrice();
+  let costoAluminio = 0;
+  
+  perfiles.forEach(p => {
+    const metros = (p.medida * p.cantidad) / 1000;
+    costoAluminio += metros * priceAl;
+  });
+  
+  let costoVidrio = 0;
+  vidrios.forEach(v => {
+    if (v.tipo) {
+      const areaM2 = (v.medidaAncho * v.medidaAlto * v.cantidad) / 1000000;
+      costoVidrio += areaM2 * getGlassPrice(v.tipo);
+    }
+  });
+  
+  const subtotal = costoAluminio + costoVidrio;
+  const porcHerrajes = getHardwarePercentage(product);
+  const costoHerrajes = subtotal * (porcHerrajes / 100);
+  const instalacion = getInstallationCost();
+  const total = subtotal + costoHerrajes + instalacion;
+
+  return {
+    costoAluminio: Math.round(costoAluminio * 100) / 100,
+    costoVidrio: Math.round(costoVidrio * 100) / 100,
+    subtotal: Math.round(subtotal * 100) / 100,
+    porcentajeHerrajes: porcHerrajes,
+    costoHerrajes: Math.round(costoHerrajes * 100) / 100,
+    costoInstalacion: instalacion,
+    total: Math.round(total * 100) / 100,
+    metrosAluminio: Math.round((perfiles.reduce((sum, p) => sum + (p.medida * p.cantidad) / 1000, 0)) * 100) / 100,
+    areaVidrio: Math.round((vidrios.filter(v => v.tipo).reduce((sum, v) => sum + (v.medidaAncho * v.medidaAlto * v.cantidad) / 1000000, 0)) * 100) / 100,
+  };
+}
+
+// ============================================================
+// GENERADOR DE SVG MEJORADO
+// ============================================================
+function generateSVG(productKey, width, height) {
+  const data = CATALOG[productKey];
+  if (!data) return '<div class="text-muted text-center">Producto no encontrado</div>';
+
+  const maxW = 280;
+  const maxH = 220;
+  const aspect = width / height;
+  let w = maxW;
+  let h = maxH;
+  
+  if (aspect > 1) { h = maxW / aspect; } else { w = maxH * aspect; }
+  w = Math.min(Math.max(w, 60), maxW);
+  h = Math.min(Math.max(h, 60), maxH);
+
+  const color = '#0077B6';
+  const colorAccent = '#FFB703';
+  const light = 'rgba(0,119,182,0.07)';
+  const cat = data.categoria;
+  let content = '';
+
+  // Marco base
+  content += `<rect x="3" y="3" width="${w-6}" height="${h-6}" fill="${light}" stroke="${color}" stroke-width="2.5" rx="3"/>`;
+
+  if (data.esTemplado) {
+    const halfWidth = w / 2;
+    // Hoja fija (izquierda)
+    content += `<rect x="8" y="8" width="${halfWidth-14}" height="${h-16}" fill="rgba(0,180,216,0.12)" stroke="${color}" stroke-width="1.8" rx="2"/>`;
+    content += `<text x="${8+(halfWidth-14)/2}" y="${h/2-4}" text-anchor="middle" font-size="9" fill="${color}" opacity="0.8" font-family="Inter,sans-serif" font-weight="600">FIJO</text>`;
+    
+    // Hoja corrediza (derecha)
+    content += `<rect x="${halfWidth+4}" y="11" width="${halfWidth-14}" height="${h-19}" fill="rgba(255,183,3,0.12)" stroke="${colorAccent}" stroke-width="1.8" rx="2" stroke-dasharray="4 2"/>`;
+    content += `<text x="${halfWidth+4+(halfWidth-14)/2}" y="${h/2-4}" text-anchor="middle" font-size="8" fill="${colorAccent}" opacity="0.9" font-family="Inter,sans-serif" font-weight="600">CORREDIZO</text>`;
+
+    // Perforaciones en hoja fija
+    const perfFija = [
+      { x: 8 + 18, y: 8 + 22, d: 8, etiqueta: '⌀12' },
+      { x: 8 + 18, y: h - 8 - 22, d: 8, etiqueta: '⌀12' },
+    ];
+    perfFija.forEach(p => {
+      content += `<circle cx="${p.x}" cy="${p.y}" r="${p.d/2}" fill="none" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="2 1"/>`;
+      content += `<circle cx="${p.x}" cy="${p.y}" r="1.5" fill="#EF4444"/>`;
+      content += `<text x="${p.x}" y="${p.y-7}" text-anchor="middle" font-size="5" fill="#EF4444" font-family="Inter,sans-serif" font-weight="700">${p.etiqueta}</text>`;
+    });
+
+    // Perforaciones en hoja corrediza
+    const perfCorr = [
+      { x: halfWidth + 4 + 18, y: 11 + 22, d: 8, etiqueta: '⌀12' },
+      { x: halfWidth + 4 + 18, y: h - 11 - 22, d: 8, etiqueta: '⌀12' },
+      { x: halfWidth + 4 + (halfWidth - 14) / 2, y: h * 0.55, d: 10, etiqueta: '⌀25' },
+    ];
+    perfCorr.forEach(p => {
+      content += `<circle cx="${p.x}" cy="${p.y}" r="${p.d/2}" fill="none" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="2 1"/>`;
+      content += `<circle cx="${p.x}" cy="${p.y}" r="1.5" fill="#EF4444"/>`;
+      content += `<text x="${p.x}" y="${p.y-7}" text-anchor="middle" font-size="5" fill="#EF4444" font-family="Inter,sans-serif" font-weight="700">${p.etiqueta}</text>`;
+    });
+
+    // Líneas de cota
+    content += `<line x1="3" y1="${8+22}" x2="${8+18}" y2="${8+22}" stroke="#EF4444" stroke-width="0.6" stroke-dasharray="3 2" opacity="0.6"/>`;
+    content += `<text x="5" y="${8+22-4}" font-size="5" fill="#EF4444" font-family="Inter,sans-serif" opacity="0.7">~60mm</text>`;
+
+    // Flecha de deslizamiento
+    content += `<line x1="${halfWidth+4+5}" y1="${h/2}" x2="${halfWidth+4+(halfWidth-14)-5}" y2="${h/2}" stroke="${colorAccent}" stroke-width="1" marker-end="url(#arrowhead)" opacity="0.6"/>`;
+    content += `<defs><marker id="arrowhead" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto"><polygon points="0 0, 6 2, 0 4" fill="${colorAccent}" opacity="0.6"/></marker></defs>`;
+    content += `<text x="${w-10}" y="10" text-anchor="end" font-size="5" fill="#EF4444" font-family="Inter,sans-serif" font-weight="700">⌀ = diámetro de perforación</text>`;
+    
+  } else if (cat === 'ventanas' || cat === 'ventanales') {
+    const vidrios = data.vidrio || [];
+    const numHojas = vidrios.length || 2;
+    if (numHojas >= 2) {
+      for (let i = 1; i < numHojas; i++) {
+        const x = (i / numHojas) * w;
+        content += `<line x1="${x}" y1="4" x2="${x}" y2="${h-4}" stroke="${color}" stroke-width="1.2" opacity="0.35" stroke-dasharray="5 3"/>`;
+      }
+    }
+    content += `<circle cx="${w-16}" cy="${h/2}" r="4" fill="${color}" opacity="0.7"/><circle cx="16" cy="${h/2}" r="4" fill="${color}" opacity="0.7"/>`;
+    content += `<text x="${w/2}" y="${h-8}" text-anchor="middle" font-size="6" fill="${color}" opacity="0.5">↔ corredizo</text>`;
+    
+  } else if (cat === 'puertas') {
+    content += `<rect x="${w*0.1}" y="${h*0.08}" width="${w*0.8}" height="${h*0.84}" fill="none" stroke="${color}" stroke-width="1.2" rx="2" opacity="0.35"/>`;
+    content += `<circle cx="${w-18}" cy="${h/2}" r="5" fill="${color}" opacity="0.6"/><line x1="${w-18}" y1="${h/2}" x2="${w-18}" y2="${h/2+20}" stroke="${color}" stroke-width="1.5" opacity="0.4"/>`;
+    content += `<text x="${w/2}" y="${h-8}" text-anchor="middle" font-size="6" fill="${color}" opacity="0.5">abatible →</text>`;
+    
+  } else if (cat === 'canceles' && !data.esTemplado) {
+    content += `<line x1="${w/2}" y1="4" x2="${w/2}" y2="${h-4}" stroke="${color}" stroke-width="1.8" opacity="0.4" stroke-dasharray="6 3"/>`;
+    content += `<circle cx="${w-14}" cy="${h/2}" r="3.5" fill="${color}" opacity="0.7"/><circle cx="14" cy="${h/2}" r="3.5" fill="${color}" opacity="0.7"/>`;
+    content += `<rect x="${w/2+5}" y="7" width="${w/2-12}" height="${h-14}" fill="none" stroke="${color}" stroke-width="0.8" opacity="0.25" rx="2"/>`;
+    content += `<rect x="5" y="7" width="${w/2-12}" height="${h-14}" fill="none" stroke="${color}" stroke-width="0.8" opacity="0.25" rx="2"/>`;
+  }
+
+  // Cota de ancho
+  content += `<line x1="8" y1="${h-2}" x2="${w-8}" y2="${h-2}" stroke="${color}" stroke-width="0.8" opacity="0.5"/>`;
+  content += `<line x1="8" y1="${h-5}" x2="8" y2="${h+1}" stroke="${color}" stroke-width="0.8" opacity="0.5"/>`;
+  content += `<line x1="${w-8}" y1="${h-5}" x2="${w-8}" y2="${h+1}" stroke="${color}" stroke-width="0.8" opacity="0.5"/>`;
+  content += `<text x="${w/2}" y="${h+12}" text-anchor="middle" font-size="7" fill="${color}" opacity="0.6" font-family="Inter,sans-serif" font-weight="500">${width} mm</text>`;
+
+  return `<svg width="${w}" height="${h+20}" viewBox="0 0 ${w} ${h+20}" role="img" aria-label="Croquis de ${data.nombre}">${content}</svg>`;
+}
+
+// ============================================================
+// RENDER PRINCIPAL
+// ============================================================
+function renderNavigation() {
+  const nav = document.getElementById('navCategorias');
+  if (!nav) return;
+  
+  const categorias = [...new Set(Object.values(CATALOG).map(p => p.categoria))];
+  nav.innerHTML = categorias.map(cat => 
+    `<button class="nav-btn" data-categoria="${cat}">${cat.charAt(0).toUpperCase() + cat.slice(1)}</button>`
+  ).join('');
+  
+  nav.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.categoria;
+      const first = Object.keys(CATALOG).find(k => CATALOG[k].categoria === cat);
+      if (first) { 
+        currentProduct = first;
+        renderProducts();
+        renderAll(); 
+      }
+      nav.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+  
+  const firstCat = nav.querySelector('.nav-btn');
+  if (firstCat) firstCat.classList.add('active');
+}
+
+function renderProducts() {
+  const container = document.getElementById('productSelector');
+  if (!container) return;
+  
+  const entries = Object.entries(CATALOG);
+  container.innerHTML = entries.map(([key, val]) => 
+    `<button class="product-btn ${key === currentProduct ? 'active' : ''}" data-key="${key}">
+      ${val.icono || '📦'} ${val.nombre.split(' ').slice(0,2).join(' ')}
+      <span class="sub">${val.categoria}${val.esTemplado ? ' · templado' : ''}</span>
+    </button>`
+  ).join('');
+  
+  container.querySelectorAll('.product-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentProduct = btn.dataset.key;
+      renderProducts();
+      renderAll();
+    });
+  });
+}
+
+function renderAll() {
+  renderPreview();
+  renderCosts();
+}
+
+function renderPreview() {
+  const data = CATALOG[currentProduct];
+  if (!data) return;
+  
+  const width = currentWidth;
+  const height = currentHeight;
+  const area = (width * height / 1000000).toFixed(2);
+
+  const elName = document.getElementById('productNameBadge');
+  if (elName) elName.textContent = data.nombre;
+  
+  const elDataW = document.getElementById('dataWidth');
+  if (elDataW) elDataW.textContent = width;
+  
+  const elDataH = document.getElementById('dataHeight');
+  if (elDataH) elDataH.textContent = height;
+  
+  const elDataArea = document.getElementById('dataArea');
+  if (elDataArea) elDataArea.textContent = area;
+  
+  const elValW = document.getElementById('valWidth');
+  if (elValW) elValW.textContent = width + ' mm';
+  
+  const elValH = document.getElementById('valHeight');
+  if (elValH) elValH.textContent = height + ' mm';
+  
+  const elPreview = document.getElementById('previewContent');
+  if (elPreview) elPreview.innerHTML = generateSVG(currentProduct, width, height);
+
+  const { perfiles, vidrios } = calculateComponents(currentProduct, width, height);
+  const lista = document.getElementById('componentesList');
+  
+  let html = '<div style="font-size:0.7rem;font-weight:600;color:var(--text-muted, #666);text-transform:uppercase;letter-spacing:0.04em;padding:0 0.4rem 0.4rem;border-bottom:1px solid var(--border, #ddd);">🔩 Perfiles</div>';
+  
+  perfiles.forEach(p => {
+    html += `<div class="componente-item">
+      <span class="cantidad">${p.cantidad}x</span>
+      <span class="nombre">${p.nombre}</span>
+      <span class="tag">${p.corte}</span>
+      <span class="medida">${p.medida} mm</span>
+    </div>`;
+  });
+  
+  if (vidrios.length > 0) {
+    html += `<div style="font-size:0.7rem;font-weight:600;color:var(--text-muted, #666);text-transform:uppercase;letter-spacing:0.04em;padding:0.6rem 0.4rem 0.4rem;border-top:1px solid var(--border, #ddd);">🪞 Vidrios</div>`;
+    vidrios.forEach(v => {
+      const medida = v.medidaAncho !== undefined ? `${v.medidaAncho} × ${v.medidaAlto} mm` : `${v.medidaAlto || ''} mm`;
+      let extraInfo = '';
+      if (v.perforaciones && v.perforaciones.length > 0) {
+        extraInfo = ` <span style="font-size:0.55rem;color:#EF4444;">(${v.perforaciones.length} perf. ⌀${v.perforaciones.map(p=>p.diametro).join(', ⌀')}mm)</span>`;
+      }
+      html += `<div class="componente-item">
+        <span class="cantidad">${v.cantidad}x</span>
+        <span class="nombre">${v.nombre}${extraInfo}</span>
+        <span class="tag">${v.tipo || 'vidrio'}</span>
+        <span class="medida">${medida}</span>
+      </div>`;
+      
+      if (v.perforaciones && v.perforaciones.length > 0) {
+        v.perforaciones.forEach(perf => {
+          html += `<div class="componente-item" style="padding-left:1.5rem;font-size:0.65rem;background:#FFF5F5;">
+            <span class="cantidad" style="color:#EF4444;">•</span>
+            <span class="nombre" style="font-size:0.65rem;">${perf.descripcion}</span>
+            <span class="tag" style="background:#FEE2E2;color:#991B1B;">⌀${perf.diametro}mm</span>
+            <span class="medida" style="font-size:0.6rem;">a ${perf.distanciaBordeSuperior || '~'}mm del borde</span>
+          </div>`;
+        });
+      }
+    });
+  }
+  if (lista) lista.innerHTML = html;
+
+  // Notas
+  const notasBox = document.getElementById('notasBox');
+  if (notasBox) {
+    if (data.notas) {
+      notasBox.innerHTML = `<strong>📌 Notas y recomendaciones:</strong> ${data.notas}`;
+      notasBox.classList.remove('hidden');
+    } else {
+      notasBox.classList.add('hidden');
+    }
+  }
+
+  // Fecha y folio para impresión
+  const now = new Date();
+  const elPrintFecha = document.getElementById('printFecha');
+  if (elPrintFecha) {
+    elPrintFecha.textContent = now.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+  const elPrintFolio = document.getElementById('printFolio');
+  if (elPrintFolio) {
+    elPrintFolio.textContent = 'COT-' + now.getFullYear() + '-' + Math.floor(Math.random() * 9000 + 1000);
+  }
+}
+
+function renderCosts() {
+  const costs = calculateCosts(currentProduct, currentWidth, currentHeight);
+  const container = document.getElementById('costSummary');
+  if (!container) return;
+  
+  container.innerHTML = `
+    <div class="cost-row"><span class="label">📏 Aluminio (${costs.metrosAluminio.toFixed(2)} m lineales)</span><span class="value">$${costs.costoAluminio.toFixed(2)}</span></div>
+    <div class="cost-row"><span class="label">🪞 Vidrio (${costs.areaVidrio.toFixed(3)} m²)</span><span class="value">$${costs.costoVidrio.toFixed(2)}</span></div>
+    <div class="cost-row"><span class="label">📦 Subtotal materiales</span><span class="value">$${costs.subtotal.toFixed(2)}</span></div>
+    <div class="cost-row"><span class="label">🔧 Herrajes e insumos (${costs.porcentajeHerrajes}%)</span><span class="value">$${costs.costoHerrajes.toFixed(2)}</span></div>
+    ${costs.costoInstalacion > 0 ? `<div class="cost-row"><span class="label">🛠️ Instalación</span><span class="value">$${costs.costoInstalacion.toFixed(2)}</span></div>` : ''}
+    <div class="cost-row total"><span class="label">💰 TOTAL ESTIMADO</span><span class="value">$${costs.total.toFixed(2)} MXN</span></div>
+  `;
+}
+
+// ============================================================
+// COTIZAR WHATSAPP
+// ============================================================
+function quoteWhatsApp() {
+  const data = CATALOG[currentProduct];
+  const name = data.nombre;
+  const width = currentWidth;
+  const height = currentHeight;
+  const area = (width * height / 1000000).toFixed(2);
+  const { perfiles, vidrios } = calculateComponents(currentProduct, width, height);
+  const costs = calculateCosts(currentProduct, width, height);
+
+  let detalle = '';
+  perfiles.forEach(p => { 
+    detalle += `• ${p.cantidad}x ${p.nombre}: ${p.medida} mm (corte ${p.corte})\n`; 
+  });
+  vidrios.forEach(v => {
+    const medida = v.medidaAncho !== undefined ? `${v.medidaAncho} x ${v.medidaAlto} mm` : `${v.medidaAlto || ''} mm`;
+    detalle += `• ${v.cantidad}x ${v.nombre}: ${medida}\n`;
+    if (v.perforaciones) {
+      v.perforaciones.forEach(perf => {
+        detalle += `  ↳ ${perf.descripcion}: ⌀${perf.diametro}mm a ~${perf.distanciaBordeSuperior || 'centro'} del borde\n`;
+      });
+    }
+  });
+
+  const mensaje = `¡Hola! Cotización desde Aluminio&Vidrio:
+
+📋 *Producto:* ${name}${data.esTemplado ? ' (VIDRIO TEMPLADO)' : ''}
+📏 *Medidas:* ${width} mm (ancho) × ${height} mm (alto) | Área: ${area} m²
+
+📦 *Despiece técnico:*
+${detalle}
+💰 *Resumen de costos:*
+• Aluminio: $${costs.costoAluminio.toFixed(2)}
+• Vidrio: $${costs.costoVidrio.toFixed(2)}
+• Herrajes e insumos (${costs.porcentajeHerrajes}%): $${costs.costoHerrajes.toFixed(2)}
+${costs.costoInstalacion > 0 ? `• Instalación: $${costs.costoInstalacion.toFixed(2)}\n` : ''}
+🏷️ *TOTAL ESTIMADO: $${costs.total.toFixed(2)} MXN*
+
+${data.notas ? '📌 *Notas:* ' + data.notas.split('.')[0] + '.' : ''}
+
+¿Me podrían confirmar precios y disponibilidad? ¡Gracias!`;
+
+  const url = `https://wa.me/523320827128?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, '_blank');
+  showToast('📤 Abriendo WhatsApp con cotización...');
+}
+
+// ============================================================
+// IMPRIMIR / PDF
+// ============================================================
+function printPDF() {
+  showToast('🖨️ Preparando impresión / PDF...');
+  setTimeout(() => window.print(), 400);
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ============================================================
+// INICIALIZACIÓN
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderProducts();
+  renderAll();
+
+  // Sliders
+  const sliderW = document.getElementById('sliderWidth');
+  const sliderH = document.getElementById('sliderHeight');
+  
+  if (sliderW) {
+    sliderW.addEventListener('input', () => { 
+      currentWidth = parseInt(sliderW.value, 10); 
+      renderAll(); 
+    });
+  }
+  if (sliderH) {
+    sliderH.addEventListener('input', () => { 
+      currentHeight = parseInt(sliderH.value, 10); 
+      renderAll(); 
+    });
+  }
+
+  // Botones
+  const btnCotizar = document.getElementById('btnCotizar');
+  if (btnCotizar) btnCotizar.addEventListener('click', quoteWhatsApp);
+  
+  const btnImprimir = document.getElementById('btnImprimir');
+  if (btnImprimir) btnImprimir.addEventListener('click', printPDF);
+  
+  const btnImprimirTop = document.getElementById('btnImprimirTop');
+  if (btnImprimirTop) btnImprimirTop.addEventListener('click', printPDF);
+
+  // Panel de precios plegable
+  const panelPrecios = document.getElementById('panelPrecios');
+  const priceHeader = document.getElementById('priceHeader');
+  
+  if (priceHeader && panelPrecios) {
+    priceHeader.addEventListener('click', () => {
+      pricesCollapsed = !pricesCollapsed;
+      if (pricesCollapsed) {
+        panelPrecios.classList.add('collapsed');
+      } else {
+        panelPrecios.classList.remove('collapsed');
+      }
+    });
+  }
+  
+  const btnTogglePrecios = document.getElementById('btnTogglePrecios');
+  if (btnTogglePrecios && panelPrecios) {
+    btnTogglePrecios.addEventListener('click', () => {
+      pricesCollapsed = !pricesCollapsed;
+      if (pricesCollapsed) {
+        panelPrecios.classList.add('collapsed');
+      } else {
+        panelPrecios.classList.remove('collapsed');
+      }
+      panelPrecios.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  // Actualizar costos cuando cambian los precios
+  const priceInputs = document.querySelectorAll('#priceBody input');
+  priceInputs.forEach(input => {
+    input.addEventListener('input', () => {
+      renderCosts();
+    });
+  });
+});-                    { "nombre": "Zoclo / Cabezal de 3\"", "cantidad": 3, "formula": "(ancho - 167) / 3",
 -                    "corte": "90°" },
 -                    { "nombre": "Cerco chapa fija", "cantidad": 1, "formula": "alto", "corte": "90°" },
 -                    { "nombre": "Cerco chapa corredizo", "cantidad": 1, "formula": "alto - 40", "corte": "90°" },
