@@ -1,0 +1,28 @@
+name: CI Code Health
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso 1: Descargar el código del repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Paso 2: Ejecutar la acción de Code Health
+      - name: Code Health - Dev Herald
+        uses: dev-herald/health@v1
+        with:
+          # REQUERIDO: Debes poner aquí tu API key de Dev Herald
+          api-key: ${{ secrets.DEV_HERALD_API_KEY }}
+          
+          # Parámetros opcionales (puedes descomentar o borrar según necesites):
+          # knip-report-path: 
+          # lockfile-path: 
+          # cve-detail: false
